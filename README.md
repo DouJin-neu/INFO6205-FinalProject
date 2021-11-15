@@ -1,2 +1,2 @@
 # INFO6205-FinalProject
-This is the team final project for sorting Chinese character
+This is the Team 21 final project for sorting Chinese character
