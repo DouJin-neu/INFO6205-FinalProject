@@ -35,8 +35,10 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     }
 
+
     public MSDChineseSort(final MSDCoder<X> huskyCoder) {
         this.huskyCoder =  huskyCoder;
+
     }
 
 
@@ -76,6 +78,19 @@ public class MSDChineseSort<X extends Comparable<X>>{
         }
     }
 
+
+    @Override
+    public Object[] preProcess(Object[] xs) {
+        ChineseCharactorNode[] processXs = new ChineseCharactorNode[xs.length];
+        int i=0;
+        for(Object s:xs){
+            processXs[i++] = new ChineseCharactorNode(s.toString());
+        }
+
+        return processXs;
+    }
+
+  
 
     private static int charAt(String s, int d) {
         if (d < s.length()) return s.charAt(d);
