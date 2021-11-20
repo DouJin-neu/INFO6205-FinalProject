@@ -1,0 +1,19 @@
+package sort.utils;
+
+import sort.helper.ChineseCharactorNode;
+
+/**
+ * Class to combine the long codes for an array of objects with a determination of coding perfection.
+ */
+public class Coding {
+    public Coding(long[] longs, boolean perfect) {
+        this.longs = longs;
+        this.perfect = perfect;
+    }
+
+
+
+    public final long[] longs;
+    public final boolean perfect;
+
+}
