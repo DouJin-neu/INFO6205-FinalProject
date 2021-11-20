@@ -9,7 +9,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.neu.coe.mgen</groupId>
     <artifactId>INFO6205</artifactId>
+    <packaging>pom</packaging>
     <version>1</version>
+    <modules>
+        <module>Team21</module>
+    </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
