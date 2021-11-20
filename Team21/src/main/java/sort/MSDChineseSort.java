@@ -59,10 +59,15 @@ public class MSDChineseSort<X extends Comparable<X>>{
                 count[charAt(a[i], d) + 2]++;
             for (int r = 0; r < radix + 1; r++)      // Transform counts to indices.
                 count[r + 1] += count[r];
-            for (int i = lo; i < hi; i++)     // Distribute.
+            for (int i = lo; i < hi; i++) {     // Distribute.
                 aux[count[charAt(a[i], d) + 1]++] = a[i];
+                auXS[count[charAt(a[i], d) + 1]++] = xs[i];
+            }
             // Copy back.
-            if (hi - lo >= 0) System.arraycopy(aux, 0, a, lo, hi - lo);
+            if (hi - lo >= 0) {
+                System.arraycopy(aux, 0, a, lo, hi - lo);
+                System.arraycopy(auXS, 0, xs, lo, hi - lo);
+            }
             // Recursively sort for each character value.
             // TO BE IMPLEMENTED
             for(int r = 0; r < radix+1; r++){
