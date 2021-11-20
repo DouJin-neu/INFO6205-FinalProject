@@ -1,13 +1,17 @@
 package sort.helper;
 
+import edu.neu.coe.info6205.Tuple;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import sort.utils.BaseHuskySequenceCoder;
+import sort.utils.HuskySequenceCoder;
+import sort.utils.HuskySortable;
 
-public class ChineseCharactorNode {
+public class ChineseCharactorNode implements HuskySortable<ChineseCharactorNode> {
   private String value;
 
   public String getValue() {
@@ -66,4 +70,14 @@ public class ChineseCharactorNode {
     return sb.toString();
   }
 
+
+  @Override
+  public int compareTo(ChineseCharactorNode o) {
+    return 0;
+  }
+
+  @Override
+  public long huskyCode() {
+    return 0;
+  }
 }

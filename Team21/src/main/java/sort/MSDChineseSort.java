@@ -2,9 +2,15 @@ package sort;
 
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.sort.SortWithHelper;
+import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
 import edu.neu.coe.info6205.util.Config;
-import elementary.InsertionSortMSD;
+import java.util.Arrays;
 import sort.helper.ChineseCharactorNode;
+import sort.helper.ChineseSortHelper;
+import sort.utils.Coding;
+import sort.utils.HuskyCoder;
+import sort.utils.MSDCoder;
+import sort.utils.MSDCoderFactory;
 
 /**
  * This class represents the purest form of Husky Sort based on IntroSort for pass 1 and the System sort for pass 2.
@@ -12,40 +18,62 @@ import sort.helper.ChineseCharactorNode;
  * CONSIDER redefining all of the "to" parameters to be consistent with our other Sort utilities.
  *
  */
-public class MSDChineseSort extends SortWithHelper {
+public class MSDChineseSort<X extends Comparable<X>>{
 
 
-    public MSDChineseSort(Helper helper) {
-        super(helper);
+    public static void main(final String[] args) {
+
+        final int N = 50000;
+        final int m = 10000;
+        final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
+        final String inputOrder = preSorted ? "ordered" : "random";
+         MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
+        for (int i = 0; i < m; i++)
+            if (preSorted)
+                // This should take about 20 seconds
+                sorter.sort(ChineseSortHelper.generateRandomChineseArray(3,N,m));
+
     }
 
-    public MSDChineseSort(String description, int N, Config config) {
-        super(description, N, config);
-    }
 
-    @Override
-    public void sort(Object[] xs, int from, int to) {
+    public MSDChineseSort(final MSDCoder<X> huskyCoder) {
+        this.huskyCoder =  huskyCoder;
 
-        sort((ChineseCharactorNode[]) xs, from, to,0);
     }
 
 
-    public void sort(ChineseCharactorNode[] xs, int lo, int hi,int d) {
-        if (hi < lo + cutoff) InsertionSortMSD.sort(xs, lo, hi, d);
+    private final MSDCoder<X> huskyCoder;
+
+    public void sort(final X[] xs) {
+        // NOTE: First pass where we code to longs and sort according to those.
+       String[] longs = huskyCoder.huskyEncode(xs);
+        final int n = xs.length;
+        final X[] xsCopy = Arrays.copyOf(xs, n);
+        String[] longsCopy = Arrays.copyOf(longs, n);
+        sort(longsCopy, xsCopy, longs, xs, 0, n-1,0);
+    }
+
+    private void sort(String[] a, X[] xs, String[] aux, X[] auXS, int lo, int hi,int d) {
+        if (hi < lo + cutoff) InsertionSortMSD.sort(a, lo, hi, d);
         else {
             int[] count = new int[radix + 2];        // Compute frequency counts.
             for (int i = lo; i < hi; i++)
-                count[charAt(xs[i].getPinyin(), d) + 2]++;
+                count[charAt(a[i], d) + 2]++;
             for (int r = 0; r < radix + 1; r++)      // Transform counts to indices.
                 count[r + 1] += count[r];
-            for (int i = lo; i < hi; i++)     // Distribute.
-                aux[count[charAt(xs[i].getPinyin(), d) + 1]++] = xs[i];
+            for (int i = lo; i < hi; i++) {     // Distribute.
+                aux[count[charAt(a[i], d) + 1]++] = a[i];
+                auXS[count[charAt(a[i], d) + 1]++] = xs[i];
+            }
             // Copy back.
-            if (hi - lo >= 0) System.arraycopy(aux, 0, xs, lo, hi - lo);
+            if (hi - lo >= 0) {
+                System.arraycopy(aux, 0, a, lo, hi - lo);
+                System.arraycopy(auXS, 0, xs, lo, hi - lo);
+            }
             // Recursively sort for each character value.
             // TO BE IMPLEMENTED
             for(int r = 0; r < radix+1; r++){
-                sort(xs, lo+count[r], lo+count[r+1]-1, d+1);
+                sort(a,xs,aux,auXS, lo+count[r], lo+count[r+1]-1, d+1);
             }
         }
     }
@@ -62,10 +90,7 @@ public class MSDChineseSort extends SortWithHelper {
         return processXs;
     }
 
-    @Override
-    public void postProcess(Object[] xs) {
-
-    }
+  
 
     private static int charAt(String s, int d) {
         if (d < s.length()) return s.charAt(d);
@@ -74,5 +99,7 @@ public class MSDChineseSort extends SortWithHelper {
 
     private static final int radix = 256;
     private static final int cutoff = 15;
-    private static ChineseCharactorNode[] aux;       // auxiliary array for distribution
+    private  X[] aux;       // auxiliary array for distribution
+
+
 }
