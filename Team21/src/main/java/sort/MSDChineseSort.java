@@ -25,6 +25,7 @@ public class MSDChineseSort extends SortWithHelper {
 
     @Override
     public void sort(Object[] xs, int from, int to) {
+
         sort((ChineseCharactorNode[]) xs, from, to,0);
     }
 
@@ -47,6 +48,18 @@ public class MSDChineseSort extends SortWithHelper {
                 sort(xs, lo+count[r], lo+count[r+1]-1, d+1);
             }
         }
+    }
+
+
+    @Override
+    public Object[] preProcess(Object[] xs) {
+        ChineseCharactorNode[] processXs = new ChineseCharactorNode[xs.length];
+        int i=0;
+        for(Object s:xs){
+            processXs[i++] = new ChineseCharactorNode(s.toString());
+        }
+
+        return processXs;
     }
 
     @Override
