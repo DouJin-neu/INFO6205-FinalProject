@@ -1,14 +1,10 @@
 package sort;
 
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.SortWithHelper;
 import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
-import edu.neu.coe.info6205.util.Config;
+
 import java.util.Arrays;
-import sort.helper.ChineseCharactorNode;
+import sort.helper.ChineseCharacterNode;
 import sort.helper.ChineseSortHelper;
-import sort.utils.Coding;
-import sort.utils.HuskyCoder;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
@@ -81,10 +77,10 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     @Override
     public Object[] preProcess(Object[] xs) {
-        ChineseCharactorNode[] processXs = new ChineseCharactorNode[xs.length];
+        ChineseCharacterNode[] processXs = new ChineseCharacterNode[xs.length];
         int i=0;
         for(Object s:xs){
-            processXs[i++] = new ChineseCharactorNode(s.toString());
+            processXs[i++] = new ChineseCharacterNode(s.toString());
         }
 
         return processXs;

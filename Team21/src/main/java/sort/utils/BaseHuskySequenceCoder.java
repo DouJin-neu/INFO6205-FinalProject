@@ -59,10 +59,10 @@ public abstract class BaseHuskySequenceCoder<X extends CharSequence> implements 
      *
      * @return false.
      */
-    @Override
+    /*@Override
     final public boolean perfect() {
         return false;
-    }
+    }*/
 
     @Override
     final public String toString() {
