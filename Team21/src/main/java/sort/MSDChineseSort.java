@@ -1,14 +1,7 @@
 package sort;
 
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.SortWithHelper;
 import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
-import edu.neu.coe.info6205.util.Config;
 import java.util.Arrays;
-import sort.helper.ChineseCharactorNode;
-import sort.helper.ChineseSortHelper;
-import sort.utils.Coding;
-import sort.utils.HuskyCoder;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
