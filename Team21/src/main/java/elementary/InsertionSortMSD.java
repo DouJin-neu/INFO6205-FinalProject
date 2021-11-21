@@ -1,6 +1,6 @@
 package elementary;
 
-import sort.helper.ChineseCharactorNode;
+import sort.helper.ChineseCharacterNode;
 
 /**
  * This is a basic implementation of insertion sort.
@@ -8,7 +8,7 @@ import sort.helper.ChineseCharactorNode;
  */
 public class InsertionSortMSD {
 
-    public static void sort(ChineseCharactorNode[] a, int lo, int hi, int d) {
+    public static void sort(ChineseCharacterNode[] a, int lo, int hi, int d) {
         for (int i = lo; i < hi; i++)
             for (int j = i; j > lo && less(a[j].getPinyin(), a[j - 1].getPinyin(), d); j--)
                 swap(a, j, j - 1);

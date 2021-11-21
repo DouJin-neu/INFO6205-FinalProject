@@ -1,7 +1,5 @@
 package sort.utils;
 
-import sort.helper.ChineseCharactorNode;
-
 /**
  * Class to combine the long codes for an array of objects with a determination of coding perfection.
  */
