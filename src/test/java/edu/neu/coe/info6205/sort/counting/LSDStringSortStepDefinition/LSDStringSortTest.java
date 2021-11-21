@@ -25,7 +25,7 @@ public class LSDStringSortTest {
         strArr = string2.split(",");
     }
 
-    @When("LSD Radix sort is performed within {int} and {int}")
+    @When("LSD Radix com.info6205.team21.sort is performed within {int} and {int}")
     public void lsd_Radix_sort_is_performed_within_and(Integer rangeStart, Integer rangeEnd) {
         // Write code here that turns the phrase above into concrete actions
         ls.sort(strArr, rangeStart, rangeEnd);

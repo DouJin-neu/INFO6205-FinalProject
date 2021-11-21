@@ -28,7 +28,7 @@ public class QuickSort_DualPivot<X extends Comparable<X>> extends QuickSort<X> {
     /**
      * Constructor for QuickSort_3way
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public QuickSort_DualPivot(int N, Config config) {

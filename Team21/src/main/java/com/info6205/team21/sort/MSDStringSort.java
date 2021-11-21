@@ -1,10 +1,10 @@
-package sort;
+package com.info6205.team21.sort;
 
 
 import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
 
 /**
- * Class to implement Most significant digit string sort (a radix sort).
+ * Class to implement Most significant digit string com.info6205.team21.sort (a radix com.info6205.team21.sort).
  */
 public class MSDStringSort {
 
@@ -40,7 +40,7 @@ public class MSDStringSort {
         aux[count[charAt(a[i], d) + 1]++] = a[i];
       // Copy back.
       if (hi - lo >= 0) System.arraycopy(aux, 0, a, lo, hi - lo);
-      // Recursively sort for each character value.
+      // Recursively com.info6205.team21.sort for each character value.
       // TO BE IMPLEMENTED
       for(int r = 0; r < radix+1; r++){
         sort(a, lo+count[r], lo+count[r+1]-1, d+1);

@@ -87,7 +87,7 @@ public class Main {
             long startTime = System.currentTimeMillis();
             for (int t = 0; t < 10; t++) {
                 for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
-                ParSort.sort(array, 0, array.length);
+                ParSort.com.info6205.team21.sort(array, 0, array.length);
             }
             long endTime = System.currentTimeMillis();
             time = (endTime - startTime);
@@ -122,7 +122,7 @@ public class Main {
                 long startTime = System.currentTimeMillis();
                 for (int t = 0; t < 10; t++) {
                     for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
-                    ParSort.sort(array, 0, array.length);
+                    ParSort.com.info6205.team21.sort(array, 0, array.length);
                 }
                 long endTime = System.currentTimeMillis();
                 time = (endTime - startTime);
@@ -170,7 +170,7 @@ public class Main {
                 long startTime = System.currentTimeMillis();
                 for (int t = 0; t < 10; t++) {
                     for (int i = 0; i < currArray.length; i++) currArray[i] = random.nextInt(10000000);
-                    ParSort.sort(currArray, 0, currArray.length);
+                    ParSort.com.info6205.team21.sort(currArray, 0, currArray.length);
                 }
                 long endTime = System.currentTimeMillis();
                 time = (endTime - startTime);
@@ -220,7 +220,7 @@ public class Main {
     private static void processCommand(String x, String y) {
         if (x.equalsIgnoreCase("N")) setConfig(x, Integer.parseInt(y));
         else
-            // TODO sort this out
+            // TODO com.info6205.team21.sort this out
             if (x.equalsIgnoreCase("P")) //noinspection ResultOfMethodCallIgnored
                 ForkJoinPool.getCommonPoolParallelism();
     }

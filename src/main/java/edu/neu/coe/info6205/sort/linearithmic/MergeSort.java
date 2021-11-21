@@ -26,7 +26,7 @@ public class MergeSort<X extends Comparable<X>> extends SortWithHelper<X> {
     /**
      * Constructor for MergeSort
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public MergeSort(int N, Config config) {
@@ -59,7 +59,7 @@ public class MergeSort<X extends Comparable<X>> extends SortWithHelper<X> {
             return;
         }
 
-        // TO BE IMPLEMENTED : implement merge sort with insurance and no-copy optimizations
+        // TO BE IMPLEMENTED : implement merge com.info6205.team21.sort with insurance and no-copy optimizations
     }
 
     // TODO combine with MergeSortBasic perhaps.

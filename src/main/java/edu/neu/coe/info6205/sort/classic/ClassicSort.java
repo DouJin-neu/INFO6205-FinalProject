@@ -14,13 +14,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * This sort method sorts elements according to their class, i.e. the sort key is the value of x.classify().
+ * This com.info6205.team21.sort method sorts elements according to their class, i.e. the com.info6205.team21.sort key is the value of x.classify().
  *
  * @param <X> the underlying type which must extend Classify.
  */
 public class ClassicSort<X extends Classify<X>> extends GenericSortWithGenericHelper<X> implements Sort<X> {
 
-    public static final String DESCRIPTION = "Classic sort";
+    public static final String DESCRIPTION = "Classic com.info6205.team21.sort";
 
     @Override
     public void sort(X[] xs, int from, int to) {

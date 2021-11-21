@@ -1,7 +1,7 @@
 /*
   (c) Copyright 2018, 2019 Phasmid Software
  */
-package sort.utils;
+package com.info6205.team21.sort.utils;
 
 /**
  * Interface defining the behavior of a type X which can be HuskySorted.

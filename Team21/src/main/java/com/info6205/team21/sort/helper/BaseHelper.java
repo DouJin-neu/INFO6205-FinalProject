@@ -1,5 +1,6 @@
-package edu.neu.coe.info6205.sort;
+package com.info6205.team21.sort.helper;
 
+import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
 import edu.neu.coe.info6205.util.Utilities;
 
@@ -7,7 +8,6 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
-
     /**
      * Static method to get a Helper configured for the given class.
      *
@@ -17,7 +17,7 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
      */
     public static <Y extends Comparable<Y>> Helper<Y> getHelper(final Class<?> clazz) {
         try {
-            return new BaseHelper<>("Standard Helper", Config.load(clazz));
+            return new edu.neu.coe.info6205.sort.BaseHelper<>("Standard Helper", Config.load(clazz));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -83,7 +83,7 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
      * Method to perform a stable swap using half-exchanges,
      * i.e. between xs[i] and xs[j] such that xs[j] is moved to index i,
      * and xs[i] thru xs[j-1] are all moved up one.
-     * This type of swap is used by insertion com.info6205.team21.sort.
+     * This type of swap is used by insertion sort.
      *
      * @param xs the array of Xs.
      * @param i  the index of the destination of xs[j].
@@ -111,7 +111,7 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
     }
 
     public X[] random(Class<X> clazz, Function<Random, X> f) {
-        if (n <= 0) throw new HelperException("Helper.random: not initialized");
+        if (n <= 0) throw new edu.neu.coe.info6205.sort.BaseHelper.HelperException("Helper.random: not initialized");
         randomArray = Utilities.fillRandomArray(clazz, random, n, f);
         return randomArray;
     }
@@ -141,11 +141,11 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
 
     /**
      * @param n the size to be managed.
-     * @throws HelperException if n is inconsistent.
+     * @throws edu.neu.coe.info6205.sort.BaseHelper.HelperException if n is inconsistent.
      */
     public void init(int n) {
         if (this.n == 0 || this.n == n) this.n = n;
-        else throw new HelperException("Helper: n is already set to a different value");
+        else throw new edu.neu.coe.info6205.sort.BaseHelper.HelperException("Helper: n is already set to a different value");
     }
 
     public int getN() {

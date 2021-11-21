@@ -15,7 +15,7 @@ public class SelectionSort<X extends Comparable<X>> extends SortWithHelper<X> {
     /**
      * Constructor for SelectionSort
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public SelectionSort(int N, Config config) {
@@ -56,6 +56,6 @@ public class SelectionSort<X extends Comparable<X>> extends SortWithHelper<X> {
         new SelectionSort<Y>(Config.load(SelectionSort.class)).mutatingSort(ys);
     }
 
-    public static final String DESCRIPTION = "Selection sort";
+    public static final String DESCRIPTION = "Selection com.info6205.team21.sort";
 
 }

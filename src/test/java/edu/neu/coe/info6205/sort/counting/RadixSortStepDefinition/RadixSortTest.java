@@ -29,7 +29,7 @@ public class RadixSortTest {
         buildIntArrayFromString(strIntegers);
     }
 
-    @When("radix sort is performed over the {string} range from {int} to {int}")
+    @When("radix com.info6205.team21.sort is performed over the {string} range from {int} to {int}")
     public void radix_sort_is_performed_over_the_range_from_to(String string, Integer rangeStart, Integer rangeEnd) throws Exception {
         // Write code here that turns the phrase above into concrete actions
         rs.sort(intArr, rangeStart, rangeEnd);
@@ -50,7 +50,7 @@ public class RadixSortTest {
         buildIntArrayFromString(string);
     }
 
-    @When("radix sort is performed over the range from {int} to {int} where {string}")
+    @When("radix com.info6205.team21.sort is performed over the range from {int} to {int} where {string}")
     public void radix_sort_is_performed_over_the_range_from_to_where(Integer rangeStart, Integer rangeEnd, String string) throws Exception {
         // Write code here that turns the phrase above into concrete actions
         try {
@@ -76,7 +76,7 @@ public class RadixSortTest {
         buildIntArrayFromString(string);
     }
 
-    @When("radix sort is performed over the range {int} to {int} where {string}")
+    @When("radix com.info6205.team21.sort is performed over the range {int} to {int} where {string}")
     public void radix_sort_is_performed_over_the_range_to_where(Integer rangeStart, Integer rangeEnd, String string) {
         // Write code here that turns the phrase above into concrete actions
         try {
@@ -102,7 +102,7 @@ public class RadixSortTest {
         buildIntArrayFromString(string);
     }
 
-    @When("counting sort is performed over the range {int} to {int} at {int} radix")
+    @When("com.info6205.team21.counting com.info6205.team21.sort is performed over the range {int} to {int} at {int} radix")
     public void counting_sort_is_performed_over_the_range_to_at_radix(Integer rangeStart, Integer rangeEnd, Integer radix) {
         // Write code here that turns the phrase above into concrete actions
         rs.countSort(intArr, radix, rangeStart, rangeEnd);

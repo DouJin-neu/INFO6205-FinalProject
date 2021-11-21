@@ -1,9 +1,9 @@
-package elementary;
+package com.info6205.team21.elementary;
 
-import sort.helper.ChineseCharacterNode;
+import com.info6205.team21.sort.helper.ChineseCharacterNode;
 
 /**
- * This is a basic implementation of insertion sort.
+ * This is a basic implementation of insertion com.info6205.team21.sort.
  * It does not extend Sort, nor does it employ any optimizations.
  */
 public class InsertionSortMSD {

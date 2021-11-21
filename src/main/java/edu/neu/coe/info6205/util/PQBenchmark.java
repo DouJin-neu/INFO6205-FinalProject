@@ -80,7 +80,7 @@ public class PQBenchmark {
      * This is based on log2(n!)
      *
      * @param n the number of elements.
-     * @return the minimum number of comparisons possible to sort n randomly ordered elements.
+     * @return the minimum number of comparisons possible to com.info6205.team21.sort n randomly ordered elements.
      */
     static double minComparisons(int n) {
         double lgN = Utilities.lg(n);
@@ -89,7 +89,7 @@ public class PQBenchmark {
 
     /**
      * This is the mean number of inversions in a randomly ordered set of n elements.
-     * For insertion sort, each (low-level) swap fixes one inversion, so on average there are this number of swaps.
+     * For insertion com.info6205.team21.sort, each (low-level) swap fixes one inversion, so on average there are this number of swaps.
      * The minimum number of comparisons is slightly higher.
      *
      * @param n the number of elements

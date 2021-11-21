@@ -20,11 +20,11 @@ public class SortTest {
         }
 
         /**
-         * Generic, mutating sort method which operates on a sub-array
+         * Generic, mutating com.info6205.team21.sort method which operates on a sub-array
          *
-         * @param xs   sort the array xs from "from" to "to".
-         * @param from the index of the first element to sort
-         * @param to   the index of the first element not to sort
+         * @param xs   com.info6205.team21.sort the array xs from "from" to "to".
+         * @param from the index of the first element to com.info6205.team21.sort
+         * @param to   the index of the first element not to com.info6205.team21.sort
          */
         @Override
         public void sort(Integer[] xs, int from, int to) {

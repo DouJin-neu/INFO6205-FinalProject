@@ -150,10 +150,10 @@ public class QuickSortDualPivotTest {
     public void testSortDetailed() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        // NOTE this depends on the cutoff value for quick sort.
+        // NOTE this depends on the cutoff value for quick com.info6205.team21.sort.
         int levels = k - 2;
         final Config config = ConfigTest.setupConfig("true", "0", "1", "", "");
-        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("quick sort dual pivot", N, config);
+        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("quick com.info6205.team21.sort dual pivot", N, config);
         System.out.println(helper);
         Sort<Integer> s = new QuickSort_DualPivot<>(helper);
         s.init(N);
@@ -199,7 +199,7 @@ public class QuickSortDualPivotTest {
         Partition<String> p2 = partitions.get(2);
         sorter.sort(xs, p2.from, n, 0);
         int fixes = (int) privateMethodTester.invokePrivate("getFixes");
-        // NOTE: there are at least as many fixes as inversions -- sort methods aren't necessarily perfectly efficient in terms of swaps.
+        // NOTE: there are at least as many fixes as inversions -- com.info6205.team21.sort methods aren't necessarily perfectly efficient in terms of swaps.
         assertTrue(inversions <= fixes);
         assertEquals(0, helper.inversions(xs));
         assertEquals(11, privateMethodTester.invokePrivate("getSwaps"));

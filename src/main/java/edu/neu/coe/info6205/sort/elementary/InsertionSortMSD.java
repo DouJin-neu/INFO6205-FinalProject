@@ -1,7 +1,7 @@
 package edu.neu.coe.info6205.sort.elementary;
 
 /**
- * This is a basic implementation of insertion sort.
+ * This is a basic implementation of insertion com.info6205.team21.sort.
  * It does not extend Sort, nor does it employ any optimizations.
  */
 public class InsertionSortMSD {

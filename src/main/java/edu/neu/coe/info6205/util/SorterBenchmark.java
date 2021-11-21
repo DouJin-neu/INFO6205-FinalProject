@@ -10,7 +10,7 @@ import static edu.neu.coe.info6205.util.Utilities.formatWhole;
 /**
  * Class to extend Benchmark_Timer for sorting an array of T values.
  * The default implementation of run in this class randomly selects a subset of the array to be sorted.
- * Each sort is preceded (optionally) by a preProcessor and succeeded (optionally) by a postProcessor.
+ * Each com.info6205.team21.sort is preceded (optionally) by a preProcessor and succeeded (optionally) by a postProcessor.
  *
  * @param <T> the underlying type to be sorted.
  */
@@ -23,7 +23,7 @@ public class SorterBenchmark<T extends Comparable<T>> extends Benchmark_Timer<T[
      *          Not to be confused with nRuns, an instance field, which specifies the number of repetitions of the function.
      */
     public void run(int N) {
-        logger.info("run: sort " + formatWhole(N) + " elements using " + this);
+        logger.info("run: com.info6205.team21.sort " + formatWhole(N) + " elements using " + this);
         sorter.init(N);
         final double time = super.runFromSupplier(() -> generateRandomArray(ts), nRuns);
         for (TimeLogger timeLogger : timeLoggers) timeLogger.log(time, N);
@@ -38,9 +38,9 @@ public class SorterBenchmark<T extends Comparable<T>> extends Benchmark_Timer<T[
      * Constructor for a SorterBenchmark where we provide the following parameters:
      *
      * @param tClass        the class of T.
-     * @param preProcessor  an optional pre-processor which is applied before each sort.
+     * @param preProcessor  an optional pre-processor which is applied before each com.info6205.team21.sort.
      * @param sorter        the sorter.
-     * @param postProcessor an optional pre-processor which is applied before each sort.
+     * @param postProcessor an optional pre-processor which is applied before each com.info6205.team21.sort.
      * @param ts            the array of Ts.
      * @param nRuns         the number of runs to perform in this benchmark.
      * @param timeLoggers   the time-loggers.
@@ -56,10 +56,10 @@ public class SorterBenchmark<T extends Comparable<T>> extends Benchmark_Timer<T[
 
     /**
      * Constructor for a SorterBenchmark where we provide the following parameters:
-     * For this form of the constructor, the post-processor always checks that the sort was successful.
+     * For this form of the constructor, the post-processor always checks that the com.info6205.team21.sort was successful.
      *
      * @param tClass       the class of T.
-     * @param preProcessor an optional pre-processor which is applied before each sort.
+     * @param preProcessor an optional pre-processor which is applied before each com.info6205.team21.sort.
      * @param sorter       the sorter.
      * @param ts           the array of Ts.
      * @param nRuns        the number of runs to perform in this benchmark.
@@ -71,7 +71,7 @@ public class SorterBenchmark<T extends Comparable<T>> extends Benchmark_Timer<T[
 
     /**
      * Constructor for a SorterBenchmark where we provide the following parameters:
-     * For this form of the constructor, the post-processor always checks that the sort was successful.
+     * For this form of the constructor, the post-processor always checks that the com.info6205.team21.sort was successful.
      * For this form of the constructor, there is no pre-processor.
      *
      * @param tClass      the class of T.

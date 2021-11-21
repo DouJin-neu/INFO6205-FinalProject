@@ -15,7 +15,7 @@ public class BubbleSort<X extends Comparable<X>> extends SortWithHelper<X> {
     /**
      * Constructor for BubbleSort
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public BubbleSort(int N, Config config) {
@@ -36,11 +36,11 @@ public class BubbleSort<X extends Comparable<X>> extends SortWithHelper<X> {
     }
 
     /**
-     * Sort the sub-array xs:from:to using insertion sort.
+     * Sort the sub-array xs:from:to using insertion com.info6205.team21.sort.
      *
-     * @param xs   sort the array xs from "from" to "to".
-     * @param from the index of the first element to sort
-     * @param to   the index of the first element not to sort
+     * @param xs   com.info6205.team21.sort the array xs from "from" to "to".
+     * @param from the index of the first element to com.info6205.team21.sort
+     * @param to   the index of the first element not to com.info6205.team21.sort
      */
     public void sort(X[] xs, int from, int to) {
         final Helper<X> helper = getHelper();
@@ -61,6 +61,6 @@ public class BubbleSort<X extends Comparable<X>> extends SortWithHelper<X> {
         new BubbleSort<Y>(Config.load(BubbleSort.class)).mutatingSort(ys);
     }
 
-    public static final String DESCRIPTION = "Bubble sort";
+    public static final String DESCRIPTION = "Bubble com.info6205.team21.sort";
 
 }

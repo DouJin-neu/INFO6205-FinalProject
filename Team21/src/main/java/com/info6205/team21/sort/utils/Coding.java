@@ -1,4 +1,4 @@
-package sort.utils;
+package com.info6205.team21.sort.utils;
 
 /**
  * Class to combine the long codes for an array of objects with a determination of coding perfection.

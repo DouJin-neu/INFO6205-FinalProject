@@ -33,10 +33,10 @@ public class LSDStringSort {
     }
 
     /**
-     * charSort method is implementation of LSD sort algorithm at particular character.
+     * charSort method is implementation of LSD com.info6205.team21.sort algorithm at particular character.
      *
-     * @param strArr       It contains an array of String on which LSD char sort needs to be performed
-     * @param charPosition This is the character position on which sort would be performed
+     * @param strArr       It contains an array of String on which LSD char com.info6205.team21.sort needs to be performed
+     * @param charPosition This is the character position on which com.info6205.team21.sort would be performed
      * @param from         This is the starting index from which sorting operation will begin
      * @param to           This is the ending index up until which sorting operation will be continued
      */
@@ -64,9 +64,9 @@ public class LSDStringSort {
     }
 
     /**
-     * sort method is implementation of LSD String sort algorithm.
+     * com.info6205.team21.sort method is implementation of LSD String com.info6205.team21.sort algorithm.
      *
-     * @param strArr It contains an array of String on which LSD sort needs to be performed
+     * @param strArr It contains an array of String on which LSD com.info6205.team21.sort needs to be performed
      * @param from   This is the starting index from which sorting operation will begin
      * @param to     This is the ending index up until which sorting operation will be continued
      */
@@ -77,9 +77,9 @@ public class LSDStringSort {
     }
 
     /**
-     * sort method is implementation of LSD String sort algorithm.
+     * com.info6205.team21.sort method is implementation of LSD String com.info6205.team21.sort algorithm.
      *
-     * @param strArr It contains an array of String on which LSD sort needs to be performed
+     * @param strArr It contains an array of String on which LSD com.info6205.team21.sort needs to be performed
      */
     public void sort(String[] strArr) {
         sort(strArr, 0, strArr.length - 1);

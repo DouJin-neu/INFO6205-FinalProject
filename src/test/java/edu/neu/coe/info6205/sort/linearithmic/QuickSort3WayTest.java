@@ -144,10 +144,10 @@ public class QuickSort3WayTest {
     public void testSortDetailed() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        // NOTE this depends on the cutoff value for quick sort.
+        // NOTE this depends on the cutoff value for quick com.info6205.team21.sort.
         int levels = k - 2;
         final Config config = ConfigTest.setupConfig("true", "0", "1", "", "");
-        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("merge sort", N, config);
+        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("merge com.info6205.team21.sort", N, config);
         System.out.println(helper);
         Sort<Integer> s = new QuickSort_3way<>(helper);
         s.init(N);
@@ -192,7 +192,7 @@ public class QuickSort3WayTest {
         assertEquals(0, helper.inversions(xs));
         assertTrue(helper.sorted(xs));
         int fixes = (int) privateMethodTester.invokePrivate("getFixes");
-        // NOTE: there are at least as many fixes as inversions -- sort methods aren't necessarily perfectly efficient in terms of swaps.
+        // NOTE: there are at least as many fixes as inversions -- com.info6205.team21.sort methods aren't necessarily perfectly efficient in terms of swaps.
         System.out.println("inversions: " + inversions + ", fixes: " + fixes);
         assertTrue(inversions <= fixes);
         assertEquals(13, privateMethodTester.invokePrivate("getSwaps"));

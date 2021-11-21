@@ -1247,7 +1247,7 @@
 1265	loss	188
 1266	reported	188
 1267	rooms	188
-1268	sort	188
+1268	com.info6205.team21.sort	188
 1269	16	187
 1270	Well	187
 1271	applied	187
@@ -9780,7 +9780,7 @@
 9798	continuation	15
 9799	conventions	15
 9800	cosy	15
-9801	counting	15
+9801	com.info6205.team21.counting	15
 9802	courage	15
 9803	cow	15
 9804	cracked	15
@@ -18586,7 +18586,7 @@
 18604	economists	6
 18605	ecosystem	6
 18606	ecstasy	6
-18607	elementary	6
+18607	com.info6205.team21.elementary	6
 18608	emailed	6
 18609	embarked	6
 18610	embarking	6
@@ -92495,7 +92495,7 @@
 92513	elects	1
 92514	elelectric	1
 92515	element(s	1
-92516	elementary-intermediate	1
+92516	com.info6205.team21.elementary-intermediate	1
 92517	elephantiases	1
 92518	elevating	1
 92519	elf	1
@@ -105162,7 +105162,7 @@
 105180	sorrowful	1
 105181	sorrowing	1
 105182	sorrows	1
-105183	sort.zip	1
+105183	com.info6205.team21.sort.zip	1
 105184	sorta	1
 105185	sorties	1
 105186	sospiro	1

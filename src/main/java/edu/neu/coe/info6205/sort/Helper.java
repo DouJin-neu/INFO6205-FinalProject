@@ -5,7 +5,7 @@ import static java.util.Arrays.binarySearch;
 /**
  * Helper interface.
  * <p>
- * A Helper provides all of the utilities that are needed by sort methods, for example, compare and swap.
+ * A Helper provides all of the utilities that are needed by com.info6205.team21.sort methods, for example, compare and swap.
  * <p>
  * CONSIDER having the concept of a current sub-array, then we could dispense with the lo, hi parameters.
  *
@@ -83,7 +83,7 @@ public interface Helper<X extends Comparable<X>> extends GenericHelper<X> {
      * Method to perform a stable swap using half-exchanges,
      * i.e. between xs[i] and xs[j] such that xs[j] is moved to index i,
      * and xs[i] thru xs[j-1] are all moved up one.
-     * This type of swap is used by insertion sort.
+     * This type of swap is used by insertion com.info6205.team21.sort.
      * <p>
      * TODO this method does not seem to work.
      *
@@ -97,7 +97,7 @@ public interface Helper<X extends Comparable<X>> extends GenericHelper<X> {
      * Method to perform a stable swap using half-exchanges, and binary search.
      * i.e. x[i] is moved leftwards to its proper place and all elements from
      * the destination of x[i] thru x[i-1] are moved up one place.
-     * This type of swap is used by insertion sort.
+     * This type of swap is used by insertion com.info6205.team21.sort.
      *
      * @param xs the array of X elements, whose elements 0 thru i-1 MUST be sorted.
      * @param i  the index of the element to be swapped into the ordered array xs[0..i-1].

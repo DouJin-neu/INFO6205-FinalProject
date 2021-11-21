@@ -40,10 +40,10 @@ public abstract class QuickSort<X extends Comparable<X>> extends SortWithHelper<
     }
 
     /**
-     * Method to sort.
+     * Method to com.info6205.team21.sort.
      *
-     * @param xs       sort the array xs, returning the sorted result, leaving xs unchanged.
-     * @param makeCopy if set to true, we make a copy first and sort that.
+     * @param xs       com.info6205.team21.sort the array xs, returning the sorted result, leaving xs unchanged.
+     * @param makeCopy if set to true, we make a copy first and com.info6205.team21.sort that.
      * @return the result (sorted version of xs).
      */
     public X[] sort(X[] xs, boolean makeCopy) {
@@ -58,8 +58,8 @@ public abstract class QuickSort<X extends Comparable<X>> extends SortWithHelper<
      * Sort the sub-array xs[from] .. xs[to-1]
      *
      * @param xs    the complete array from which this sub-array derives.
-     * @param from  the index of the first element to sort.
-     * @param to    the index of the first element not to sort.
+     * @param from  the index of the first element to com.info6205.team21.sort.
+     * @param to    the index of the first element not to com.info6205.team21.sort.
      * @param depth the depth of the recursion.
      */
     public void sort(X[] xs, int from, int to, int depth) {
@@ -75,20 +75,20 @@ public abstract class QuickSort<X extends Comparable<X>> extends SortWithHelper<
      * Sort the sub-array xs[from] .. xs[to-1]
      *
      * @param xs   the complete array from which this sub-array derives.
-     * @param from the index of the first element to sort.
-     * @param to   the index of the first element not to sort.
+     * @param from the index of the first element to com.info6205.team21.sort.
+     * @param to   the index of the first element not to com.info6205.team21.sort.
      */
     public void sort(X[] xs, int from, int to) {
-        throw new RuntimeException("This sort signature is not used for Quicksort");
+        throw new RuntimeException("This com.info6205.team21.sort signature is not used for Quicksort");
     }
 
     /**
-     * Protected method to determine to terminate the recursion of this quick sort.
+     * Protected method to determine to terminate the recursion of this quick com.info6205.team21.sort.
      * NOTE that in this implementation, the depth is ignored.
      *
      * @param xs    the complete array from which this sub-array derives.
-     * @param from  the index of the first element to sort.
-     * @param to    the index of the first element not to sort.
+     * @param from  the index of the first element to com.info6205.team21.sort.
+     * @param to    the index of the first element not to com.info6205.team21.sort.
      * @param depth the current depth of the recursion.
      * @return true if there is no further work to be done.
      */

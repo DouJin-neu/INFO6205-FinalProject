@@ -1,14 +1,14 @@
 /*
   (c) Copyright 2018, 2019 Phasmid Software
  */
-package sort.utils;
+package com.info6205.team21.sort.utils;
 
 /**
  * This interface extends HuskySort for object which are sub-classes of CharSequence.
  *
  * @param <X> the underlying type for this coder, which extends CharSequence and thus has a length.
  */
-public interface HuskySequenceCoder<X extends CharSequence> extends MSDCoder<X> {
+public interface MSDSequenceCoder<X extends CharSequence> extends MSDCoder<X> {
 
     /**
      * Method to determine if this Husky Coder is perfect for a sequence of the given length.

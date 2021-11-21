@@ -1,14 +1,14 @@
 /*
   (c) Copyright 2018, 2019 Phasmid Software
  */
-package sort.utils;
+package com.info6205.team21.sort.utils;
 
 /**
  * This interface models the essence of the Husky Sort mechanism.
  * Elements in a collection are encoded using the huskyEncode method.
  * As far as possible, the codes should be monotonically increasing with the values.
  * But, all is not lost if that is not the case, for the result is a partially-sorted array
- * with a relatively small number of inversions which can be cleared up in phase two of the sort,
+ * with a relatively small number of inversions which can be cleared up in phase two of the com.info6205.team21.sort,
  * in linear time.
  *
  * @param <X> the underlying type for this coder.

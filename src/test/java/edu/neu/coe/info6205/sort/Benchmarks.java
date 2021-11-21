@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 /**
- * Unit tests which are in fact benchmarks of the various sort methods.
+ * Unit tests which are in fact benchmarks of the various com.info6205.team21.sort methods.
  * Keep in mind that we are sorting objects here (Integers). not primitives.
  */
 public class Benchmarks {
@@ -40,7 +40,7 @@ public class Benchmarks {
 
     @Test
     public void testInsertionSortBenchmark() {
-        String description = "Insertion sort";
+        String description = "Insertion com.info6205.team21.sort";
         Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new InsertionSort<>(helper);
         runBenchmark(description, sort, helper);
@@ -48,7 +48,7 @@ public class Benchmarks {
 
     @Test
     public void testInsertionSortOptBenchmark() {
-        String description = "Optimized Insertion sort";
+        String description = "Optimized Insertion com.info6205.team21.sort";
         Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new InsertionSortOpt<>(helper);
         runBenchmark(description, sort, helper);
@@ -56,7 +56,7 @@ public class Benchmarks {
 
     @Test
     public void testIntroSortBenchmark() {
-        String description = "Intro sort";
+        String description = "Intro com.info6205.team21.sort";
         final Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new IntroSort<>(helper);
         runBenchmark(description, sort, helper);
@@ -64,7 +64,7 @@ public class Benchmarks {
 
     @Test
     public void testMergeSortBenchmark() {
-        String description = "Merge sort";
+        String description = "Merge com.info6205.team21.sort";
         final Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new MergeSort<>(helper);
         runBenchmark(description, sort, helper);
@@ -72,7 +72,7 @@ public class Benchmarks {
 
     @Test
     public void testQuickSort3WayBenchmark() {
-        String description = "3-way Quick sort";
+        String description = "3-way Quick com.info6205.team21.sort";
         final Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new QuickSort_3way<>(helper);
         runBenchmark(description, sort, helper);
@@ -80,7 +80,7 @@ public class Benchmarks {
 
     @Test
     public void testQuickSortDualPivotSortBenchmark() {
-        String description = "Dual-pivot Quick sort";
+        String description = "Dual-pivot Quick com.info6205.team21.sort";
         final Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new QuickSort_DualPivot<>(helper);
         runBenchmark(description, sort, helper);
@@ -88,7 +88,7 @@ public class Benchmarks {
 
     @Test
     public void testSelectionSortBenchmark() {
-        String description = "Selection sort";
+        String description = "Selection com.info6205.team21.sort";
         Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new SelectionSort<>(helper);
         runBenchmark(description, sort, helper);
@@ -96,7 +96,7 @@ public class Benchmarks {
 
     @Test
     public void testShellSortBenchmark() {
-        String description = "3Shell sort";
+        String description = "3Shell com.info6205.team21.sort";
         final Helper<Integer> helper = new BaseHelper<>(description, N, config);
         final GenericSort<Integer> sort = new ShellSort<>(3, helper);
         runBenchmark(description, sort, helper);

@@ -11,7 +11,7 @@ import static edu.neu.coe.info6205.util.Utilities.formatWhole;
 
 /**
  * Helper class for sorting methods with instrumentation of compares and swaps, and in addition, bounds checks.
- * This Helper class may be used for analyzing sort methods but will run at slightly slower speeds than the super-class.
+ * This Helper class may be used for analyzing com.info6205.team21.sort methods but will run at slightly slower speeds than the super-class.
  *
  * @param <X> the underlying type (must be Comparable).
  */
@@ -67,7 +67,7 @@ public class InstrumentedHelper<X extends Comparable<X>> extends BaseHelper<X> {
      * Method to perform a stable swap using half-exchanges,
      * i.e. between xs[i] and xs[j] such that xs[j] is moved to index i,
      * and xs[i] thru xs[j-1] are all moved up one.
-     * This type of swap is used by insertion sort.
+     * This type of swap is used by insertion com.info6205.team21.sort.
      *
      * @param xs the array of Xs.
      * @param i  the index of the destination of xs[j].
@@ -88,7 +88,7 @@ public class InstrumentedHelper<X extends Comparable<X>> extends BaseHelper<X> {
      * Method to perform a stable swap using half-exchanges, and binary search.
      * i.e. x[i] is moved leftwards to its proper place and all elements from
      * the destination of x[i] thru x[i-1] are moved up one place.
-     * This type of swap is used by insertion sort.
+     * This type of swap is used by insertion com.info6205.team21.sort.
      *
      * @param xs the array of X elements, whose elements 0 thru i-1 MUST be sorted.
      * @param i  the index of the element to be swapped into the ordered array xs[0..i-1].
@@ -289,7 +289,7 @@ public class InstrumentedHelper<X extends Comparable<X>> extends BaseHelper<X> {
     @Override
     public X[] preProcess(X[] xs) {
         final X[] result = super.preProcess(xs);
-        // NOTE: because counting inversions is so slow, we only do if for a (configured) number of samples.
+        // NOTE: because com.info6205.team21.counting inversions is so slow, we only do if for a (configured) number of samples.
         if (countInversions-- > 0) {
             if (statPack != null) statPack.add(INVERSIONS, inversions(result));
             else throw new RuntimeException("InstrumentedHelper.postProcess: no StatPack");

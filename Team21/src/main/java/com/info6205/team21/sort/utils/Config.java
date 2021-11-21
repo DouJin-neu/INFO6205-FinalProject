@@ -1,4 +1,4 @@
-package edu.neu.coe.info6205.util;
+package com.info6205.team21.sort.utils;
 
 import edu.neu.coe.info6205.sort.BaseHelper;
 import org.ini4j.Ini;
@@ -13,9 +13,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("SuspiciousMethodCalls")
 public class Config {
-
     /**
      * Method to copy this Config, but setting sectionName.optionName to be value.
      *
@@ -136,7 +134,7 @@ public class Config {
         URL resource = null;
         if (clazz != null) resource = clazz.getResource(name);
         if (resource == null)
-            resource = Config.class.getResource("/" + name);
+            resource = edu.neu.coe.info6205.util.Config.class.getResource("/" + name);
         if (resource != null) return new Config(resource);
         throw new IOException("resource " + name + " not found for " + clazz);
     }

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * Interface GenericSort which defines the various sort methods for sorting elements of type X.
+ * Interface GenericSort which defines the various com.info6205.team21.sort methods for sorting elements of type X.
  * NOTE this definition does not assume that X extends Comparable of X.
  *
  * @param <X> the type of the elements to be sorted.
@@ -15,24 +15,24 @@ import java.util.Collection;
 public interface GenericSort<X> {
 
     /**
-     * Generic, non-mutating sort method which allows for explicit determination of the makeCopy option.
+     * Generic, non-mutating com.info6205.team21.sort method which allows for explicit determination of the makeCopy option.
      *
-     * @param xs       sort the array xs, returning the sorted result, leaving xs unchanged.
-     * @param makeCopy if set to true, we make a copy first and sort that.
+     * @param xs       com.info6205.team21.sort the array xs, returning the sorted result, leaving xs unchanged.
+     * @param makeCopy if set to true, we make a copy first and com.info6205.team21.sort that.
      */
     X[] sort(X[] xs, boolean makeCopy);
 
     /**
-     * Generic, non-mutating sort method.
+     * Generic, non-mutating com.info6205.team21.sort method.
      *
-     * @param xs sort the array xs, returning the sorted result, leaving xs unchanged.
+     * @param xs com.info6205.team21.sort the array xs, returning the sorted result, leaving xs unchanged.
      */
     default X[] sort(X[] xs) {
         return sort(xs, true);
     }
 
     /**
-     * Generic, mutating sort method.
+     * Generic, mutating com.info6205.team21.sort method.
      * Note that there is no return value.
      *
      * @param xs the array to be sorted.
@@ -42,11 +42,11 @@ public interface GenericSort<X> {
     }
 
     /**
-     * Generic, mutating sort method which operates on a sub-array.
+     * Generic, mutating com.info6205.team21.sort method which operates on a sub-array.
      *
-     * @param xs   sort the array xs from "from" until "to" (exclusive of to).
-     * @param from the index of the first element to sort.
-     * @param to   the index of the first element not to sort.
+     * @param xs   com.info6205.team21.sort the array xs from "from" until "to" (exclusive of to).
+     * @param from the index of the first element to com.info6205.team21.sort.
+     * @param to   the index of the first element not to com.info6205.team21.sort.
      */
     void sort(X[] xs, int from, int to);
 

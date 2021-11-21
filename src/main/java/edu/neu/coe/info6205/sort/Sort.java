@@ -8,10 +8,10 @@ import java.util.Arrays;
 public interface Sort<X> extends GenericSort<X> {
 
     /**
-     * Generic, non-mutating sort method which allows for explicit determination of the makeCopy option.
+     * Generic, non-mutating com.info6205.team21.sort method which allows for explicit determination of the makeCopy option.
      *
-     * @param xs       sort the array xs, returning the sorted result, leaving xs unchanged.
-     * @param makeCopy if set to true, we make a copy first and sort that.
+     * @param xs       com.info6205.team21.sort the array xs, returning the sorted result, leaving xs unchanged.
+     * @param makeCopy if set to true, we make a copy first and com.info6205.team21.sort that.
      */
     default X[] sort(X[] xs, boolean makeCopy) {
         init(xs.length);

@@ -1,7 +1,7 @@
 /*
   (c) Copyright 2018, 2019 Phasmid Software
  */
-package sort.helper;
+package com.info6205.team21.sort.helper;
 
 
 import edu.neu.coe.info6205.sort.Helper;

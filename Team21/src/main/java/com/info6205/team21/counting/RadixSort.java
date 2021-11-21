@@ -1,14 +1,14 @@
-package counting;
+package com.info6205.team21.counting;
 
 
 /**
  * <h1>Radix Sort</h1>
- * Radix sort is an integer sorting algorithm that sorts data with integer keys
+ * Radix com.info6205.team21.sort is an integer sorting algorithm that sorts data with integer keys
  * by grouping the keys by individual digits that share the same significant
- * position and value (place value). Radix sort uses counting sort as a
- * subroutine to sort an array of numbers.
+ * position and value (place value). Radix com.info6205.team21.sort uses com.info6205.team21.counting com.info6205.team21.sort as a
+ * subroutine to com.info6205.team21.sort an array of numbers.
  * <p>
- * <b>Disclaimer:</b> This radix sort can only sort positive integers
+ * <b>Disclaimer:</b> This radix com.info6205.team21.sort can only com.info6205.team21.sort positive integers
  *
  * @version 1.0
  * @since 13th May 2020
@@ -33,11 +33,11 @@ public class RadixSort {
     }
 
     /**
-     * countSort method is implementation of basic counting sort algorithm.
-     * We provide exponent i.e unit's digit, ten's digit or hundred's digit etc on which counting sort needs to be performed
+     * countSort method is implementation of basic com.info6205.team21.counting com.info6205.team21.sort algorithm.
+     * We provide exponent i.e unit's digit, ten's digit or hundred's digit etc on which com.info6205.team21.counting com.info6205.team21.sort needs to be performed
      *
-     * @param numArr It contains an array of numbers on which counting sort needs to be performed
-     * @param exp    This is the exponent input on which counting sort would be performed e.g 1, 10, 100, 1000 etc.
+     * @param numArr It contains an array of numbers on which com.info6205.team21.counting com.info6205.team21.sort needs to be performed
+     * @param exp    This is the exponent input on which com.info6205.team21.counting com.info6205.team21.sort would be performed e.g 1, 10, 100, 1000 etc.
      * @param from   This is the starting index from which sorting operation will begin
      * @param to     This is the ending index until which sorting operation will be continued
      */
@@ -65,9 +65,9 @@ public class RadixSort {
     }
 
     /**
-     * sort method is implementation of radix sort algorithm.
+     * com.info6205.team21.sort method is implementation of radix com.info6205.team21.sort algorithm.
      *
-     * @param numArr It contains an array of numbers on which radix sort needs to be performed
+     * @param numArr It contains an array of numbers on which radix com.info6205.team21.sort needs to be performed
      * @param from   This is the starting index from which sorting operation will begin
      * @param to     This is the ending index until which sorting operation will be continued
      */
@@ -87,7 +87,7 @@ public class RadixSort {
 
         // Finding max number
         int maxVal = findMaxInt(numArr, from, to);
-        //Performing counting sort on every exponent
+        //Performing com.info6205.team21.counting com.info6205.team21.sort on every exponent
         int exp = 1;
         while (maxVal / exp > 0) {
             countSort(numArr, exp, from, to);

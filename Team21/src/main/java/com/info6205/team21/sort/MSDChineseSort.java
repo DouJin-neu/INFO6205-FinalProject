@@ -1,21 +1,21 @@
-package sort;
-
-import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
+package com.info6205.team21.sort;
 
 import java.util.Arrays;
-import sort.helper.ChineseCharacterNode;
-import sort.helper.ChineseSortHelper;
-import sort.utils.MSDCoder;
-import sort.utils.MSDCoderFactory;
+import com.info6205.team21.sort.helper.ChineseSortHelper;
+import com.info6205.team21.sort.utils.MSDCoder;
+import com.info6205.team21.sort.utils.MSDCoderFactory;
+import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
 
 /**
- * This class represents the purest form of Husky Sort based on IntroSort for pass 1 and the System sort for pass 2.
+ * This class represents the purest form of Husky Sort based on IntroSort for pass 1 and the System com.info6205.team21.sort for pass 2.
  * <p>
  * CONSIDER redefining all of the "to" parameters to be consistent with our other Sort utilities.
  *
  */
-public class MSDChineseSort<X extends Comparable<X>>{
+//changes: extends SortWithHelper<X>
+public class MSDChineseSort<X extends Comparable<X>> {
 
+    private final MSDCoder<X> msdCoder;
 
     public static void main(final String[] args) {
 
@@ -23,7 +23,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         final int m = 10000;
         final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
         final String inputOrder = preSorted ? "ordered" : "random";
-         MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
+        MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
         for (int i = 0; i < m; i++)
             if (preSorted)
                 // This should take about 20 seconds
@@ -31,18 +31,14 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     }
 
-
-    public MSDChineseSort(final MSDCoder<X> huskyCoder) {
-        this.huskyCoder =  huskyCoder;
+    public MSDChineseSort(final MSDCoder<X> msdCoder) {
+        this.msdCoder =  msdCoder;
 
     }
 
-
-    private final MSDCoder<X> huskyCoder;
-
     public void sort(final X[] xs) {
-        // NOTE: First pass where we code to longs and sort according to those.
-       String[] longs = huskyCoder.huskyEncode(xs);
+        // NOTE: First pass where we code to longs and com.info6205.team21.sort according to those.
+       String[] longs = msdCoder.msdEncode(xs);
         final int n = xs.length;
         final X[] xsCopy = Arrays.copyOf(xs, n);
         String[] longsCopy = Arrays.copyOf(longs, n);
@@ -66,7 +62,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
                 System.arraycopy(aux, 0, a, lo, hi - lo);
                 System.arraycopy(auXS, 0, xs, lo, hi - lo);
             }
-            // Recursively sort for each character value.
+            // Recursively com.info6205.team21.sort for each character value.
             // TO BE IMPLEMENTED
             for(int r = 0; r < radix+1; r++){
                 sort(a,xs,aux,auXS, lo+count[r], lo+count[r+1]-1, d+1);
@@ -75,7 +71,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
     }
 
 
-    @Override
+  /*  @Override
     public Object[] preProcess(Object[] xs) {
         ChineseCharacterNode[] processXs = new ChineseCharacterNode[xs.length];
         int i=0;
@@ -84,9 +80,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         }
 
         return processXs;
-    }
-
-  
+    }*/
 
     private static int charAt(String s, int d) {
         if (d < s.length()) return s.charAt(d);

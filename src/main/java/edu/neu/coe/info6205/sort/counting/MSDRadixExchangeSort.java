@@ -48,7 +48,7 @@ public class MSDRadixExchangeSort {
 
   private int max_bit;
 
-  /* Iterative method to sort file by exchange radix sort */
+  /* Iterative method to com.info6205.team21.sort file by exchange radix com.info6205.team21.sort */
   public void exchange_radixsort(String a[]) {
     for (int i = 0; i < a.length; i++) {
       max_bit = Math.max(stringToBit(a[i]).length(), max_bit);

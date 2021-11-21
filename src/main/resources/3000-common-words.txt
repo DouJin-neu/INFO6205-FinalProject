@@ -871,7 +871,7 @@ electric
 electricity
 electronic
 element
-elementary
+com.info6205.team21.elementary
 eliminate
 elite
 else
@@ -2482,7 +2482,7 @@ song
 soon
 sophisticated
 sorry
-sort
+com.info6205.team21.sort
 soul
 sound
 soup

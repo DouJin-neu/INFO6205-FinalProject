@@ -1,4 +1,4 @@
-package sort;
+package com.info6205.team21.sort;
 
 public class SortException extends RuntimeException {
 

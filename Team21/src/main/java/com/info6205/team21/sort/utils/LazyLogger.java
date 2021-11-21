@@ -1,4 +1,4 @@
-package sort.utils;
+package com.info6205.team21.sort.utils;
 
 import org.apache.log4j.Appender;
 import org.apache.log4j.Level;

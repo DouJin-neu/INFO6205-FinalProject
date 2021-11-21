@@ -46,7 +46,7 @@ public class SortBenchmark {
     private void sortIntegers(final int n) {
         final Random random = new Random();
 
-        // sort int[]
+        // com.info6205.team21.sort int[]
         final Supplier<int[]> intsSupplier = () -> {
             int[] result = (int[]) Array.newInstance(int.class, n);
             for (int i = 0; i < n; i++) result[i] = random.nextInt();
@@ -61,7 +61,7 @@ public class SortBenchmark {
         ).runFromSupplier(intsSupplier, 100);
         for (TimeLogger timeLogger : timeLoggersLinearithmic) timeLogger.log(t1, n);
 
-        // sort Integer[]
+        // com.info6205.team21.sort Integer[]
         final Supplier<Integer[]> integersSupplier = () -> {
             Integer[] result = (Integer[]) Array.newInstance(Integer.class, n);
             for (int i = 0; i < n; i++) result[i] = random.nextInt();
@@ -108,9 +108,9 @@ public class SortBenchmark {
 
         // CONSIDER finding the common ground amongst these sorts and get them all working together.
 
-        // NOTE Test on date using pure tim sort.
+        // NOTE Test on date using pure tim com.info6205.team21.sort.
         if (isConfigBenchmarkDateSorter("timsort"))
-            logger.info(benchmarkFactory("Sort LocalDateTimes using Arrays::sort (TimSort)", Arrays::sort, null).runFromSupplier(localDateTimeSupplier, 100) + "ms");
+            logger.info(benchmarkFactory("Sort LocalDateTimes using Arrays::com.info6205.team21.sort (TimSort)", Arrays::sort, null).runFromSupplier(localDateTimeSupplier, 100) + "ms");
 
         // NOTE this is supposed to match the previous benchmark run exactly. I don't understand why it takes rather less time.
         if (isConfigBenchmarkDateSorter("timsort")) {
@@ -205,7 +205,7 @@ public class SortBenchmark {
      *
      * @param words        an array of available words (to be chosen randomly).
      * @param nWords       the number of words to be sorted.
-     * @param nRuns        the number of runs of the sort to be preformed.
+     * @param nRuns        the number of runs of the com.info6205.team21.sort to be preformed.
      * @param sorter       the sorter to use--NOTE that this sorter will be closed at the end of this method.
      * @param preProcessor the pre-processor function, if any.
      * @param timeLoggers  a set of timeLoggers to be used.
@@ -220,7 +220,7 @@ public class SortBenchmark {
      *
      * @param words       an array of available words (to be chosen randomly).
      * @param nWords      the number of words to be sorted.
-     * @param nRuns       the number of runs of the sort to be preformed.
+     * @param nRuns       the number of runs of the com.info6205.team21.sort to be preformed.
      * @param sorter      the sorter to use--NOTE that this sorter will be closed at the end of this method.
      * @param timeLoggers a set of timeLoggers to be used.
      *                    <p>
@@ -249,7 +249,7 @@ public class SortBenchmark {
      * This is based on log2(n!)
      *
      * @param n the number of elements.
-     * @return the minimum number of comparisons possible to sort n randomly ordered elements.
+     * @return the minimum number of comparisons possible to com.info6205.team21.sort n randomly ordered elements.
      */
     static double minComparisons(int n) {
         double lgN = Utilities.lg(n);
@@ -258,7 +258,7 @@ public class SortBenchmark {
 
     /**
      * This is the mean number of inversions in a randomly ordered set of n elements.
-     * For insertion sort, each (low-level) swap fixes one inversion, so on average there are this number of swaps.
+     * For insertion com.info6205.team21.sort, each (low-level) swap fixes one inversion, so on average there are this number of swaps.
      * The minimum number of comparisons is slightly higher.
      *
      * @param n the number of elements
@@ -294,7 +294,7 @@ public class SortBenchmark {
     }
 
 //    private void dateSortBenchmark(Supplier<LocalDateTime[]> localDateTimeSupplier, LocalDateTime[] localDateTimes, Sort<ChronoLocalDateTime<?>> dateHuskySortSystemSort, String s, int i) {
-//        logger.info(benchmarkFactory(s, dateHuskySortSystemSort::sort, dateHuskySortSystemSort::postProcess).runFromSupplier(localDateTimeSupplier, 100) + "ms");
+//        logger.info(benchmarkFactory(s, dateHuskySortSystemSort::com.info6205.team21.sort, dateHuskySortSystemSort::postProcess).runFromSupplier(localDateTimeSupplier, 100) + "ms");
 //        // NOTE: this is intended to replace the run in the previous line. It should take the exact same amount of time.
 //        runDateTimeSortBenchmark(LocalDateTime.class, localDateTimes, 100000, 100, i);
 //    }

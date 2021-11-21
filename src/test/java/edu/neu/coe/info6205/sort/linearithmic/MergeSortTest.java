@@ -32,7 +32,7 @@ public class MergeSortTest {
         xs[1] = 4;
         xs[2] = 2;
         xs[3] = 1;
-        // NOTE: first we ensure that there is no cutoff to insertion sort going on.
+        // NOTE: first we ensure that there is no cutoff to insertion com.info6205.team21.sort going on.
         final Config config = ConfigTest.setupConfig("true", "", "0", "1", "");
         GenericSort<Integer> s = new MergeSort<>(xs.length, config);
         Integer[] ys = s.sort(xs);
@@ -46,10 +46,10 @@ public class MergeSortTest {
     public void testSort2() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        // NOTE this depends on the cutoff value for merge sort.
+        // NOTE this depends on the cutoff value for merge com.info6205.team21.sort.
         int levels = k - 2;
         final Config config = ConfigTest.setupConfig("true", "0", "1", "", "");
-        final Helper<Integer> helper = HelperFactory.create("merge sort", N, config);
+        final Helper<Integer> helper = HelperFactory.create("merge com.info6205.team21.sort", N, config);
         System.out.println(helper);
         Sort<Integer> s = new MergeSort<>(helper);
         s.init(N);
@@ -78,13 +78,13 @@ public class MergeSortTest {
     public void testSort3() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", ""));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", ""));
         System.out.println(helper1);
         final Integer[] xs = helper1.random(Integer.class, r -> r.nextInt(10000));
         assertEquals(Integer.valueOf(1360), xs[0]);
         new InsertionSort<Integer>(helper1).mutatingSort(xs);
         helper1.postProcess(xs);
-        final Helper<Integer> helper2 = HelperFactory.create("merge sort", N, ConfigTest.setupConfig("true", "", "0", "1", ""));
+        final Helper<Integer> helper2 = HelperFactory.create("merge com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "", "0", "1", ""));
         System.out.println(helper2);
         Sort<Integer> mergeSort = new MergeSort<>(helper2);
         mergeSort.init(N);
@@ -112,7 +112,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "false"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "false"));
         System.out.println(helper1);
         final Integer[] xs = helper1.random(Integer.class, r -> r.nextInt(10000));
         System.nanoTime();
@@ -138,7 +138,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "true"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "true"));
         System.out.println(helper1);
         final Integer[] xs = helper1.random(Integer.class, r -> r.nextInt(10000));
         System.nanoTime();
@@ -163,7 +163,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "false"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "false"));
         System.out.println(helper1);
         final Integer[] xs = helper1.random(Integer.class, r -> r.nextInt(10000));
         System.nanoTime();
@@ -188,7 +188,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "true"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "true"));
         System.out.println(helper1);
         final Integer[] xs = helper1.random(Integer.class, r -> r.nextInt(10000));
         System.nanoTime();
@@ -213,7 +213,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "false"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "false"));
         System.out.println(helper1);
         Integer[] xs_sorted = helper1.random(Integer.class, r -> r.nextInt(10000));
         Arrays.sort(xs_sorted);
@@ -244,7 +244,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "true"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "false", "true"));
         System.out.println(helper1);
         Integer[] xs_sorted = helper1.random(Integer.class, r -> r.nextInt(10000));
         Arrays.sort(xs_sorted);
@@ -276,7 +276,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "false"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "false"));
         System.out.println(helper1);
         Integer[] xs_sorted = helper1.random(Integer.class, r -> r.nextInt(10000));
         Arrays.sort(xs_sorted);
@@ -307,7 +307,7 @@ public class MergeSortTest {
         final int k = 7;
         ArrayList<Long> time = new ArrayList<Long>();
         final int N = (int) Math.pow(2, k);
-        final Helper<Integer> helper1 = HelperFactory.create("insertion sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "true"));
+        final Helper<Integer> helper1 = HelperFactory.create("insertion com.info6205.team21.sort", N, ConfigTest.setupConfig("true", "0", "1", "", "", "true", "true"));
         System.out.println(helper1);
         Integer[] xs_sorted = helper1.random(Integer.class, r -> r.nextInt(10000));
         Arrays.sort(xs_sorted);

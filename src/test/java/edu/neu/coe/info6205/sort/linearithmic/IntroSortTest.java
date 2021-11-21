@@ -36,10 +36,10 @@ public class IntroSortTest {
     public void testSortDetailed1() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        // NOTE this depends on the cutoff value for quick sort.
+        // NOTE this depends on the cutoff value for quick com.info6205.team21.sort.
         int levels = k - 2;
         final Config config = ConfigTest.setupConfig("true", "0", "1", "", "");
-        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("intro sort", N, config);
+        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("intro com.info6205.team21.sort", N, config);
         System.out.println(helper);
         Sort<Integer> s = new IntroSort<>(helper);
         s.init(N);
@@ -66,10 +66,10 @@ public class IntroSortTest {
     public void testSortDetailed2() throws Exception {
         int k = 7;
         int N = (int) Math.pow(2, k);
-        // NOTE this depends on the cutoff value for quick sort.
+        // NOTE this depends on the cutoff value for quick com.info6205.team21.sort.
         int levels = k - 2;
         final Config config = ConfigTest.setupConfig("true", "0", "1", "", "");
-        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("intro sort", N, config);
+        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("intro com.info6205.team21.sort", N, config);
         System.out.println(helper);
         Sort<Integer> s = new IntroSort<>(helper);
         s.init(N);

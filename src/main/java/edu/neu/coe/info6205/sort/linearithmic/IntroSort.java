@@ -23,7 +23,7 @@ public class IntroSort<X extends Comparable<X>> extends QuickSort_DualPivot<X> {
     /**
      * Constructor for QuickSort_3way
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public IntroSort(int N, Config config) {
@@ -59,8 +59,8 @@ public class IntroSort<X extends Comparable<X>> extends QuickSort_DualPivot<X> {
 
     /**
      * @param xs   an array of Xs.
-     * @param from the index of the first element to sort.
-     * @param to   the index of the first element not to sort.
+     * @param from the index of the first element to com.info6205.team21.sort.
+     * @param to   the index of the first element not to com.info6205.team21.sort.
      */
     @Override
     public void sort(X[] xs, int from, int to) {
@@ -68,12 +68,12 @@ public class IntroSort<X extends Comparable<X>> extends QuickSort_DualPivot<X> {
     }
 
     /**
-     * Protected method to determine to terminate the recursion of this quick sort.
+     * Protected method to determine to terminate the recursion of this quick com.info6205.team21.sort.
      * NOTE that in this implementation, the depth is ignored.
      *
      * @param xs    the complete array from which this sub-array derives.
-     * @param from  the index of the first element to sort.
-     * @param to    the index of the first element not to sort.
+     * @param from  the index of the first element to com.info6205.team21.sort.
+     * @param to    the index of the first element not to com.info6205.team21.sort.
      * @param depth the current depth of the recursion.
      * @return true if there is no further work to be done.
      */
@@ -93,7 +93,7 @@ public class IntroSort<X extends Comparable<X>> extends QuickSort_DualPivot<X> {
         return false;
     }
 
-    public static final String DESCRIPTION = "Intro sort";
+    public static final String DESCRIPTION = "Intro com.info6205.team21.sort";
 
     /*
      * Heapsort algorithm

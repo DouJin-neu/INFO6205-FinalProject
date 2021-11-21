@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Sorter which delegates to Timsort via Arrays.sort.
+ * Sorter which delegates to Timsort via Arrays.com.info6205.team21.sort.
  *
  * @param <X>
  */
@@ -30,7 +30,7 @@ public class TimSort<X extends Comparable<X>> extends SortWithHelper<X> {
     /**
      * Constructor for TimSort
      *
-     * @param N      the number elements we expect to sort.
+     * @param N      the number elements we expect to com.info6205.team21.sort.
      * @param config the configuration.
      */
     public TimSort(int N, Config config) {
