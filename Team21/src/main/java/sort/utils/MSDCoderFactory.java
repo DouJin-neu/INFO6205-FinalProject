@@ -52,7 +52,7 @@ public final class MSDCoderFactory{
      */
     public final static HuskySequenceCoder<String> pinyinCoder = new BaseHuskySequenceCoder<String>("pinyin", MAX_LENGTH_ENGLISH) {
         /**
-         * Encode x as a long.
+         * Encode x as a string.
          * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
          * If this cannot be guaranteed, then the result of imperfect(z) will be true.
          *
@@ -64,6 +64,36 @@ public final class MSDCoderFactory{
             return switchPinyin(str);
         }
     };
+
+    public final static HuskySequenceCoder<String> bitCoder = new BaseHuskySequenceCoder<String>("bit", MASK_SHORT) {
+        /**
+         * Encode x as a string.
+         * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
+         * If this cannot be guaranteed, then the result of imperfect(z) will be true.
+         *
+         * @param str the X value to encode.
+         * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
+         */
+        public String huskyEncode(final String str) {
+            //switch string to pinyin
+            return stringToBit(str);
+        }
+    };
+
+    public static String stringToBit(String s) {
+        s = switchPinyin(s);
+        byte[] bytes = s.getBytes();
+        StringBuilder binary = new StringBuilder();
+        for (byte b : bytes) {
+            int val = b;
+            for (int i = 0; i < 8; i++) {
+                binary.append((val & 128) == 0 ? 0 : 1);
+                val <<= 1;
+            }
+        }
+
+        return binary.toString();
+    }
 
 
     /* String to pinyin */
@@ -97,5 +127,10 @@ public final class MSDCoderFactory{
         }
 
         return sb.toString();
+    }
+
+    public static int charAt(String s, int d) {
+        if (d < s.length()) return s.charAt(d);
+        else return -1;
     }
 }

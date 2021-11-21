@@ -8,6 +8,16 @@ import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
  */
 public class MSDStringSort {
 
+  public static void main(String[] args) {
+//    String[] test = new String[]{"estern","zoe","test","far","go"};
+    String[] test = new String[]{"ai","an","ai","ceshi","gong","zhang"};
+    sort(test);
+    for(String s :test){
+      System.out.println(s);
+
+    }
+  }
+
   /**
    * Sort an array of Strings using MSDStringSort.
    *
@@ -54,6 +64,6 @@ public class MSDStringSort {
   }
 
   private static final int radix = 256;
-  private static final int cutoff = 15;
+  private static final int cutoff = 1;
   private static String[] aux;       // auxiliary array for distribution
 }
