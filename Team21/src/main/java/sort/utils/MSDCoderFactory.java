@@ -63,6 +63,10 @@ public final class MSDCoderFactory{
             //switch string to pinyin
             return switchPinyin(str);
         }
+
+        public long huskyEncodeToNumber(final String str){
+            return 0;
+        }
     };
 
     public final static HuskySequenceCoder<String> bitCoder = new BaseHuskySequenceCoder<String>("bit", MASK_SHORT) {
@@ -78,9 +82,59 @@ public final class MSDCoderFactory{
             //switch string to pinyin
             return stringToBit(str);
         }
+
+        public long huskyEncodeToNumber(final String str){
+            return 0;
+        }
     };
 
-    public static String stringToBit(String s) {
+    /**
+     * A Husky Coder for English Strings.
+     * <p>
+     * This should work correctly for all 52 English characters (upper and lower case),
+     * as well as the following 11 characters: @ [ \ ] ^ _ ` { | } ~
+     * <p>
+     * But, in any case, we are only optimizing for printable ascii characters here.
+     * If the long encoding is off for some reason (like there's a number embedded in the name),
+     * it's no big deal.
+     * It just means that the final pass will have to work a bit harder to fix the extra inversion.
+     */
+    public final static HuskySequenceCoder<String> englishCoder = new BaseHuskySequenceCoder<String>("English", MAX_LENGTH_ENGLISH) {
+        /**
+         * Encode x as a long.
+         * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
+         * If this cannot be guaranteed, then the result of imperfect(z) will be true.
+         *
+         * @param str the X value to encode.
+         * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
+         */
+        public long huskyEncodeToNumber(final String str) {
+            return englishToLong(str);
+        }
+
+        public String huskyEncode(final String str) {
+            return null;
+        }
+
+    };
+
+    private static long englishToLong(final String str) {
+        return stringToLong(str, MAX_LENGTH_ENGLISH, BIT_WIDTH_ENGLISH, MASK_ENGLISH);
+    }
+
+    private static long stringToLong(final String str, final int maxLength, final int bitWidth, final int mask) {
+        final int length = Math.min(str.length(), maxLength);
+        final int padding = maxLength - length;
+        long result = 0L;
+        if (((mask ^ MASK_SHORT) & MASK_SHORT) == 0)
+            for (int i = 0; i < length; i++) result = result << bitWidth | str.charAt(i);
+        else
+            for (int i = 0; i < length; i++) result = result << bitWidth | str.charAt(i) & mask;
+        result = result << bitWidth * padding;
+        return result;
+    }
+
+        public static String stringToBit(String s) {
         s = switchPinyin(s);
         byte[] bytes = s.getBytes();
         StringBuilder binary = new StringBuilder();

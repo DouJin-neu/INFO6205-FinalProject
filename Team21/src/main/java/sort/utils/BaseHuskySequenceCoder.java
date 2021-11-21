@@ -53,6 +53,17 @@ public abstract class BaseHuskySequenceCoder<X extends CharSequence> implements 
         return result;
     }
 
+    @Override
+    final public long[] huskyEncodeToNumber(final X[] xs) {
+        boolean isPerfect = true;
+        long[] result = new long[xs.length];
+        for (int i = 0; i < xs.length; i++) {
+            final X x = xs[i];
+            if (isPerfect) isPerfect = perfectForLength(x.length());
+            result[i] = huskyEncodeToNumber(x);
+        }
+        return result;
+    }
 
     @Override
     final public String toString() {
