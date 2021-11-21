@@ -13,7 +13,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   private static final int radix = 256;
   private static final int cutoff = 0;
 
-  private final MSDCoder<X> huskyCoder;
+  private final MSDCoder<X> msdCoder;
 
   private int max_bit;
 
@@ -33,15 +33,15 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
 
-  public MSDExchangeChineseSort(MSDCoder<X> huskyCoder) {
+  public MSDExchangeChineseSort(MSDCoder<X> msdCoder) {
     super();
-    this.huskyCoder = huskyCoder;
+    this.msdCoder = msdCoder;
   }
 
 
   public void sort(X[] xs) {
     // NOTE: First pass where we code to longs and sort according to those.
-    String[] longs = huskyCoder.huskyEncode(xs);
+    String[] longs = msdCoder.msdEncode(xs);
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
     }
