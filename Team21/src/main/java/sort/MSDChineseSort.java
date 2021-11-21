@@ -21,7 +21,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
         final String inputOrder = preSorted ? "ordered" : "random";
          MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
-        String[] a = new String[]{"安","埃", "爱", "张", "公","测试"};
+        String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
