@@ -35,15 +35,8 @@ public class MSDChineseSort<X extends Comparable<X>>{
         }
     }
 
-<<<<<<< HEAD
     public MSDChineseSort(final MSDCoder<X> huskyCoder) {
         this.huskyCoder =  huskyCoder;
-=======
-
-    public MSDChineseSort(final MSDCoder<X> huskyCoder) {
-        this.huskyCoder =  huskyCoder;
-
->>>>>>> 952571f0c7648ae1d6722dc1ac245da9e4588a71
     }
 
 
@@ -60,13 +53,10 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     private void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
 
-<<<<<<< HEAD
         if (hi <= lo + cutoff)
         {  InsertionSortMSD.sort(a, lo, hi, d); return;  }
         int[] count = new int[radix+2];        // Compute frequency counts.
         int[] count2 = new int[radix + 2];        // Compute frequency counts.
-=======
->>>>>>> 952571f0c7648ae1d6722dc1ac245da9e4588a71
 
         for (int i = lo; i <= hi; i++) {
             count[charAt(a[i], d) + 2]++;
@@ -91,10 +81,6 @@ public class MSDChineseSort<X extends Comparable<X>>{
         }
     }
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 952571f0c7648ae1d6722dc1ac245da9e4588a71
 
     private static int charAt(String s, int d) {
         if (d < s.length()) return s.charAt(d);
