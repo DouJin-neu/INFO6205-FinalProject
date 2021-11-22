@@ -23,20 +23,20 @@ public class LSDChineseSort<X extends Comparable<X>>{
         }
     }
 
-    public LSDChineseSort(final MSDCoder<X> huskyCoder) {
-        this.huskyCoder =  huskyCoder;
+    public LSDChineseSort(final MSDCoder<X> msdCoder) {
+        this.msdCoder =  msdCoder;
     }
 
     private int maxLength;
 
-    private final MSDCoder<X> huskyCoder;
+    private final MSDCoder<X> msdCoder;
 
     private final int ASCII_RANGE = 256;
 
 
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.
-       String[] longs = huskyCoder.huskyEncode(xs);
+       String[] longs = msdCoder.msdEncode(xs);
         final int n = xs.length;
 
         for (int i = 0; i < longs.length; i++) {
