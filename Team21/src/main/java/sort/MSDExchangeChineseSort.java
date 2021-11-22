@@ -69,8 +69,8 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
       if (i >= j) {
         break;
       }
-      swap(a, i, j);
-      swap(xs, i, j);
+      MSDCoderFactory.swap(a, i, j);
+      MSDCoderFactory.swap(xs, i, j);
     }
 
     if (getBit(a[r], bit) == 0) {
@@ -81,12 +81,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
 
   }
 
-  public void swap(Object a[], int i, int j) {
-    Object temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
 
-  }
 
   public int getBit(String s, int pos) {
 

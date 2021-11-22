@@ -22,15 +22,12 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
         final String inputOrder = preSorted ? "ordered" : "random";
         logger.info("MergeHuskySort: sorting " + N + " " + inputOrder + " alphabetic ASCII words " + m + " times");
-        final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.pinyinCoder);
-        for (int i = 0; i < m; i++)
-            if (preSorted)
-                // This should take about 20 seconds
-                sorter.sort(getAlphaBetaArrayOrdered(N));
-            else
-                // This should take about 2 minutes
-//                sorter.sort(HuskySortHelper.generateRandomAlphaBetaArray(N, 4, 9));
-        logger.info("Finished");
+        final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
+        String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
+        sorter.sort(a);
+        for (String s : a) {
+            System.out.println(s);
+        }
     }
 
     /**
@@ -54,8 +51,6 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final X[] xsCopy = Arrays.copyOf(xs, n);
         final long[] longsCopy = Arrays.copyOf(longs, n);
         mergeSort(longsCopy, xsCopy, longs, xs, 0, n);
-
-        Arrays.sort(xs);
     }
 
 

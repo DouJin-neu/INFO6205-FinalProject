@@ -109,7 +109,8 @@ public final class MSDCoderFactory{
          * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
          */
         public long huskyEncodeToNumber(final String str) {
-            return englishToLong(str);
+            String pinyin = switchPinyin(str);
+            return englishToLong(pinyin);
         }
 
         public String huskyEncode(final String str) {
@@ -187,4 +188,13 @@ public final class MSDCoderFactory{
         if (d < s.length()) return s.charAt(d);
         else return -1;
     }
+
+    public static void swap(Object a[], int i, int j) {
+        Object temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+
+    }
+
+
 }
