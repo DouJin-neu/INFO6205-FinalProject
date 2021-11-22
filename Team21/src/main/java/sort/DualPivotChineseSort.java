@@ -17,7 +17,6 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     final int N = 50000;
     final int m = 10000;
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
-    final String inputOrder = preSorted ? "ordered" : "random";
     final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
     String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
     sorter.sort(a);
