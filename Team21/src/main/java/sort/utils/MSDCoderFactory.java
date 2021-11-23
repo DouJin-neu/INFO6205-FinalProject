@@ -59,7 +59,7 @@ public final class MSDCoderFactory{
          * @param str the X value to encode.
          * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
          */
-        public String msdEncode(final String str) {
+        public String huskyEncode(final String str) {
             //switch string to pinyin
             return switchPinyin(str);
         }
@@ -78,7 +78,7 @@ public final class MSDCoderFactory{
          * @param str the X value to encode.
          * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
          */
-        public String msdEncode(final String str) {
+        public String huskyEncode(final String str) {
             //switch string to pinyin
             return stringToBit(str);
         }
