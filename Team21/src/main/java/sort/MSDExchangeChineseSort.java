@@ -41,7 +41,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
 
   public void sort(X[] xs) {
     // NOTE: First pass where we code to longs and sort according to those.
-    String[] longs = msdCoder.msdEncode(xs);
+    String[] longs = msdCoder.huskyEncode(xs);
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
     }

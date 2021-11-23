@@ -36,7 +36,7 @@ public class LSDChineseSort<X extends Comparable<X>>{
 
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.
-       String[] longs = msdCoder.msdEncode(xs);
+       String[] longs = msdCoder.huskyEncode(xs);
         final int n = xs.length;
 
         for (int i = 0; i < longs.length; i++) {
