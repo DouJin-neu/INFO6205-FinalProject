@@ -3,7 +3,7 @@ package sort.utils;
 /**
  * Base Husky sequence coder.
  */
-public abstract class BaseMSDSequenceCoder<X extends CharSequence> implements MSDSequenceCoder<X> {
+public abstract class BaseHuskySequenceCoder<X extends CharSequence> implements HuskySequenceCoder<X> {
 
     /**
      * Method to determine if this Husky Coder is perfect for a sequence of the given length.
@@ -23,7 +23,7 @@ public abstract class BaseMSDSequenceCoder<X extends CharSequence> implements MS
      * @param name      the name of this coder.
      * @param maxLength the maximum length of a sequence which can be perfectly encoded.
      */
-    public BaseMSDSequenceCoder(final String name, final int maxLength) {
+    public BaseHuskySequenceCoder(final String name, final int maxLength) {
         this.name = name;
         this.maxLength = maxLength;
     }
@@ -54,13 +54,13 @@ public abstract class BaseMSDSequenceCoder<X extends CharSequence> implements MS
     }
 
     @Override
-    final public long[] msdEncodeToNumber(final X[] xs) {
+    final public long[] huskyEncodeToNumber(final X[] xs) {
         boolean isPerfect = true;
         long[] result = new long[xs.length];
         for (int i = 0; i < xs.length; i++) {
             final X x = xs[i];
             if (isPerfect) isPerfect = perfectForLength(x.length());
-            result[i] = msdEncodeToNumber(x);
+            result[i] = huskyEncodeToNumber(x);
         }
         return result;
     }

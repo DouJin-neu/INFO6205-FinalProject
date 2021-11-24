@@ -1,22 +1,26 @@
 package benchmark;
 
+import edu.neu.coe.info6205.sort.BaseHelper;
+import edu.neu.coe.info6205.util.Timer;
 import sort.MSDChineseSort;
+import sort.TimChineseSort;
 import sort.utils.Config;
 import sort.utils.MSDCoderFactory;
 import edu.neu.coe.info6205.util.LazyLogger;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
-import java.util.regex.Pattern;
 
+import static benchmark.SortBenchmarkHelper.getWords;
 import static edu.neu.coe.info6205.util.Utilities.formatWhole;
 
 public class SortBenchmark {
 
     private final Config config;
     final static LazyLogger logger = new LazyLogger(SortBenchmark.class);
-    final static Pattern regexLeipzig = Pattern.compile("[~\\t]*\\t(([\\s\\p{Punct}\\uFF0C]*\\p{L}+)*)");
 
     public SortBenchmark(Config config){this.config = config;}
 
@@ -26,6 +30,15 @@ public class SortBenchmark {
         if (args.length == 0) logger.warn("No word counts specified on the command line");
         SortBenchmark sortBenchmark = new SortBenchmark(config);
         //do benchmark here
+        sortBenchmark.sortStrings();
+
+    }
+
+    private void sortStrings() throws IOException {
+        logger.info("Beginning String sorts");
+
+        // NOTE: Leipzig Chinese words benchmarks (according to command-line arguments)
+        benchmarkStringSorters(getWords("shuffledChineseTest.txt", SortBenchmark::lineAsList), 41, 10);
 
     }
 
@@ -44,9 +57,8 @@ public class SortBenchmark {
 
         //doing benchmarks for different types of sorting algorithms
         //MSDChineseSort
-        if(isConfigBenchmarkStringSorter("msdChineseSort")){
-            runMSDSortBenchmark(words, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
-        }
+        runMSDSortBenchmark(words, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+
        /* if (isConfigBenchmarkStringSorter("puresystemsort")) {
             Benchmark<String[]> benchmark = new Benchmark_Timer<>("SystemSort", null, Arrays::sort, null);
             doPureBenchmark(words, nWords, nRuns, random, benchmark);
@@ -83,7 +95,23 @@ public class SortBenchmark {
      * @param sorter      the sorter to use--NOTE that this sorter will be closed at the end of this method.
      */
     public static void runMSDSortBenchmark(String[] words, int nWords, int nRuns, MSDChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+    }
 
+    public static void runTimeSortBenchmark(String[] words, int nWords, int nRuns, TimChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
     }
 
     private boolean isConfigBoolean(String section, String option) {
@@ -92,6 +120,12 @@ public class SortBenchmark {
 
     private boolean isConfigBenchmarkStringSorter(String option) {
         return isConfigBoolean("benchmarkstringsorters", option);
+    }
+
+    static List<String> lineAsList(final String line) {
+        final List<String> words = new ArrayList<>();
+        words.add(line);
+        return words;
     }
 
 }
