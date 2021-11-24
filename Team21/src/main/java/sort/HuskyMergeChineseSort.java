@@ -46,7 +46,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         //todo test, read paper
         // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-        final long[] longs = huskyCoder.huskyEncodeToNumber(xs);
+        final long[] longs = huskyCoder.msdEncodeToNumber(xs);
         final int n = xs.length;
         final X[] xsCopy = Arrays.copyOf(xs, n);
         final long[] longsCopy = Arrays.copyOf(longs, n);

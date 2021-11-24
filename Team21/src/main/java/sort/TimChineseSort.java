@@ -172,7 +172,7 @@ public class TimChineseSort<X extends Comparable<X>> {
     //todo test, read paper
     // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-    final long[] longs = huskyCoder.huskyEncodeToNumber(xs);
+    final long[] longs = huskyCoder.msdEncodeToNumber(xs);
     final int n = xs.length;
     timSort(longs, xs, n);
 

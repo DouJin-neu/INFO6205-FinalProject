@@ -51,39 +51,25 @@ public final class MSDCoderFactory{
      * It just means that the final pass will have to work a bit harder to fix the extra inversion.
      */
     public final static MSDSequenceCoder<String> pinyinCoder = new BaseMSDSequenceCoder<String>("pinyin", MAX_LENGTH_ENGLISH) {
-        /**
-         * Encode x as a string.
-         * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
-         * If this cannot be guaranteed, then the result of imperfect(z) will be true.
-         *
-         * @param str the X value to encode.
-         * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
-         */
-        public String msdEncode(final String str) {
-            //switch string to pinyin
-            return switchPinyin(str);
+
+        @Override
+        public String msdEncode(String s) {
+            return switchPinyin(s);
         }
 
-        public long huskyEncodeToNumber(final String str){
+        public long msdEncodeToNumber(final String str){
             return 0;
         }
     };
 
     public final static MSDSequenceCoder<String> bitCoder = new BaseMSDSequenceCoder<String>("bit", MASK_SHORT) {
-        /**
-         * Encode x as a string.
-         * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
-         * If this cannot be guaranteed, then the result of imperfect(z) will be true.
-         *
-         * @param str the X value to encode.
-         * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
-         */
-        public String msdEncode(final String str) {
-            //switch string to pinyin
-            return stringToBit(str);
+
+        @Override
+        public String msdEncode(String s) {
+            return null;
         }
 
-        public long huskyEncodeToNumber(final String str){
+        public long msdEncodeToNumber(final String str){
             return 0;
         }
     };
@@ -99,7 +85,7 @@ public final class MSDCoderFactory{
      * it's no big deal.
      * It just means that the final pass will have to work a bit harder to fix the extra inversion.
      */
-    public final static HuskySequenceCoder<String> englishCoder = new BaseHuskySequenceCoder<String>("English", MAX_LENGTH_ENGLISH) {
+    public final static BaseMSDSequenceCoder<String> englishCoder = new BaseMSDSequenceCoder<String>("English", MAX_LENGTH_ENGLISH) {
         /**
          * Encode x as a long.
          * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
@@ -108,12 +94,12 @@ public final class MSDCoderFactory{
          * @param str the X value to encode.
          * @return a long which is, as closely as possible, monotonically increasing with the domain of X values.
          */
-        public long huskyEncodeToNumber(final String str) {
+        public long msdEncodeToNumber(final String str) {
             String pinyin = switchPinyin(str);
             return englishToLong(pinyin);
         }
 
-        public String huskyEncode(final String str) {
+        public String msdEncode(final String str) {
             return null;
         }
 

@@ -1,11 +1,5 @@
 package sort;
 
-import static sort.utils.MSDCoderFactory.charAt;
-
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.SortWithHelper;
-import java.util.Arrays;
-import sort.utils.HuskySortable;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
