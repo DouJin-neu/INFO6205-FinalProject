@@ -2,7 +2,11 @@ package benchmark;
 
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.util.Timer;
+import sort.DualPivotChineseSort;
+import sort.HuskyMergeChineseSort;
+import sort.LSDChineseSort;
 import sort.MSDChineseSort;
+import sort.MSDExchangeChineseSort;
 import sort.TimChineseSort;
 import sort.utils.Config;
 import sort.utils.MSDCoderFactory;
@@ -58,6 +62,11 @@ public class SortBenchmark {
         //doing benchmarks for different types of sorting algorithms
         //MSDChineseSort
         runMSDSortBenchmark(words, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+        runMSDExchangeSortBenchmark(words, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
+        runLSDSortBenchmark(words, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+        runHuskyMergeBenchmark(words, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
+        runDualPivotBenchmark(words, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
+        runTimeSortBenchmark(words, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
 
        /* if (isConfigBenchmarkStringSorter("puresystemsort")) {
             Benchmark<String[]> benchmark = new Benchmark_Timer<>("SystemSort", null, Arrays::sort, null);
@@ -112,6 +121,46 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+    }
+
+    public static void runMSDExchangeSortBenchmark(String[] words, int nWords, int nRuns, MSDExchangeChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run MSDExchangeSort Benchmark for "+ nRuns + " Mean time: " + mean);
+    }
+
+    public static void runLSDSortBenchmark(String[] words, int nWords, int nRuns, LSDChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run LSDSort Benchmark for "+ nRuns + " Mean time: " + mean);
+    }
+
+    public static void runDualPivotBenchmark(String[] words, int nWords, int nRuns, DualPivotChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run DualPivotSort Benchmark for "+ nRuns + " Mean time: " + mean);
+    }
+
+    public static void runHuskyMergeBenchmark(String[] words, int nWords, int nRuns, HuskyMergeChineseSort<String> sorter) {
+        final Timer timer = new Timer();
+        final int zzz = 20;
+        final double mean = timer.repeat(nRuns, () -> zzz, t-> {
+            sorter.sort(words);
+            return null;
+        });
+        System.out.println("Run HuskyMergeSort Benchmark for "+ nRuns + " Mean time: " + mean);
     }
 
     private boolean isConfigBoolean(String section, String option) {

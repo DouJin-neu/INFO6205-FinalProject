@@ -13,6 +13,9 @@ public interface MSDCoder<X> {
     return result;
   }
 
+  default String name() {
+    return "MSDCoder";
+  }
 
 
   String msdEncode(X x);
