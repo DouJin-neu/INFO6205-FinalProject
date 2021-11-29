@@ -51,13 +51,17 @@ public class SortBenchmark {
      * <p>
      * NOTE: this is package-private because it is used by unit tests.
      *
-     * @param words  the word source.
+     * @param sourceWords  the word source.
      * @param nWords the number of words to be sorted.
      * @param nRuns  the number of runs.
      */
-    void benchmarkStringSorters(String[] words, int nWords, int nRuns) {
+    void benchmarkStringSorters(String[] sourceWords, int nWords, int nRuns) {
         logger.info("Testing pure sorts with " + formatWhole(nRuns) + " runs of sorting " + formatWhole(nWords) + " words");
         Random random = new Random();
+
+        //sort words with certain length
+        String[] words = new String[nWords];
+        for (int i = 0; i < nWords; i++) words[i] =sourceWords[random.nextInt(sourceWords.length)];
 
         //doing benchmarks for different types of sorting algorithms
         //MSDChineseSort

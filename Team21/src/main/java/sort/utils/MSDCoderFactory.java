@@ -66,7 +66,7 @@ public final class MSDCoderFactory{
 
         @Override
         public String msdEncode(String s) {
-            return null;
+            return stringToBit(s);
         }
 
         public long msdEncodeToNumber(final String str){
@@ -124,6 +124,10 @@ public final class MSDCoderFactory{
         public static String stringToBit(String s) {
         s = switchPinyin(s);
         byte[] bytes = s.getBytes();
+        return bytesToString(bytes);
+    }
+
+    public static String bytesToString(byte[] bytes){
         StringBuilder binary = new StringBuilder();
         for (byte b : bytes) {
             int val = b;
