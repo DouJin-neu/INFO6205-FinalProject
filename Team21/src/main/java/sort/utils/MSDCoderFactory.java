@@ -3,6 +3,11 @@
  */
 package sort.utils;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -60,6 +65,11 @@ public final class MSDCoderFactory{
         public long msdEncodeToNumber(final String str){
             return 0;
         }
+
+        @Override
+        public long msdEncodeToNumber(String s, String[] words, int index) {
+            return 0;
+        }
     };
 
     public final static MSDSequenceCoder<String> bitCoder = new BaseMSDSequenceCoder<String>("bit", MASK_SHORT) {
@@ -71,6 +81,11 @@ public final class MSDCoderFactory{
 
         public long msdEncodeToNumber(final String str){
             return 0;
+        }
+
+        @Override
+        public long msdEncodeToNumber(String s, String[] words, int index) {
+            return Long.parseLong(stringToBit(words[index]));
         }
     };
 
@@ -85,7 +100,7 @@ public final class MSDCoderFactory{
      * it's no big deal.
      * It just means that the final pass will have to work a bit harder to fix the extra inversion.
      */
-    public final static BaseMSDSequenceCoder<String> englishCoder = new BaseMSDSequenceCoder<String>("English", MAX_LENGTH_ENGLISH) {
+    public final static MSDSequenceCoder<String> englishCoder = new BaseMSDSequenceCoder<String>("English", MAX_LENGTH_ENGLISH) {
         /**
          * Encode x as a long.
          * As much as possible, if x > y, huskyEncode(x) > huskyEncode(y).
@@ -99,8 +114,13 @@ public final class MSDCoderFactory{
             return englishToLong(pinyin);
         }
 
+        @Override
+        public long msdEncodeToNumber(String s, String[] words, int index) {
+            return englishToLong(words[index]);
+        }
+
         public String msdEncode(final String str) {
-            return null;
+            return switchPinyin(str);
         }
 
     };
@@ -148,7 +168,7 @@ public final class MSDCoderFactory{
         // 设置大小写
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         // 设置声调表示方法
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
         // 设置字母u表示方法
         format.setVCharType(HanyuPinyinVCharType.WITH_V);
         String[] s;
@@ -160,6 +180,7 @@ public final class MSDCoderFactory{
                     s = PinyinHelper.toHanyuPinyinStringArray(chars[i], format);
                     if (s != null) {
                         sb.append(s[0]);
+                        sb.append(",");
                         continue;
                     }
                 }
@@ -171,7 +192,7 @@ public final class MSDCoderFactory{
             e.printStackTrace();
         }
 
-        return sb.toString();
+        return sb.toString().substring(0,sb.length()-1);
     }
 
     public static int charAt(String s, int d) {
@@ -184,6 +205,67 @@ public final class MSDCoderFactory{
         a[i] = a[j];
         a[j] = temp;
 
+    }
+
+    /**
+     *switch pinyin to same length
+     *
+     */
+
+    public static String[] pinyinToSameLength(String[] words) {
+    return pinyinToSameLength(words,'a');
+    }
+
+    public static String[] pinyinToSameLength(String[] words,char appendix){
+        Queue<String> queue = new PriorityQueue<>(new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                String[] arr = a.split(",");
+                String[] brr = b.split(",");
+                return brr.length-arr.length;
+            }
+        });
+        queue.addAll(List.of(words));
+       int n = queue.poll().split(",").length;
+        String[] res = new String[words.length];
+        Arrays.fill(res,"");
+
+        for(int i=0;i<n;++i){
+
+           int maxLen = getLongestPinyin(words,i).split(",")[i].length();
+           for(int j=0;j<words.length;j++){
+               String[] cur= words[j].split(",");
+               if(cur.length<=i){
+                   continue;
+               }
+               String append = cur[i];
+               StringBuilder resWord = new StringBuilder(append);
+               for(int k=append.length();k<maxLen;k++){
+                   resWord.append(appendix);
+               }
+               res[j]+=resWord;
+           }
+
+        }
+
+        return res;
+
+    }
+
+    public static String getLongestPinyin(String[] words,int index){
+        Queue<String>  queue = new PriorityQueue<>(new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                String[] arr = a.split(",");
+                String[] brr = b.split(",");
+                if(arr.length>index&&brr.length>index){
+                    return brr[index].length()-arr[index].length();
+                }
+                return 0;
+            }
+        });
+        queue.addAll(List.of(words));
+        return queue.poll();
     }
 
 
