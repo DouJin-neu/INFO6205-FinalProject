@@ -114,9 +114,6 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
       } // 其他情况就是中间位置，不用考虑
     }
 
-    System.out.println("left :" + left + " less " + less + " great" + great + " right " + right);
-    System.out.println(Arrays.toString(longs));
-
     dualPivotQuickSort(longs,xs, left, less - 1);
     dualPivotQuickSort(longs,xs,  less, great);
     dualPivotQuickSort(longs,xs,  great + 1, right);
