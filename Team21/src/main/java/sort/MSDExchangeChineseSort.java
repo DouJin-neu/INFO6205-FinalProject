@@ -19,7 +19,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     final String inputOrder = preSorted ? "ordered" : "random";
     MSDExchangeChineseSort<String> sorter = new MSDExchangeChineseSort<String>(MSDCoderFactory.bitCoder);
-    String[] a = new String[]{"安","埃", "爱", "张", "公","测试","毕安心","边防军","毕竟","毕凌霄"};
+    String[] a = new String[]{"安","埃", "爱", "张", "公","测试","毕安心","边防","边","边防军","毕竟","毕凌霄"};
     sorter.sort(a);
     for (String s : a) {
       System.out.println(s);

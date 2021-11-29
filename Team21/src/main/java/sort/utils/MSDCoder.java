@@ -17,10 +17,18 @@ public interface MSDCoder<X> {
   }
 
   default long[] msdEncodeToNumber(X[] xs,char append) {
-    String[] res =  msdEncode(xs,append);
-    long[] result = new long[xs.length];
-    for (int i = 0; i < xs.length; i++) result[i] = msdEncodeToNumber(xs[i],res,i);
-    return result;
+    if(append=='A'){
+      String[] res =  msdEncode(xs,append);
+      long[] result = new long[xs.length];
+      for (int i = 0; i < xs.length; i++) result[i] = msdEncodeToNumber(xs[i],res,i);
+      return result;
+    }else {
+      String[] res =  msdEncode(xs,append);
+      long[] result = new long[xs.length];
+      for (int i = 0; i < xs.length; i++) result[i] = msdEncodeToNumber(xs[i],res,i);
+      return result;
+    }
+
   }
 
 

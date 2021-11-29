@@ -168,7 +168,7 @@ public final class MSDCoderFactory{
         // 设置大小写
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         // 设置声调表示方法
-        format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
         // 设置字母u表示方法
         format.setVCharType(HanyuPinyinVCharType.WITH_V);
         String[] s;
@@ -230,7 +230,7 @@ public final class MSDCoderFactory{
         String[] res = new String[words.length];
         Arrays.fill(res,"");
 
-        for(int i=0;i<n;++i){
+        for(int i=0;i<n;i++){
 
            int maxLen = getLongestPinyin(words,i).split(",")[i].length();
            for(int j=0;j<words.length;j++){
@@ -261,7 +261,7 @@ public final class MSDCoderFactory{
                 if(arr.length>index&&brr.length>index){
                     return brr[index].length()-arr[index].length();
                 }
-                return 0;
+                return -1;
             }
         });
         queue.addAll(List.of(words));
