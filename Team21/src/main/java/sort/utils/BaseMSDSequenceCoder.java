@@ -42,25 +42,25 @@ public abstract class BaseMSDSequenceCoder<X extends CharSequence> implements MS
      * @return an array of longs corresponding to the the Husky codes of the X elements.
      */
     @Override
-    final public String[] huskyEncode(final X[] xs) {
+    final public String[] msdEncode(final X[] xs) {
         boolean isPerfect = true;
          String[] result = new String[xs.length];
         for (int i = 0; i < xs.length; i++) {
             final X x = xs[i];
             if (isPerfect) isPerfect = perfectForLength(x.length());
-            result[i] = huskyEncode(x);
+            result[i] = msdEncode(x);
         }
         return result;
     }
 
     @Override
-    final public long[] huskyEncodeToNumber(final X[] xs) {
+    final public long[] msdEncodeToNumber(final X[] xs) {
         boolean isPerfect = true;
         long[] result = new long[xs.length];
         for (int i = 0; i < xs.length; i++) {
             final X x = xs[i];
             if (isPerfect) isPerfect = perfectForLength(x.length());
-            result[i] = huskyEncodeToNumber(x);
+            result[i] = msdEncodeToNumber(x);
         }
         return result;
     }

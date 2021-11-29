@@ -6,9 +6,8 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-import sort.utils.HuskySortable;
 
-public class ChineseCharacterNode implements HuskySortable<ChineseCharacterNode> {
+public class ChineseCharacterNode {
   private String value;
 
   public String getValue() {
@@ -67,14 +66,4 @@ public class ChineseCharacterNode implements HuskySortable<ChineseCharacterNode>
     return sb.toString();
   }
 
-
-  @Override
-  public int compareTo(ChineseCharacterNode o) {
-    return 0;
-  }
-
-  @Override
-  public long huskyCode() {
-    return 0;
-  }
 }

@@ -37,7 +37,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.
-       String[] longs = msdCoder.huskyEncode(xs);
+       String[] longs = msdCoder.msdEncode(xs);
         final int n = xs.length;
          X[] xsCopy = Arrays.copyOf(xs, n);
         String[] longsCopy = Arrays.copyOf(longs, n);

@@ -1,11 +1,5 @@
 package sort;
 
-import static sort.utils.MSDCoderFactory.charAt;
-
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.SortWithHelper;
-import java.util.Arrays;
-import sort.utils.HuskySortable;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
@@ -33,15 +27,14 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
 
-  public MSDExchangeChineseSort(MSDCoder<X> msdCoder) {
-    super();
-    this.msdCoder = msdCoder;
+  public MSDExchangeChineseSort(final MSDCoder<X> msdCoder) {
+    this.msdCoder =  msdCoder;
   }
 
 
   public void sort(X[] xs) {
     // NOTE: First pass where we code to longs and sort according to those.
-    String[] longs = msdCoder.huskyEncode(xs);
+    String[] longs = msdCoder.msdEncode(xs);
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
     }

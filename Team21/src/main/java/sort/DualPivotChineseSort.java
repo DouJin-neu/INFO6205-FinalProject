@@ -27,7 +27,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
   public void sort(final X[] xs) {
     //todo test, read paper
-    final long[] longs = huskyCoder.huskyEncodeToNumber(xs);
+    final long[] longs = huskyCoder.msdEncodeToNumber(xs);
     final int n = xs.length;
 
     dualPivotQuickSort(longs, xs, 0, n-1);
