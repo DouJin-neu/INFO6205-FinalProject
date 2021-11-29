@@ -70,32 +70,7 @@ public class SortBenchmark {
         runLSDSortBenchmark(words, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
         runHuskyMergeBenchmark(words, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
         runDualPivotBenchmark(words, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
-        runTimeSortBenchmark(words, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
-
-       /* if (isConfigBenchmarkStringSorter("puresystemsort")) {
-            Benchmark<String[]> benchmark = new Benchmark_Timer<>("SystemSort", null, Arrays::sort, null);
-            doPureBenchmark(words, nWords, nRuns, random, benchmark);
-        }
-
-        if (isConfigBenchmarkStringSorter("mergesort")) {
-            runMergeSortBenchmark(words, nWords, nRuns, false, false);
-            runMergeSortBenchmark(words, nWords, nRuns, true, false);
-            runMergeSortBenchmark(words, nWords, nRuns, false, true);
-            runMergeSortBenchmark(words, nWords, nRuns, true, true);
-        }
-
-        if (isConfigBenchmarkStringSorter("quicksort3way"))
-            runStringSortBenchmark(words, nWords, nRuns, new QuickSort_3way<>(nWords, config), timeLoggersLinearithmic);
-
-        if (isConfigBenchmarkStringSorter("quicksort"))
-            runStringSortBenchmark(words, nWords, nRuns, new QuickSort_DualPivot<>(nWords, config), timeLoggersLinearithmic);
-
-        if (isConfigBenchmarkStringSorter("introsort"))
-            runStringSortBenchmark(words, nWords, nRuns, new IntroSort<>(nWords, config), timeLoggersLinearithmic);
-
-        // NOTE: this is very slow of course, so recommendation is not to enable this option.
-        if (isConfigBenchmarkStringSorter("insertionsort"))
-            runStringSortBenchmark(words, nWords, nRuns / 10, new InsertionSort<>(nWords, config), timeLoggersQuadratic);*/
+        runTimSortBenchmark(words, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
 
     }
 
@@ -117,7 +92,7 @@ public class SortBenchmark {
         System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
     }
 
-    public static void runTimeSortBenchmark(String[] words, int nWords, int nRuns, TimChineseSort<String> sorter) {
+    public static void runTimSortBenchmark(String[] words, int nWords, int nRuns, TimChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {

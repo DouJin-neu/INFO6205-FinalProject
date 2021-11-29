@@ -22,7 +22,7 @@ public class SortBenchmarkTest {
         final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
         final TimChineseSort<String> TimSorter = new TimChineseSort<>(MSDCoderFactory.englishCoder);
         System.out.println("==========Warm Up End=================");
-        SortBenchmark.runTimeSortBenchmark(words, words.length, 10,TimSorter);
+        SortBenchmark.runTimSortBenchmark(words, words.length, 10,TimSorter);
         SortBenchmark.runMSDSortBenchmark(words, words.length, 10,sorter);
 
     }
