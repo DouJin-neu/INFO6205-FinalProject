@@ -23,7 +23,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final String inputOrder = preSorted ? "ordered" : "random";
         logger.info("MergeHuskySort: sorting " + N + " " + inputOrder + " alphabetic ASCII words " + m + " times");
         final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
-        String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
+        String[] a = new String[]{"安","埃", "爱", "张", "公","测试","毕安心","边防军","毕竟","毕凌霄"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
@@ -46,7 +46,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         //todo test, read paper
         // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-        final long[] longs = huskyCoder.msdEncodeToNumber(xs);
+        final long[] longs = huskyCoder.msdEncodeToNumber(xs,'a');
         final int n = xs.length;
         final X[] xsCopy = Arrays.copyOf(xs, n);
         final long[] longsCopy = Arrays.copyOf(longs, n);

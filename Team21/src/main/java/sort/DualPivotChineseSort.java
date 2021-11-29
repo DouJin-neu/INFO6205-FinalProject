@@ -1,24 +1,23 @@
 package sort;
 
-import java.util.Arrays;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
 public class DualPivotChineseSort<X extends Comparable<X>> {
 
-  public DualPivotChineseSort(final MSDCoder<X> huskyCoder) {
-    this.huskyCoder =  huskyCoder;
+  public DualPivotChineseSort(final MSDCoder<X> msdCoder) {
+    this.msdCoder =  msdCoder;
   }
 
-  private final MSDCoder<X> huskyCoder;
+  private final MSDCoder<X> msdCoder;
 
 
   public static void main(String[] args) {
     final int N = 50000;
     final int m = 10000;
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
-    final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
-    String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
+    DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(MSDCoderFactory.englishCoder);
+    String[] a = new String[]{"安","埃", "爱", "张", "公","测试","毕安心","边防","边","边防军","毕竟","毕凌霄"};
     sorter.sort(a);
     for (String s : a) {
       System.out.println(s);
@@ -27,7 +26,8 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
   public void sort(final X[] xs) {
     //todo test, read paper
-    final long[] longs = huskyCoder.msdEncodeToNumber(xs);
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
+
     final int n = xs.length;
 
     dualPivotQuickSort(longs, xs, 0, n-1);
@@ -87,7 +87,6 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
           // 找到不满足条件的位置
           if (great-- == k) {
 
-            System.out.println("outer");
             break outer;
           }
         }
