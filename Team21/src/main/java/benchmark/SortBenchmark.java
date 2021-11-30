@@ -7,6 +7,7 @@ import sort.HuskyMergeChineseSort;
 import sort.LSDChineseSort;
 import sort.MSDChineseSort;
 import sort.MSDExchangeChineseSort;
+import sort.QuickDualPivot;
 import sort.TimChineseSort;
 import sort.utils.Config;
 import sort.utils.MSDCoderFactory;
@@ -30,11 +31,12 @@ public class SortBenchmark {
 
     public static void main(String[] args) throws IOException {
         Config config = Config.load(SortBenchmark.class);
-        logger.info("SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: " + Arrays.toString(args));
-        if (args.length == 0) logger.warn("No word counts specified on the command line");
-        //SortBenchmark sortBenchmark = new SortBenchmark(config);
+//        logger.info("SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: " + Arrays.toString(args));
+//        if (args.length == 0) logger.warn("No word counts specified on the command line");
+        SortBenchmark sortBenchmark = new SortBenchmark(config);
         //do benchmark here
-        //sortBenchmark.sortStrings();
+        sortBenchmark.sortStrings("shuffledChinese500K.txt");
+
 
     }
 
@@ -82,7 +84,7 @@ public class SortBenchmark {
         runLSDSortBenchmark(sourceWords, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
         runHuskyMergeBenchmark(sourceWords, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
         runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));*/
-        runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
+        runDualPivotBenchmark(sourceWords, nWords, nRuns, new QuickDualPivot<>(MSDCoderFactory.englishCoder));
 
     }
 
@@ -134,7 +136,7 @@ public class SortBenchmark {
         System.out.println("Run LSDSort Benchmark for "+ nRuns + " Mean time: " + mean);
     }
 
-    public static void runDualPivotBenchmark(String[] words, int nWords, int nRuns, DualPivotChineseSort<String> sorter) {
+    public static void runDualPivotBenchmark(String[] words, int nWords, int nRuns, QuickDualPivot<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
