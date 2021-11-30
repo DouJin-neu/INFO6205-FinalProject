@@ -232,8 +232,16 @@ public final class MSDCoderFactory{
 
         for(int i=0;i<n;i++){
 
-           int maxLen = getLongestPinyin(words,i).split(",")[i].length();
-           for(int j=0;j<words.length;j++){
+            int maxLen = 0;
+            try {
+                maxLen = getLongestPinyin(words,i).split(",")[i].length();
+            } catch (Exception e) {
+                System.out.println("index:  "+i);
+                System.out.println(getLongestPinyin(words,i));
+                e.printStackTrace();
+
+            }
+            for(int j=0;j<words.length;j++){
                String[] cur= words[j].split(",");
                if(cur.length<=i){
                    continue;
@@ -260,6 +268,10 @@ public final class MSDCoderFactory{
                 String[] brr = b.split(",");
                 if(arr.length>index&&brr.length>index){
                     return brr[index].length()-arr[index].length();
+                }else if(arr.length>index){
+                    return -1;
+                }else if(brr.length>index){
+                    return 1;
                 }
                 return -1;
             }
