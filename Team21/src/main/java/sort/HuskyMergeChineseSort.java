@@ -13,6 +13,8 @@ import sort.utils.MSDCoderFactory;
  *
  */
 public class HuskyMergeChineseSort<X extends Comparable<X>>{
+    private final MSDCoder<X> msdCoder;
+    private static final int cutoff = 8;
 
 
     public static void main(final String[] args) {
@@ -23,7 +25,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final String inputOrder = preSorted ? "ordered" : "random";
         logger.info("MergeHuskySort: sorting " + N + " " + inputOrder + " alphabetic ASCII words " + m + " times");
         final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
-        String[] a = new String[]{"安","埃", "爱", "张", "公","测试","毕安心","边防军","毕竟","毕凌霄"};
+        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
@@ -46,7 +48,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         //todo test, read paper
         // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-        final long[] longs = huskyCoder.msdEncodeToNumber(xs,'a');
+        final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
         final int n = xs.length;
         final X[] xsCopy = Arrays.copyOf(xs, n);
         final long[] longsCopy = Arrays.copyOf(longs, n);
@@ -54,15 +56,9 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
     }
 
 
-    public HuskyMergeChineseSort(final MSDCoder<X> huskyCoder) {
-        this.huskyCoder =  huskyCoder;
+    public HuskyMergeChineseSort(final MSDCoder<X> msdCoder) {
+        this.msdCoder =  msdCoder;
     }
-
-
-    private final MSDCoder<X> huskyCoder;
-
-
-    private static final int cutoff = 8;
 
     /**
      * Merge-sort the lsSortable/xsSortable arrays using the provided auxiliary arrays.
@@ -81,7 +77,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
             return;
         }
         final int mid = from + (to - from - 1) / 2;
-        mergeSort(lsAux, xsAux, lsSortable, xsSortable, lo, mid + 1);
+        mergeSort(lsAux, xsAux, lsSortable, xsSortable, lo, mid);
         mergeSort(lsAux, xsAux, lsSortable, xsSortable, mid, to);
         merge(xsSortable, xsAux, lsSortable, lsAux, lo, mid, to - 1);
     }
@@ -103,12 +99,29 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         int i = lo;
         int j = mid;
         int k = lo;
-        for (; k < hi; k++)
+        for (; k <= hi; k++){
             if (i >= mid) copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k);
-            else if (j >= hi) copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k);
+            else if (j > hi) copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k);
             else if (lsOrdered[j] < lsOrdered[i]) {
                 copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k);
             } else copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k);
+        }
+
+//        while (i<mid&&j<=hi){
+//            if (lsOrdered[j] < lsOrdered[i]) {
+//                copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k++);
+//            } else copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k++);
+//        }
+//
+//        while (i<mid){
+//            copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k++);
+//        }
+//
+//        while (j<=hi){
+//            copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k++);
+//        }
+
+
     }
 
     // TEST
@@ -123,10 +136,12 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final long temp1 = ls[i];
         ls[i] = ls[j];
         ls[j] = temp1;
+//        System.out.println(i+" "+j);
         // Swap xs
         final X temp2 = xs[i];
         xs[i] = xs[j];
         xs[j] = temp2;
+        System.out.println(i+" "+j);
     }
 
     private void copy(final X[] xsFrom, final long[] lsFrom, final X[] xsTo, final long[] lsTo, final int i, final int j) {
@@ -148,5 +163,4 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
 
 
     private final static LazyLogger logger = new LazyLogger(HuskyMergeChineseSort.class);
-
 }
