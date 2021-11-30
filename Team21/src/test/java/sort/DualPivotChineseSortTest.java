@@ -40,6 +40,14 @@ public class DualPivotChineseSortTest {
         assertEquals("马文春", words[27]);
     }
 
+    @Test
+    public void sortFile2() throws IOException{
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese250K.txt", DualPivotChineseSortTest::lineAsList);
+        final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
+        sorter.sort(words);
+    }
+
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);

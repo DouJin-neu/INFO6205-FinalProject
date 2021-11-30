@@ -32,18 +32,29 @@ public class SortBenchmark {
         Config config = Config.load(SortBenchmark.class);
         logger.info("SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: " + Arrays.toString(args));
         if (args.length == 0) logger.warn("No word counts specified on the command line");
-        SortBenchmark sortBenchmark = new SortBenchmark(config);
+        //SortBenchmark sortBenchmark = new SortBenchmark(config);
         //do benchmark here
-        sortBenchmark.sortStrings();
+        //sortBenchmark.sortStrings();
 
     }
 
-    private void sortStrings() throws IOException {
+    public void sortStrings(String resource) throws IOException {
         logger.info("Beginning String sorts");
 
         // NOTE: Leipzig Chinese words benchmarks (according to command-line arguments)
-        benchmarkStringSorters(getWords("shuffledChineseTest.txt", SortBenchmark::lineAsList), 41, 10);
+        String[] words = getWords(resource, SortBenchmark::lineAsList);
+        benchmarkStringSorters(words, words.length, 10);
 
+    }
+
+    /**
+     * Calculate the appropriate number of warmup runs.
+     *
+     * @param m the number of runs.
+     * @return at least 2 and at most m/10.
+     */
+    static int getWarmupRuns(int m) {
+        return Integer.max(2, Integer.min(10, m / 10));
     }
 
     /**
@@ -57,20 +68,21 @@ public class SortBenchmark {
      */
     void benchmarkStringSorters(String[] sourceWords, int nWords, int nRuns) {
         logger.info("Testing pure sorts with " + formatWhole(nRuns) + " runs of sorting " + formatWhole(nWords) + " words");
-        Random random = new Random();
+
+        //Random random = new Random();
 
         //sort words with certain length
-        String[] words = new String[nWords];
-        for (int i = 0; i < nWords; i++) words[i] =sourceWords[random.nextInt(sourceWords.length)];
+        /*String[] words = new String[nWords];
+        for (int i = 0; i < nWords; i++) words[i] =sourceWords[random.nextInt(sourceWords.length)];*/
 
         //doing benchmarks for different types of sorting algorithms
         //MSDChineseSort
-        runMSDSortBenchmark(words, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
-        runMSDExchangeSortBenchmark(words, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
-        runLSDSortBenchmark(words, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
-        runHuskyMergeBenchmark(words, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
-        runDualPivotBenchmark(words, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
-        runTimSortBenchmark(words, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
+        /*runMSDSortBenchmark(sourceWords, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+        runMSDExchangeSortBenchmark(sourceWords, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
+        runLSDSortBenchmark(sourceWords, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+        runHuskyMergeBenchmark(sourceWords, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
+        runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));*/
+        runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
 
     }
 

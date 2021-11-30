@@ -1,30 +1,52 @@
 package benchmark;
 
-import edu.neu.coe.info6205.util.Benchmark_Timer;
 import org.junit.Test;
-import sort.*;
-import sort.utils.MSDCoderFactory;
+import sort.utils.Config;
+import sort.utils.LazyLogger;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
+
+import static org.junit.Assert.assertEquals;
 
 public class SortBenchmarkTest {
 
+    final static LazyLogger logger = new LazyLogger(SortBenchmarkTest.class);
+
     @Test
-    public void benchmarkTest(){
-        SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChineseTest.txt", SortBenchmarkTest::lineAsList);
+    public void benchmarkTest() throws IOException{
 
-        final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
-        final TimChineseSort<String> TimSorter = new TimChineseSort<>(MSDCoderFactory.englishCoder);
-        System.out.println("==========Warm Up End=================");
-        SortBenchmark.runTimSortBenchmark(words, words.length, 10,TimSorter);
-        SortBenchmark.runMSDSortBenchmark(words, words.length, 10,sorter);
+        Config config = Config.load(SortBenchmarkTest.class);
+        SortBenchmark sortBenchmark = new SortBenchmark(config);
+        //do benchmark here
+        int warmupRuns = SortBenchmark.getWarmupRuns(10);
+        logger.info("Warming up ");
+        for(int i = 0; i < warmupRuns; i++){
+            sortBenchmark.sortStrings("shuffledChinese1M.txt");
+        }
+        logger.info("Warming up End");
+        logger.info("Start sorting benchmark");
+        sortBenchmark.sortStrings("shuffledChinese250K.txt");
+        sortBenchmark.sortStrings("shuffledChinese500K.txt");
+        sortBenchmark.sortStrings("shuffledChinese1M.txt");
+        sortBenchmark.sortStrings("shuffledChinese2M.txt");
+        sortBenchmark.sortStrings("shuffledChinese4M.txt");
 
+    }
+
+    @Test
+    public void getWarmupRuns() {
+        assertEquals(2, SortBenchmark.getWarmupRuns(0));
+        assertEquals(2, SortBenchmark.getWarmupRuns(20));
+        assertEquals(3, SortBenchmark.getWarmupRuns(30));
+        assertEquals(10, SortBenchmark.getWarmupRuns(100));
+        assertEquals(10, SortBenchmark.getWarmupRuns(1000));
+    }
+
+    private int getWarmupRuns(int m) {
+        return Integer.max(2, Integer.min(10, m / 10));
     }
 
     static List<String> lineAsList(final String line) {

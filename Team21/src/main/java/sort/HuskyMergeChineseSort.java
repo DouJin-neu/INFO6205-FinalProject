@@ -141,7 +141,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final X temp2 = xs[i];
         xs[i] = xs[j];
         xs[j] = temp2;
-        System.out.println(i+" "+j);
+        //System.out.println(i+" "+j);
     }
 
     private void copy(final X[] xsFrom, final long[] lsFrom, final X[] xsTo, final long[] lsTo, final int i, final int j) {

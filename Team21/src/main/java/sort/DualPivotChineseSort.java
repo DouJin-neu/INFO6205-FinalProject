@@ -51,7 +51,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     while (longs[++less] < pivot1) ;
     while (longs[--great] > pivot2) ;
 
-    /*
+  /*
      * Partitioning:
      *
      *   left part           center part                   right part
@@ -68,8 +68,8 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
      *    pivot1 <= all in [less, k)     <= pivot2
      *              all in (great, right) > pivot2
      *
-     * Pointer k is the first index of ?-part.
-     */
+     * Pointer k is the first index of ?-part.*/
+
     outer:
     for (int k = less - 1; ++k <= great; ) {
 
@@ -103,10 +103,10 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
           longs[k] = longs[great];
           xs[k] = xs[great];
         }
-        /*
-         * Here and below we use "a[i] = b; i--;" instead
-         * of "a[i--] = b;" due to performance issue.
-         */
+
+        /* * Here and below we use "a[i] = b; i--;" instead
+         * of "a[i--] = b;" due to performance issue.*/
+
         longs[great] = ak; // ak 放到 great位置
         xs[great] = xk; // ak 放到 great位置
         --great;
