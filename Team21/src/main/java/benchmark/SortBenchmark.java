@@ -76,13 +76,12 @@ public class SortBenchmark {
         for (int i = 0; i < nWords; i++) words[i] =sourceWords[random.nextInt(sourceWords.length)];*/
 
         //doing benchmarks for different types of sorting algorithms
-        //MSDChineseSort
-        /*runMSDSortBenchmark(sourceWords, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
+        runMSDSortBenchmark(sourceWords, nWords, nRuns, new MSDChineseSort<>(MSDCoderFactory.pinyinCoder));
         runMSDExchangeSortBenchmark(sourceWords, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
         runLSDSortBenchmark(sourceWords, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
         runHuskyMergeBenchmark(sourceWords, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
-        runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));*/
         runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
+        runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
 
     }
 
