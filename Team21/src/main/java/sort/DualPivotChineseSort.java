@@ -26,7 +26,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
   public void sort(final X[] xs) {
     //todo test, read paper
-    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'a');
 
     final int n = xs.length;
 

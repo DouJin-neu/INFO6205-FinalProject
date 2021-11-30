@@ -168,11 +168,12 @@ public final class MSDCoderFactory{
         // 设置大小写
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         // 设置声调表示方法
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
         // 设置字母u表示方法
-        format.setVCharType(HanyuPinyinVCharType.WITH_V);
+        format.setVCharType(HanyuPinyinVCharType.WITH_U_UNICODE);
         String[] s;
         StringBuilder sb = new StringBuilder();
+        boolean pinyin = false;
         try {
             for (int i = 0; i < chars.length; i++) {
                 // 判断是否为汉字字符
@@ -181,6 +182,7 @@ public final class MSDCoderFactory{
                     if (s != null) {
                         sb.append(s[0]);
                         sb.append(",");
+                        pinyin = true;
                         continue;
                     }
                 }
@@ -192,7 +194,8 @@ public final class MSDCoderFactory{
             e.printStackTrace();
         }
 
-        return sb.toString().substring(0,sb.length()-1);
+        //switch tone from number to character
+        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D"):sb.toString();
     }
 
     public static int charAt(String s, int d) {
