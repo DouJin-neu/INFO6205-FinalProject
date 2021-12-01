@@ -15,12 +15,9 @@ public class SortBenchmarkHelperTest {
 
     @Test
     public void getFileTest() throws IOException {
-        int n = 41;
+        int n = 1999996;
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChineseTest.txt", SortBenchmarkHelperTest::lineAsList);
-        for(String word: words){
-            System.out.print(word+", ");
-        }
+        String[] words = helper.getWords("shuffledChinese2M.txt", SortBenchmarkHelperTest::lineAsList);
         assertEquals(n, words.length);
 
     }

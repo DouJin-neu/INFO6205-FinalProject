@@ -43,7 +43,7 @@ public class DualPivotChineseSortTest {
     @Test
     public void sortFile2() throws IOException{
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChinese250K.txt", DualPivotChineseSortTest::lineAsList);
+        String[] words = helper.getWords("shuffledChinese2M.txt", DualPivotChineseSortTest::lineAsList);
         final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
     }
