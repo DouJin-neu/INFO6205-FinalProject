@@ -24,6 +24,16 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     }
   }
 
+  /**
+   * precess array xs
+   * @param xs
+   * @return
+   */
+  public long[] preProcess(final X[] xs){
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'a');
+    return longs;
+  }
+
   public void sort(final X[] xs) {
     //todo test, read paper
     final long[] longs = msdCoder.msdEncodeToNumber(xs,'a');

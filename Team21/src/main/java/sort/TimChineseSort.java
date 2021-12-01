@@ -160,19 +160,29 @@ public class TimChineseSort<X extends Comparable<X>> {
     }
   }
 
-  public TimChineseSort(final MSDCoder<X> huskyCoder) {
-    this.huskyCoder =  huskyCoder;
+  public TimChineseSort(final MSDCoder<X> msdCoder) {
+    this.msdCoder =  msdCoder;
   }
 
 
-  private final MSDCoder<X> huskyCoder;
+  private final MSDCoder<X> msdCoder;
+
+  /**
+   * precess array xs
+   * @param xs
+   * @return
+   */
+  public long[] preProcess(final X[] xs){
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
+    return longs;
+  }
 
   public void sort(final X[] xs) {
     //todo switch english charactor to longs
     //todo test, read paper
     // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-    final long[] longs = huskyCoder.msdEncodeToNumber(xs,'A');
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
     final int n = xs.length;
     timSort(longs, xs, n);
 

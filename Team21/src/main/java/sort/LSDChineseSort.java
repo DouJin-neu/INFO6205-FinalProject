@@ -35,6 +35,19 @@ public class LSDChineseSort<X extends Comparable<X>>{
     private final int ASCII_RANGE = 256;
 
 
+    /**
+     * precess array xs
+     * @param xs
+     * @return
+     */
+    public String[] preProcess(final X[] xs){
+        String[] longs = msdCoder.msdEncode(xs,'a');
+        for (int i = 0; i < longs.length; i++) {
+            maxLength = Math.max(longs[i].length(), maxLength);
+        }
+        return longs;
+    }
+
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.
        String[] longs = msdCoder.msdEncode(xs,'a');
