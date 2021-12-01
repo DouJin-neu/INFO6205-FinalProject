@@ -56,7 +56,8 @@ public class SortBenchmarkHelper {
         final List<String> words = new ArrayList<>();
         for (final Object line : new BufferedReader(fr).lines().toArray())
             words.addAll(stringListFunction.apply((String) line));
-        return words.stream().distinct().filter(s -> s.length() >= minLength).collect(Collectors.toList());
+//        return words.stream().distinct().filter(s -> s.length() >= minLength).collect(Collectors.toList());
+        return words.stream().filter(s -> s.length() >= minLength).collect(Collectors.toList());
     }
 
     /**

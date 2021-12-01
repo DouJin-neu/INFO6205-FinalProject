@@ -1,5 +1,10 @@
 package sort;
 
+import static benchmark.SortBenchmarkHelper.getWords;
+
+import benchmark.SortBenchmark;
+import java.util.Arrays;
+import java.util.Collections;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
@@ -17,9 +22,16 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     final int m = 10000;
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(MSDCoderFactory.englishCoder);
-    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
-    sorter.sort(a);
-    for (String s : a) {
+//    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+//    sorter.sort(a);
+//    for (String s : a) {
+//      System.out.println(s);
+//    }
+
+    String[] words = getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
+
+    sorter.sort(words);
+        for (String s : words) {
       System.out.println(s);
     }
   }
@@ -60,25 +72,6 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     long pivot2 = longs[right];
     while (longs[++less] < pivot1) ;
     while (longs[--great] > pivot2) ;
-
-  /*
-     * Partitioning:
-     *
-     *   left part           center part                   right part
-     * +--------------------------------------------------------------+
-     * |  < pivot1  |  pivot1 <= && <= pivot2  |    ?    |  > pivot2  |
-     * +--------------------------------------------------------------+
-     *               ^                          ^       ^
-     *               |                          |       |
-     *              less                        k     great
-     *
-     * Invariants:
-     *
-     *              all in (left, less)   < pivot1
-     *    pivot1 <= all in [less, k)     <= pivot2
-     *              all in (great, right) > pivot2
-     *
-     * Pointer k is the first index of ?-part.*/
 
     outer:
     for (int k = less - 1; ++k <= great; ) {
