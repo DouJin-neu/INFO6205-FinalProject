@@ -32,6 +32,19 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
 
+  /**
+   * precess array xs
+   * @param xs
+   * @return
+   */
+  public String[] preProcess(final X[] xs){
+    String[] longs = msdCoder.msdEncode(xs,'a');
+    for (int i = 0; i < longs.length; i++) {
+      max_bit = Math.max(longs[i].length(), max_bit);
+    }
+    return longs;
+  }
+
   public void sort(X[] xs) {
     // NOTE: First pass where we code to longs and sort according to those.
     String[] longs = msdCoder.msdEncode(xs,'0');
@@ -43,7 +56,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
     sort(longs, xs , 0, n-1,0);
   }
 
-  private void sort(String[] a,X[] xs, int l, int r, int bit) {
+  public void sort(String[] a,X[] xs, int l, int r, int bit) {
 
     int i = l;
     int j = r;

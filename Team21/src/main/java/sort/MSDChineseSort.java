@@ -35,6 +35,16 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     private final MSDCoder<X> msdCoder;
 
+    /**
+     * precess array xs
+     * @param xs
+     * @return
+     */
+    public String[] preProcess(final X[] xs){
+        String[] longs = msdCoder.msdEncode(xs,'a');
+        return longs;
+    }
+
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.
        String[] longs = msdCoder.msdEncode(xs,'a');
@@ -44,7 +54,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         sort(longsCopy, longs, xs,xsCopy , 0, n-1,0);
     }
 
-    private void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
+    public void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
 
         if (hi <= lo + cutoff)
         {  InsertionSortMSD.sort(a, lo, hi, d); return;  }

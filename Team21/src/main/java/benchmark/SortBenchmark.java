@@ -96,8 +96,14 @@ public class SortBenchmark {
     public static void runMSDSortBenchmark(String[] words, int nWords, int nRuns, MSDChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        String[] longs = sorter.preProcess(words);
+
+        String[] xsCopy = Arrays.copyOf(words, nWords);
+        String[] longsCopy = Arrays.copyOf(longs, nWords);
+
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.sort(longsCopy, longs, words,xsCopy , 0, nWords-1,0);
             return null;
         });
         System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
@@ -106,8 +112,12 @@ public class SortBenchmark {
     public static void runTimSortBenchmark(String[] words, int nWords, int nRuns, TimChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        //preprocess array
+        long[] longs = sorter.preProcess(words);
+
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.timSort(longs, words, nWords);
             return null;
         });
         System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
@@ -116,8 +126,11 @@ public class SortBenchmark {
     public static void runMSDExchangeSortBenchmark(String[] words, int nWords, int nRuns, MSDExchangeChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        String[] longs =sorter.preProcess(words);
+
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.sort(longs, words , 0, nWords-1,0);
             return null;
         });
         System.out.println("Run MSDExchangeSort Benchmark for "+ nRuns + " Mean time: " + mean);
@@ -126,8 +139,11 @@ public class SortBenchmark {
     public static void runLSDSortBenchmark(String[] words, int nWords, int nRuns, LSDChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        String[] longs = sorter.preProcess(words);
+
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.sort(longs,words, 0, nWords-1);
             return null;
         });
         System.out.println("Run LSDSort Benchmark for "+ nRuns + " Mean time: " + mean);
@@ -136,8 +152,10 @@ public class SortBenchmark {
     public static void runDualPivotBenchmark(String[] words, int nWords, int nRuns, DualPivotChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        long[] longs =sorter.preProcess(words);
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.dualPivotQuickSort(longs, words, 0, nWords-1);
             return null;
         });
         System.out.println("Run DualPivotSort Benchmark for "+ nRuns + " Mean time: " + mean);
@@ -146,8 +164,13 @@ public class SortBenchmark {
     public static void runHuskyMergeBenchmark(String[] words, int nWords, int nRuns, HuskyMergeChineseSort<String> sorter) {
         final Timer timer = new Timer();
         final int zzz = 20;
+        long[] longs = sorter.preProcess(words);
+        final String[] xsCopy = Arrays.copyOf(words, nWords);
+        final long[] longsCopy = Arrays.copyOf(longs, nWords);
+
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-            sorter.sort(words);
+//            sorter.sort(words);
+            sorter.mergeSort(longsCopy, xsCopy, longs, words, 0, nWords);
             return null;
         });
         System.out.println("Run HuskyMergeSort Benchmark for "+ nRuns + " Mean time: " + mean);

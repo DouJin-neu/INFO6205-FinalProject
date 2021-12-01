@@ -102,6 +102,3 @@ public class QuickDualPivot<X extends Comparable<X>> {
   
 
 }
-
-// This code is contributed by Gourish Sadhu
-
