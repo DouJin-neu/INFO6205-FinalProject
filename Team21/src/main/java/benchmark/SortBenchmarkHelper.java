@@ -44,7 +44,7 @@ public class SortBenchmarkHelper {
         try {
             final File file = new File(getPathname(resource, SortBenchmarkHelper.class));
             final String[] result = getWordArray(file, stringListFunction, 1);
-            System.out.println("getWords: testing with " + formatWhole(result.length) + " unique words: from " + file);
+            System.out.println("getWords: testing with " + formatWhole(result.length) + " words: from " + file);
             return result;
         } catch (final FileNotFoundException e) {
             System.out.println("Cannot find resource: " + resource);
@@ -56,8 +56,8 @@ public class SortBenchmarkHelper {
         final List<String> words = new ArrayList<>();
         for (final Object line : new BufferedReader(fr).lines().toArray())
             words.addAll(stringListFunction.apply((String) line));
-//        return words.stream().distinct().filter(s -> s.length() >= minLength).collect(Collectors.toList());
         return words.stream().filter(s -> s.length() >= minLength).collect(Collectors.toList());
+        //return words.stream().distinct().filter(s -> s.length() >= minLength).collect(Collectors.toList());
     }
 
     /**

@@ -26,6 +26,11 @@ public class QuickDualPivot<X extends Comparable<X>> {
 
   }
 
+  public long[] preProcess(final X[] xs){
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'a');
+    return longs;
+  }
+
   // quicksort the array a[] using dual-pivot quicksort
   public void sort(X[] xs) {
 //    StdRandom.shuffle(a);
@@ -34,7 +39,7 @@ public class QuickDualPivot<X extends Comparable<X>> {
   }
 
   // quicksort the subarray a[lo .. hi] using dual-pivot quicksort
-  private void sort(String[] a,X[] xs, int lo, int hi) {
+  public void sort(String[] a,X[] xs, int lo, int hi) {
     if (hi <= lo) return;
 
     // make sure a[lo] <= a[hi]
