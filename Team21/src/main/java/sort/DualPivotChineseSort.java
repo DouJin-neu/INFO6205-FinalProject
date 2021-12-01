@@ -1,10 +1,13 @@
 package sort;
 
 import static benchmark.SortBenchmarkHelper.getWords;
+import static sort.utils.Utilities.writeToFile;
 
 import benchmark.SortBenchmark;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
@@ -27,12 +30,34 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 //    for (String s : a) {
 //      System.out.println(s);
 //    }
+    String[] words1 = getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
 
-    String[] words = getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
+    long startTime1 = System.currentTimeMillis();
+    sorter.sort(words1);
+    long endTime1 = System.currentTimeMillis();
 
-    sorter.sort(words);
-        for (String s : words) {
-      System.out.println(s);
+    long time1 = (endTime1- startTime1);
+    System.out.println(time1);
+
+    long time;
+    List<String> resources = new ArrayList<>();
+    resources.add("shuffledChinese250K.txt");
+    resources.add("shuffledChinese500K.txt");
+    resources.add("shuffledChinese1M.txt");
+    resources.add("shuffledChinese2M.txt");
+    resources.add("shuffledChinese4M.txt");
+
+      for(int i=0;i<resources.size();i++){
+        String[] words = getWords(resources.get(i), SortBenchmark::lineAsList);
+        long startTime = System.currentTimeMillis();
+//        for (int t = 0; t < 10; t++) {
+            sorter.sort(words);
+//        }
+      long endTime = System.currentTimeMillis();
+      time = (endTime - startTime);
+//      long mean = time/10;
+      long mean = time;
+      writeToFile(words.length+","+mean+"","DualPivotChineseSort.csv",true);
     }
   }
 
