@@ -1,7 +1,7 @@
 package benchmark;
 
-import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.util.Timer;
+import java.util.Collections;
 import sort.DualPivotChineseSort;
 import sort.HuskyMergeChineseSort;
 import sort.LSDChineseSort;
@@ -16,10 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static benchmark.SortBenchmarkHelper.getWords;
 import static edu.neu.coe.info6205.util.Utilities.formatWhole;
+import static sort.utils.Utilities.writeToFile;
 
 public class SortBenchmark {
 
@@ -32,9 +32,13 @@ public class SortBenchmark {
         Config config = Config.load(SortBenchmark.class);
         logger.info("SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: " + Arrays.toString(args));
         if (args.length == 0) logger.warn("No word counts specified on the command line");
-        //SortBenchmark sortBenchmark = new SortBenchmark(config);
+        SortBenchmark sortBenchmark = new SortBenchmark(config);
         //do benchmark here
-        //sortBenchmark.sortStrings();
+        sortBenchmark.sortStrings("shuffledChinese250K.txt");
+        sortBenchmark.sortStrings("shuffledChinese500K.txt");
+        sortBenchmark.sortStrings("shuffledChinese1M.txt");
+        sortBenchmark.sortStrings("shuffledChinese2M.txt");
+        sortBenchmark.sortStrings("shuffledChinese4M.txt");
 
     }
 
@@ -43,6 +47,8 @@ public class SortBenchmark {
 
         // NOTE: Leipzig Chinese words benchmarks (according to command-line arguments)
         String[] words = getWords(resource, SortBenchmark::lineAsList);
+//        System.out.println(words.length);
+        Collections.shuffle(Arrays.asList(words));
         benchmarkStringSorters(words, words.length, 10);
 
     }
@@ -109,9 +115,12 @@ public class SortBenchmark {
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
 //            sorter.sort(words);
             sorter.sort(longsCopy, longs, words,xsCopy , 0, nWords-1,0);
+//            sorter.sort( longs, words , 0, nWords-1,0);
             return null;
         });
         System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean,"MSDChineseSort.csv",true);
+
     }
 
     public static void runTimSortBenchmark(String[] words, int nWords, int nRuns, TimChineseSort<String> sorter) {
@@ -126,6 +135,8 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean+"","TimChineseSort.csv",true);
+
     }
 
     public static void runMSDExchangeSortBenchmark(String[] words, int nWords, int nRuns, MSDExchangeChineseSort<String> sorter) {
@@ -139,6 +150,8 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run MSDExchangeSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean+"","MSDExchangeSort.csv",true);
+
     }
 
     public static void runLSDSortBenchmark(String[] words, int nWords, int nRuns, LSDChineseSort<String> sorter) {
@@ -152,6 +165,7 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run LSDSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean+"","LSDSort.csv",true);
     }
 
     public static void runDualPivotBenchmark(String[] words, int nWords, int nRuns, DualPivotChineseSort<String> sorter) {
@@ -164,6 +178,7 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run DualPivotSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean+"","DualPivotSort.csv",true);
     }
 
     public static void runHuskyMergeBenchmark(String[] words, int nWords, int nRuns, HuskyMergeChineseSort<String> sorter) {
@@ -179,6 +194,7 @@ public class SortBenchmark {
             return null;
         });
         System.out.println("Run HuskyMergeSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        writeToFile(nWords+","+mean+"","HuskyMergeSort.csv",true);
     }
 
     private boolean isConfigBoolean(String section, String option) {
@@ -189,7 +205,7 @@ public class SortBenchmark {
         return isConfigBoolean("benchmarkstringsorters", option);
     }
 
-    static List<String> lineAsList(final String line) {
+   public static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);
         return words;
