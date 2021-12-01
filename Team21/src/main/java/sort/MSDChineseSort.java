@@ -80,7 +80,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
 //        }
 
         // copy back
-        if (lo + 1 - hi >= 0) {
+        if (lo <= hi) {
             System.arraycopy(aux, 0, a, lo, hi + 1 - lo);
             System.arraycopy(auXs, 0, xs, lo, hi + 1 - lo);
         }
