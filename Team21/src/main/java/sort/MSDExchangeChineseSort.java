@@ -38,7 +38,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
    * @return
    */
   public String[] preProcess(final X[] xs){
-    String[] longs = msdCoder.msdEncode(xs,'a');
+    String[] longs = msdCoder.msdEncode(xs,'0');
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
     }
