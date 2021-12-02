@@ -5,12 +5,9 @@ import sort.utils.LazyLogger;
 import sort.utils.MSDCoderFactory;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -32,8 +29,6 @@ public class TimChineseSortTest {
 
         final int N = 6;
         final int m = 10;
-        //final boolean preSorted = arg > 0 && Boolean.parseBoolean(args[0]);
-        //final String inputOrder = preSorted ? "ordered" : "random";
         final TimChineseSort<String> sorter = new TimChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(input);
         System.out.println(Arrays.toString(input));

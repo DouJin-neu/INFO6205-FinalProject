@@ -165,18 +165,18 @@ public final class MSDCoderFactory{
     public static String switchPinyin(String content) {
         char[] chars = content.toCharArray();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        // 设置大小写
+        // Set case type
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        // 设置声调表示方法
+        // set tone type
         format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
-        // 设置字母u表示方法
+        // set ü type to u
         format.setVCharType(HanyuPinyinVCharType.WITH_U_UNICODE);
         String[] s;
         StringBuilder sb = new StringBuilder();
         boolean pinyin = false;
         try {
             for (int i = 0; i < chars.length; i++) {
-                // 判断是否为汉字字符
+                // whether is Chinese character or not
                 if (String.valueOf(chars[i]).matches("[\\u4E00-\\u9FA5]+")) {
                     s = PinyinHelper.toHanyuPinyinStringArray(chars[i], format);
                     if (s != null) {
