@@ -5,12 +5,21 @@ import java.util.Arrays;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
-
+/**
+ * This class represents the purest form of Husky Sort based on IntroSort for pass 1 and the System sort for pass 2.
+ * <p>
+ * CONSIDER redefining all of the "to" parameters to be consistent with our other Sort utilities.
+ *
+ */
 public class MSDChineseSort<X extends Comparable<X>>{
 
 
     public static void main(final String[] args) {
 
+        final int N = 50000;
+        final int m = 10000;
+        final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
+        final String inputOrder = preSorted ? "ordered" : "random";
          MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
         String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
         sorter.sort(a);
@@ -45,24 +54,11 @@ public class MSDChineseSort<X extends Comparable<X>>{
         sort(longsCopy, longs, xs,xsCopy , 0, n-1,0);
     }
 
-    public void insertionSort(long[] arr, X[] xs, int left,
-        int right) {
-        for (int i = left + 1; i <= right; i++) {
-            long temp = arr[i];
-            X tempXs = xs[i];
-            int j = i - 1;
-            while (j >= left && arr[j] > temp) {
-                arr[j + 1] = arr[j];
-                xs[j + 1] = xs[j];
-                j--;
-            }
-            arr[j + 1] = temp;
-            xs[j + 1] = tempXs;
-        }
-    }
-
     public void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
         if(hi<=lo)return;
+        if(d==1){
+            System.out.println("there");
+        }
         if (hi <= lo + cutoff)
         {  insertionSortMSD.sort(a,xs, lo, hi, d); return;  }
         int[] count = new int[radix+2];        // Compute frequency counts.
@@ -81,6 +77,10 @@ public class MSDChineseSort<X extends Comparable<X>>{
             aux[count[charAt(a[i], d) + 1]++] = a[i];
             auXs[count2[charAt(a[i], d) + 1]++] = xs[i];
         }
+//        for (int i = lo; i <= hi; i++) {     // Copy back.
+//            a[i] = aux[i - lo];
+//            xs[i] = auXs[i-lo];
+//        }
 
         // copy back
         if (lo <= hi) {

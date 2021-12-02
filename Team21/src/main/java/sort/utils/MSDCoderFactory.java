@@ -195,7 +195,7 @@ public final class MSDCoderFactory{
         }
 
         //switch tone from number to character
-        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D").replace("5","E"):sb.toString();
+        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D"):sb.toString();
     }
 
     public static int charAt(String s, int d) {
@@ -219,12 +219,6 @@ public final class MSDCoderFactory{
     return pinyinToSameLength(words,'a');
     }
 
-    /**
-     * switch pinyin to same length
-     * @param words
-     * @param appendix
-     * @return
-     */
     public static String[] pinyinToSameLength(String[] words,char appendix){
         Queue<String> queue = new PriorityQueue<>(new Comparator<String>() {
             @Override
@@ -269,12 +263,6 @@ public final class MSDCoderFactory{
 
     }
 
-    /**
-     * Get the longest pinyin length of the nth character of each Chinese character string
-     * @param words
-     * @param index
-     * @return
-     */
     public static String getLongestPinyin(String[] words,int index){
         Queue<String>  queue = new PriorityQueue<>(new Comparator<String>() {
             @Override
