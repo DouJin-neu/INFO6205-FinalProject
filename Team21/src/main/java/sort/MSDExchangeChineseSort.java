@@ -4,8 +4,6 @@ import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
 public class MSDExchangeChineseSort<X extends Comparable<X>>{
-  private static final int radix = 256;
-  private static final int cutoff = 0;
 
   private final MSDCoder<X> msdCoder;
 
@@ -14,10 +12,6 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
 
   public static void main(final String[] args) {
 
-    final int N = 50000;
-    final int m = 10000;
-    final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
-    final String inputOrder = preSorted ? "ordered" : "random";
     MSDExchangeChineseSort<String> sorter = new MSDExchangeChineseSort<String>(MSDCoderFactory.bitCoder);
     String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
     sorter.sort(a);
@@ -46,7 +40,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
   public void sort(X[] xs) {
-    // NOTE: First pass where we code to longs and sort according to those.
+    // NOTE: First pass where we code to pinyin and sort according to those.
     String[] longs = msdCoder.msdEncode(xs,'0');
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
