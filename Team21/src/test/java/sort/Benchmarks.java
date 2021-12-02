@@ -3,14 +3,6 @@ package sort;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.GenericSort;
 import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.elementary.BubbleSort;
-import edu.neu.coe.info6205.sort.elementary.InsertionSort;
-import edu.neu.coe.info6205.sort.elementary.InsertionSortOpt;
-import edu.neu.coe.info6205.sort.elementary.SelectionSort;
-import edu.neu.coe.info6205.sort.elementary.ShellSort;
-import edu.neu.coe.info6205.sort.linearithmic.IntroSort;
-import edu.neu.coe.info6205.sort.linearithmic.MergeSort;
-import edu.neu.coe.info6205.sort.linearithmic.QuickSort_3way;
 import edu.neu.coe.info6205.sort.linearithmic.QuickSort_DualPivot;
 import edu.neu.coe.info6205.util.Benchmark;
 import edu.neu.coe.info6205.util.Benchmark_Timer;
@@ -22,7 +14,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Supplier;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

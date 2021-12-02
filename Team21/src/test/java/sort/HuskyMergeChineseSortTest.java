@@ -1,19 +1,14 @@
 package sort;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import benchmark.SortBenchmarkHelper;
 import org.junit.Test;
 import sort.utils.LazyLogger;
-import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
-import sort.utils.MSDCoderFactoryTest;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

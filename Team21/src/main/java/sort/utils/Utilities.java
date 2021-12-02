@@ -99,16 +99,16 @@ public final class Utilities {
      * write data To File
      * @param content
      * @param fileName
-     * @param overrite
+     * @param overwrite
      */
-    public static void writeToFile(String content, String fileName,Boolean overrite) {
+    public static void writeToFile(String content, String fileName,Boolean overwrite) {
 
         try {
             File file = new File("./Team21/src/" + fileName);
             if(!file.exists()){
                 content="Number,Time\n"+content;
             }
-            FileOutputStream fis = new FileOutputStream("./Team21/src/" + fileName, overrite);
+            FileOutputStream fis = new FileOutputStream("./Team21/src/" + fileName, overwrite);
             OutputStreamWriter isr = new OutputStreamWriter(fis);
             BufferedWriter bw = new BufferedWriter(isr);
 

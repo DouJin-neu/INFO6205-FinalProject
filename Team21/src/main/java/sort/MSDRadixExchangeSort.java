@@ -84,17 +84,14 @@ public class MSDRadixExchangeSort {
   public String getPinyin(String content) {
     char[] chars = content.toCharArray();
     HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-    // 设置大小写
     format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-    // 设置声调表示方法
     format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-    // 设置字母u表示方法
     format.setVCharType(HanyuPinyinVCharType.WITH_V);
     String[] s;
     StringBuilder sb = new StringBuilder();
     try {
       for (int i = 0; i < chars.length; i++) {
-        // 判断是否为汉字字符
+
         if (String.valueOf(chars[i]).matches("[\\u4E00-\\u9FA5]+")) {
           s = PinyinHelper.toHanyuPinyinStringArray(chars[i], format);
           if (s != null) {

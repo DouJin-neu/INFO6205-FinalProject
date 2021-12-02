@@ -47,12 +47,6 @@ public class SortBenchmarkTest {
         assertEquals(10, SortBenchmark.getWarmupRuns(1000));
     }
 
-    @Test
-    public void dualPivotBenchmarkTest(){
-        String[] words = SortBenchmarkHelper.getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
-        SortBenchmark.runDualPivotBenchmark(words, words.length, 10, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
-    }
-
     private int getWarmupRuns(int m) {
         return Integer.max(2, Integer.min(10, m / 10));
     }

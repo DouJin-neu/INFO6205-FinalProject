@@ -50,7 +50,6 @@ public class SortBenchmark {
     public void sortStrings(String resource) throws IOException {
         logger.info("Beginning String sorts");
 
-        // NOTE: Leipzig Chinese words benchmarks (according to command-line arguments)
         String[] words = getWords(resource, SortBenchmark::lineAsList);
 //        System.out.println(words.length);
         Collections.shuffle(Arrays.asList(words));
@@ -80,12 +79,6 @@ public class SortBenchmark {
      */
     void benchmarkStringSorters(String[] sourceWords, int nWords, int nRuns) {
         logger.info("Testing pure sorts with " + formatWhole(nRuns) + " runs of sorting " + formatWhole(nWords) + " words");
-
-        //Random random = new Random();
-
-        //sort words with certain length
-        /*String[] words = new String[nWords];
-        for (int i = 0; i < nWords; i++) words[i] =sourceWords[random.nextInt(sourceWords.length)];*/
 
         //doing benchmarks for different types of sorting algorithms
         try{
@@ -124,7 +117,7 @@ public class SortBenchmark {
 //            sorter.sort( longs, words , 0, nWords-1,0);
             return null;
         });
-        System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean,"MSDChineseSort.csv",true);
 
     }
@@ -140,7 +133,7 @@ public class SortBenchmark {
             sorter.timSort(longs, words, nWords);
             return null;
         });
-        System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run TimChineseSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean+"","TimChineseSort.csv",true);
 
     }
@@ -155,7 +148,7 @@ public class SortBenchmark {
             sorter.sort(longs, words , 0, nWords-1,0);
             return null;
         });
-        System.out.println("Run MSDExchangeSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run MSDExchangeSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean+"","MSDExchangeSort.csv",true);
 
     }
@@ -170,7 +163,7 @@ public class SortBenchmark {
             sorter.sort(longs,words, 0, nWords-1);
             return null;
         });
-        System.out.println("Run LSDSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run LSDSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean+"","LSDSort.csv",true);
     }
 
@@ -183,7 +176,7 @@ public class SortBenchmark {
             sorter.dualPivotQuickSort(longs, words, 0, nWords-1);
             return null;
         });
-        System.out.println("Run DualPivotSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run DualPivotSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean+"","DualPivotSort.csv",true);
     }
 
@@ -199,16 +192,8 @@ public class SortBenchmark {
             sorter.mergeSort(longsCopy, xsCopy, longs, words, 0, nWords);
             return null;
         });
-        System.out.println("Run HuskyMergeSort Benchmark for "+ nRuns + " Mean time: " + mean);
+        System.out.println("Run HuskyMergeSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
         writeToFile(nWords+","+mean+"","HuskyMergeSort.csv",true);
-    }
-
-    private boolean isConfigBoolean(String section, String option) {
-        return config.getBoolean(section, option);
-    }
-
-    private boolean isConfigBenchmarkStringSorter(String option) {
-        return isConfigBoolean("benchmarkstringsorters", option);
     }
 
    public static List<String> lineAsList(final String line) {

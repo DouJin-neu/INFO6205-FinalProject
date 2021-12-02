@@ -31,12 +31,9 @@ public interface MSDCoder<X> {
 
   }
 
-
-
   default String name() {
     return "MSDCoder";
   }
-
 
   String msdEncode(X x);
   long msdEncodeToNumber(X x);
