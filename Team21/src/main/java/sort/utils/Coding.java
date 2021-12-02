@@ -9,8 +9,6 @@ public class Coding {
         this.perfect = perfect;
     }
 
-
-
     public final long[] longs;
     public final boolean perfect;
 

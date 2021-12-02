@@ -165,22 +165,24 @@ public final class MSDCoderFactory{
     public static String switchPinyin(String content) {
         char[] chars = content.toCharArray();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        // 设置大小写
+        // Set case type
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        // 设置声调表示方法
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        // 设置字母u表示方法
-        format.setVCharType(HanyuPinyinVCharType.WITH_V);
+        // set tone type
+        format.setToneType(HanyuPinyinToneType.WITH_TONE_NUMBER);
+        // set ü type to u
+        format.setVCharType(HanyuPinyinVCharType.WITH_U_UNICODE);
         String[] s;
         StringBuilder sb = new StringBuilder();
+        boolean pinyin = false;
         try {
             for (int i = 0; i < chars.length; i++) {
-                // 判断是否为汉字字符
+                // whether is Chinese character or not
                 if (String.valueOf(chars[i]).matches("[\\u4E00-\\u9FA5]+")) {
                     s = PinyinHelper.toHanyuPinyinStringArray(chars[i], format);
                     if (s != null) {
                         sb.append(s[0]);
                         sb.append(",");
+                        pinyin = true;
                         continue;
                     }
                 }
@@ -192,7 +194,8 @@ public final class MSDCoderFactory{
             e.printStackTrace();
         }
 
-        return sb.toString().substring(0,sb.length()-1);
+        //switch tone from number to character
+        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D").replace("5","E"):sb.toString();
     }
 
     public static int charAt(String s, int d) {

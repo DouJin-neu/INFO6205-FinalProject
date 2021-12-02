@@ -27,20 +27,32 @@ public final class MSDCoderFactoryTest {
   @Test
   public void testBitCoder() {
     MSDCoder<String> coder = MSDCoderFactory.bitCoder;
-    assertEquals(bytesToString("shang,xia,si,fang".getBytes()), coder.msdEncode("上下四方"));
-    assertEquals(bytesToString("yu".getBytes()), coder.msdEncode("宇"));
-    assertEquals(bytesToString("gu,wang,jin,lai".getBytes()), coder.msdEncode("古往今来"));
-    assertEquals(bytesToString("zhou".getBytes()), coder.msdEncode("宙"));
+    assertEquals(bytesToString("shangD,xiaD,siD,fangA".getBytes()), coder.msdEncode("上下四方"));
+    assertEquals(bytesToString("yuC".getBytes()), coder.msdEncode("宇"));
+    assertEquals(bytesToString("guC,wangC,jinA,laiB".getBytes()), coder.msdEncode("古往今来"));
+    assertEquals(bytesToString("zhouD".getBytes()), coder.msdEncode("宙"));
   }
 
 
   @Test
   public void testPinyinCoder() {
     MSDCoder<String> coder = MSDCoderFactory.pinyinCoder;
-    assertEquals("shi,zhe,ru,si", coder.msdEncode("逝者如斯"));
-    assertEquals("bu,she,zhou,ye", coder.msdEncode("不舍昼夜"));
-    assertEquals("lu,man,man", coder.msdEncode("路漫漫"));
-    assertEquals("qi,xiu,yuan,xi", coder.msdEncode("其修远兮"));
+    assertEquals("shiD,zheC,ruB,siA", coder.msdEncode("逝者如斯"));
+    assertEquals("buD,sheD,zhouD,yeD", coder.msdEncode("不舍昼夜"));
+    assertEquals("luD,manD,manD", coder.msdEncode("路漫漫"));
+    assertEquals("qiB,xiuA,yuanC,xiA", coder.msdEncode("其修远兮"));
+  }
+
+  @Test
+  public void testPinyinToSameLength(){
+    MSDCoder<String> coder = MSDCoderFactory.pinyinCoder;
+    String[] words = "帝子 降兮 北渚".split(" ");
+    String[] results = pinyinToSameLength(coder.msdEncode(words));
+
+    for(String word:results){
+      assertEquals(10,word.length());
+    }
+
   }
 
   public static void main(String[] args) {

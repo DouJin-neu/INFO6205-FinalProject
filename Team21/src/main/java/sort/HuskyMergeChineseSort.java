@@ -25,11 +25,22 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final String inputOrder = preSorted ? "ordered" : "random";
         logger.info("MergeHuskySort: sorting " + N + " " + inputOrder + " alphabetic ASCII words " + m + " times");
         final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
-        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
         }
+    }
+
+
+    /**
+     * precess array xs
+     * @param xs
+     * @return
+     */
+    public long[] preProcess(final X[] xs){
+        final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
+        return longs;
     }
 
     /**
@@ -70,7 +81,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
      * @param from       the index from which to begin sorting.
      * @param to         the index of the first element not to be sorted.
      */
-    private void mergeSort(final long[] lsSortable, final X[] xsSortable, final long[] lsAux, final X[] xsAux, final int from, final int to) {
+    public void mergeSort(final long[] lsSortable, final X[] xsSortable, final long[] lsAux, final X[] xsAux, final int from, final int to) {
         @SuppressWarnings("UnnecessaryLocalVariable") final int lo = from;
         if (to <= lo + cutoff) {
             insertionSort(xsAux, lsAux, from, to);

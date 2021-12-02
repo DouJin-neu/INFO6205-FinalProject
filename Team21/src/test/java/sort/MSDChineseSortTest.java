@@ -6,12 +6,9 @@ import org.junit.Test;
 import sort.utils.MSDCoderFactory;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -24,8 +21,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class MSDChineseSortTest {
 
-    String[] input = new String[]{"安","爱","埃", "张", "公","测试"};
-    String[] expected = "爱 埃 安 测试 公 张".split(" ");
+    String[] input = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+    String[] expected = "埃 爱 安 毕安 毕安心 毕福剑 毕竟 毕凌霄 边 边防 边防军 边防站 边心 测试 公 张".split(" ");
 
     @Test
     public void test(){
@@ -34,6 +31,31 @@ public class MSDChineseSortTest {
         sorter.sort(input);
         System.out.println(Arrays.toString(input));
         assertArrayEquals(expected, input);
+    }
+
+    @Test
+    public void getSortedFile(){
+
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese1M.txt", MSDChineseSortTest::lineAsList);
+        final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
+        sorter.sort(words);
+
+        try {
+            FileOutputStream fis = new FileOutputStream("./src/result.csv");
+            OutputStreamWriter isr = new OutputStreamWriter(fis);
+            BufferedWriter bw = new BufferedWriter(isr);
+            for (String word : words) {
+                String content = word + "\n";
+                bw.write(content);
+                bw.flush();
+            }
+            bw.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -52,19 +74,18 @@ public class MSDChineseSortTest {
     @Test
     public void sortFile2() throws IOException {
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChinese.txt", MSDChineseSortTest::lineAsList);
+        String[] words = helper.getWords("shuffledChinese1M.txt", MSDChineseSortTest::lineAsList);
         final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
-        assertEquals("何静姝", words[238108]);
-        assertEquals("焦志成", words[331980]);
-        assertEquals("焦正军", words[331974]);
-        assertEquals("张艾丽", words[999982]);
-        assertEquals("张爱爱", words[999997]);
+        assertEquals("何静姝", words[238152]);
+        assertEquals("焦志成", words[331919]);
+        assertEquals("焦正军", words[331911]);
+        assertEquals("张艾丽", words[999985]);
+        assertEquals("张爱爱", words[999978]);
     }
-
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);

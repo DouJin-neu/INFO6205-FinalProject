@@ -1,5 +1,10 @@
 package sort.utils;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Random;
@@ -88,5 +93,31 @@ public final class Utilities {
      */
     public static double lg(double x) {
         return Math.log(x) / Math.log(2);
+    }
+
+    /**
+     * write data To File
+     * @param content
+     * @param fileName
+     * @param overwrite
+     */
+    public static void writeToFile(String content, String fileName,Boolean overwrite) {
+
+        try {
+            File file = new File("./Team21/src/" + fileName);
+            if(!file.exists()){
+                content="Number,Time\n"+content;
+            }
+            FileOutputStream fis = new FileOutputStream("./Team21/src/" + fileName, overwrite);
+            OutputStreamWriter isr = new OutputStreamWriter(fis);
+            BufferedWriter bw = new BufferedWriter(isr);
+
+            bw.write(content + "\n");
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

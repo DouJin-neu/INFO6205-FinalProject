@@ -1,8 +1,10 @@
 package benchmark;
 
 import org.junit.Test;
+import sort.DualPivotChineseSort;
 import sort.utils.Config;
 import sort.utils.LazyLogger;
+import sort.utils.MSDCoderFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class SortBenchmarkTest {
         int warmupRuns = SortBenchmark.getWarmupRuns(10);
         logger.info("Warming up ");
         for(int i = 0; i < warmupRuns; i++){
-            sortBenchmark.sortStrings("shuffledChinese1M.txt");
+            sortBenchmark.sortStrings("shuffledChinese250K.txt");
         }
         logger.info("Warming up End");
         logger.info("Start sorting benchmark");

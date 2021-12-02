@@ -16,8 +16,8 @@ public class LSDChineseSort<X extends Comparable<X>>{
         final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
         final String inputOrder = preSorted ? "ordered" : "random";
          LSDChineseSort<String> sorter = new LSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
-//        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
-        String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
+        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+//        String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
@@ -34,6 +34,19 @@ public class LSDChineseSort<X extends Comparable<X>>{
 
     private final int ASCII_RANGE = 256;
 
+
+    /**
+     * precess array xs
+     * @param xs
+     * @return
+     */
+    public String[] preProcess(final X[] xs){
+        String[] longs = msdCoder.msdEncode(xs,'a');
+        for (int i = 0; i < longs.length; i++) {
+            maxLength = Math.max(longs[i].length(), maxLength);
+        }
+        return longs;
+    }
 
     public void sort(X[] xs) {
         // NOTE: First pass where we code to longs and sort according to those.

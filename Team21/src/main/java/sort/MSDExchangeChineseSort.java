@@ -19,7 +19,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     final String inputOrder = preSorted ? "ordered" : "random";
     MSDExchangeChineseSort<String> sorter = new MSDExchangeChineseSort<String>(MSDCoderFactory.bitCoder);
-    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
     sorter.sort(a);
     for (String s : a) {
       System.out.println(s);
@@ -32,6 +32,19 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
 
+  /**
+   * precess array xs
+   * @param xs
+   * @return
+   */
+  public String[] preProcess(final X[] xs){
+    String[] longs = msdCoder.msdEncode(xs,'0');
+    for (int i = 0; i < longs.length; i++) {
+      max_bit = Math.max(longs[i].length(), max_bit);
+    }
+    return longs;
+  }
+
   public void sort(X[] xs) {
     // NOTE: First pass where we code to longs and sort according to those.
     String[] longs = msdCoder.msdEncode(xs,'0');
@@ -43,7 +56,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
     sort(longs, xs , 0, n-1,0);
   }
 
-  private void sort(String[] a,X[] xs, int l, int r, int bit) {
+  public void sort(String[] a,X[] xs, int l, int r, int bit) {
 
     int i = l;
     int j = r;

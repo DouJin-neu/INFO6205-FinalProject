@@ -7,7 +7,7 @@ import sort.utils.MSDCoderFactory;
 public class TimChineseSort<X extends Comparable<X>> {
 
   //todo change to 32
-  private static final int MIN_MERGE = 2;
+  private static final int MIN_MERGE = 32;
 
 
   public int minRunLength(int n)
@@ -160,19 +160,29 @@ public class TimChineseSort<X extends Comparable<X>> {
     }
   }
 
-  public TimChineseSort(final MSDCoder<X> huskyCoder) {
-    this.huskyCoder =  huskyCoder;
+  public TimChineseSort(final MSDCoder<X> msdCoder) {
+    this.msdCoder =  msdCoder;
   }
 
 
-  private final MSDCoder<X> huskyCoder;
+  private final MSDCoder<X> msdCoder;
+
+  /**
+   * precess array xs
+   * @param xs
+   * @return
+   */
+  public long[] preProcess(final X[] xs){
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
+    return longs;
+  }
 
   public void sort(final X[] xs) {
     //todo switch english charactor to longs
     //todo test, read paper
     // NOTE: First pass where we code to longs and sort according to those.
 //        final Coding coding = huskyCoder.huskyEncode(xs);
-    final long[] longs = huskyCoder.msdEncodeToNumber(xs,'A');
+    final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
     final int n = xs.length;
     timSort(longs, xs, n);
 
@@ -186,7 +196,7 @@ public class TimChineseSort<X extends Comparable<X>> {
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     final String inputOrder = preSorted ? "ordered" : "random";
     TimChineseSort<String> sorter = new TimChineseSort<String>(MSDCoderFactory.englishCoder);
-    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
 //    String[] input = new String[]{"安","爱","埃", "张", "公","测试", "边防站", "毕安", "毕福剑"};
     sorter.sort(a);
     for (String s : a) {

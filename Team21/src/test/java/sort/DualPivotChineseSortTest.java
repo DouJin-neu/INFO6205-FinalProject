@@ -5,12 +5,9 @@ import org.junit.Test;
 import sort.utils.MSDCoderFactory;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -43,7 +40,7 @@ public class DualPivotChineseSortTest {
     @Test
     public void sortFile2() throws IOException{
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChinese250K.txt", DualPivotChineseSortTest::lineAsList);
+        String[] words = helper.getWords("shuffledChinese2M.txt", DualPivotChineseSortTest::lineAsList);
         final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
     }

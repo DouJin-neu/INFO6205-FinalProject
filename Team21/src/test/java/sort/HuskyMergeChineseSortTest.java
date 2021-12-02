@@ -1,19 +1,14 @@
 package sort;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import benchmark.SortBenchmarkHelper;
 import org.junit.Test;
 import sort.utils.LazyLogger;
-import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
-import sort.utils.MSDCoderFactoryTest;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -28,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 public class HuskyMergeChineseSortTest{
 
     String[] input = new String[]{"安","爱","埃", "张", "公","测试"};
-    String[] expected = "爱 埃 安 测试 公 张".split(" ");
+    String[] expected = "埃 爱 安 测试 公 张".split(" ");
 
     private final static LazyLogger logger = new LazyLogger(HuskyMergeChineseSortTest.class);
 
