@@ -25,7 +25,6 @@ public class SortBenchmark {
 
     private final Config config;
     final static LazyLogger logger = new LazyLogger(SortBenchmark.class);
-    private List<String[]> list=new ArrayList<>();
     public SortBenchmark(Config config){this.config = config;}
 
     public static void main(String[] args) throws IOException {
@@ -42,19 +41,14 @@ public class SortBenchmark {
         sortBenchmark.sortStrings("shuffledChinese1M.txt");
         sortBenchmark.sortStrings("shuffledChinese2M.txt");
         sortBenchmark.sortStrings("shuffledChinese4M.txt");
-        DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(
-            MSDCoderFactory.englishCoder);
-//        sorter.test(sortBenchmark.list);
     }
 
     public void sortStrings(String resource) throws IOException {
         logger.info("Beginning String sorts");
 
         String[] words = getWords(resource, SortBenchmark::lineAsList);
-//        System.out.println(words.length);
         Collections.shuffle(Arrays.asList(words));
         benchmarkStringSorters(words, words.length, 10);
-        list.add(words);
 
     }
 
@@ -112,9 +106,7 @@ public class SortBenchmark {
         String[] longsCopy = Arrays.copyOf(longs, nWords);
 
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.sort(longsCopy, longs, words,xsCopy , 0, nWords-1,0);
-//            sorter.sort( longs, words , 0, nWords-1,0);
             return null;
         });
         System.out.println("Run MSDChineseSort Benchmark for "+ nRuns + " times. Mean time: " + mean + " ms");
@@ -129,7 +121,6 @@ public class SortBenchmark {
         long[] longs = sorter.preProcess(words);
 
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.timSort(longs, words, nWords);
             return null;
         });
@@ -144,7 +135,6 @@ public class SortBenchmark {
         String[] longs =sorter.preProcess(words);
 
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.sort(longs, words , 0, nWords-1,0);
             return null;
         });
@@ -159,7 +149,6 @@ public class SortBenchmark {
         String[] longs = sorter.preProcess(words);
 
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.sort(longs,words, 0, nWords-1);
             return null;
         });
@@ -172,7 +161,6 @@ public class SortBenchmark {
         final int zzz = 20;
         long[] longs =sorter.preProcess(words);
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.dualPivotQuickSort(longs, words, 0, nWords-1);
             return null;
         });
@@ -188,7 +176,6 @@ public class SortBenchmark {
         final long[] longsCopy = Arrays.copyOf(longs, nWords);
 
         final double mean = timer.repeat(nRuns, () -> zzz, t-> {
-//            sorter.sort(words);
             sorter.mergeSort(longsCopy, xsCopy, longs, words, 0, nWords);
             return null;
         });

@@ -58,7 +58,7 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         //todo switch english charactor to longs
         //todo test, read paper
         // NOTE: First pass where we code to longs and sort according to those.
-//        final Coding coding = huskyCoder.huskyEncode(xs);
+
         final long[] longs = msdCoder.msdEncodeToNumber(xs,'a');
         final int n = xs.length;
         final X[] xsCopy = Arrays.copyOf(xs, n);
@@ -119,20 +119,6 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
             } else copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k);
         }
 
-//        while (i<mid&&j<=hi){
-//            if (lsOrdered[j] < lsOrdered[i]) {
-//                copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k++);
-//            } else copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k++);
-//        }
-//
-//        while (i<mid){
-//            copy(xsOrdered, lsOrdered, xsDst, lsDst, i++, k++);
-//        }
-//
-//        while (j<=hi){
-//            copy(xsOrdered, lsOrdered, xsDst, lsDst, j++, k++);
-//        }
-
 
     }
 
@@ -148,12 +134,10 @@ public class HuskyMergeChineseSort<X extends Comparable<X>>{
         final long temp1 = ls[i];
         ls[i] = ls[j];
         ls[j] = temp1;
-//        System.out.println(i+" "+j);
         // Swap xs
         final X temp2 = xs[i];
         xs[i] = xs[j];
         xs[j] = temp2;
-        //System.out.println(i+" "+j);
     }
 
     private void copy(final X[] xsFrom, final long[] lsFrom, final X[] xsTo, final long[] lsTo, final int i, final int j) {
