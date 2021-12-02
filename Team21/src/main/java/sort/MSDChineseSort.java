@@ -21,7 +21,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
         final String inputOrder = preSorted ? "ordered" : "random";
          MSDChineseSort<String> sorter = new MSDChineseSort<String>(MSDCoderFactory.pinyinCoder);
-        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+        String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
         sorter.sort(a);
         for (String s : a) {
             System.out.println(s);
@@ -56,9 +56,6 @@ public class MSDChineseSort<X extends Comparable<X>>{
 
     public void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
         if(hi<=lo)return;
-        if(d==1){
-            System.out.println("there");
-        }
         if (hi <= lo + cutoff)
         {  insertionSortMSD.sort(a,xs, lo, hi, d); return;  }
         int[] count = new int[radix+2];        // Compute frequency counts.
@@ -81,6 +78,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
 //            a[i] = aux[i - lo];
 //            xs[i] = auXs[i-lo];
 //        }
+
 
         // copy back
         if (lo <= hi) {

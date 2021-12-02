@@ -9,6 +9,9 @@ public interface MSDCoder<X> {
   default String[] msdEncode(X[] xs,char append) {
     String[] result = new String[xs.length];
     for (int i = 0; i < xs.length; i++) result[i] = msdEncode(xs[i]);
+    if(append=='A'){
+      return result;
+    }
     return pinyinToSameLength(result,append);
   }
 

@@ -1,6 +1,5 @@
 package elementary;
 
-import sort.helper.ChineseCharacterNode;
 
 /**
  * This is a basic implementation of insertion sort.

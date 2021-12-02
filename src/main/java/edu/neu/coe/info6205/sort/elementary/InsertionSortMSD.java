@@ -7,7 +7,7 @@ package edu.neu.coe.info6205.sort.elementary;
 public class InsertionSortMSD {
 
     public static void sort(String[] a, int lo, int hi, int d) {
-        for (int i = lo; i < hi; i++)
+        for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(a[j], a[j - 1], d); j--)
                 swap(a, j, j - 1);
     }

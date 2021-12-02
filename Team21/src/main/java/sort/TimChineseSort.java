@@ -7,7 +7,7 @@ import sort.utils.MSDCoderFactory;
 public class TimChineseSort<X extends Comparable<X>> {
 
   //todo change to 32
-  private static final int MIN_MERGE = 2;
+  private static final int MIN_MERGE = 32;
 
 
   public int minRunLength(int n)
@@ -196,7 +196,7 @@ public class TimChineseSort<X extends Comparable<X>> {
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     final String inputOrder = preSorted ? "ordered" : "random";
     TimChineseSort<String> sorter = new TimChineseSort<String>(MSDCoderFactory.englishCoder);
-    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
+    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","比安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
 //    String[] input = new String[]{"安","爱","埃", "张", "公","测试", "边防站", "毕安", "毕福剑"};
     sorter.sort(a);
     for (String s : a) {

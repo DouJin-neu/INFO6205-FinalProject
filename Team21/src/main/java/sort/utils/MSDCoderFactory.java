@@ -195,7 +195,7 @@ public final class MSDCoderFactory{
         }
 
         //switch tone from number to character
-        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D"):sb.toString();
+        return pinyin ? sb.toString().substring(0,sb.length()-1).replace("1","A").replace("2","B").replace("3","C").replace("4","D").replace("5","E"):sb.toString();
     }
 
     public static int charAt(String s, int d) {
