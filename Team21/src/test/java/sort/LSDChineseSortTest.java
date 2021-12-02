@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 public class LSDChineseSortTest {
 
     String[] input = new String[]{"安","爱","埃", "张", "公","测试"};
-    String[] expected = "埃 爱 安 测试 公 张".split(" ");
+    String[] expected = "爱 埃 安 测试 公 张".split(" ");
 
     @Test
     public void test(){

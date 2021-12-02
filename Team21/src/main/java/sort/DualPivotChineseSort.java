@@ -4,6 +4,7 @@ import static benchmark.SortBenchmarkHelper.getWords;
 import static sort.utils.Utilities.writeToFile;
 
 import benchmark.SortBenchmark;
+import elementary.InsertionSortMSD;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,7 +28,18 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     final boolean preSorted = args.length > 0 && Boolean.parseBoolean(args[0]);
     DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(MSDCoderFactory.englishCoder);
 //    String[] a = new String[]{"安", "爱","埃", "张", "公","测试","毕安心","边心","边防","边","边防军","毕竟","毕凌霄","边防站", "毕安", "毕福剑"};
-    String[] a = new String[]{"安","爱","埃", "张", "公","测试"};
+//    sorter.sort(a);
+//    for (String s : a) {
+//      System.out.println(s);
+//    }
+    String[] words1 = getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
+
+    long startTime1 = System.currentTimeMillis();
+//    sorter.sort(words1);
+    long endTime1 = System.currentTimeMillis();
+
+    long time1 = (endTime1- startTime1);
+//    System.out.println(time1);
 
     long time;
     List<String> resources = new ArrayList<>();
@@ -90,22 +102,6 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     dualPivotQuickSort(longs, xs, 0, n-1);
   }
 
-  public void insertionSort(long[] arr, X[] xs, int left,
-      int right) {
-    for (int i = left + 1; i <= right; i++) {
-      long temp = arr[i];
-      X tempXs = xs[i];
-      int j = i - 1;
-      while (j >= left && arr[j] > temp) {
-        arr[j + 1] = arr[j];
-        xs[j + 1] = xs[j];
-        j--;
-      }
-      arr[j + 1] = temp;
-      xs[j + 1] = tempXs;
-    }
-  }
-
   public void dualPivotQuickSort(long[] longs, X[] xs,int left, int right) {
 
     if (left >= right) {
@@ -114,7 +110,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     }
 
     if (right <= left + cutoff)
-    {  insertionSort(longs,xs, left, right); return;  }
+    {  new InsertionSortMSD().sort(longs,xs, left, right); return;  }
 
     if (longs[left] > longs[right]) {
 

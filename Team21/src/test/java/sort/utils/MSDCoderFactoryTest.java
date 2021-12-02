@@ -43,18 +43,6 @@ public final class MSDCoderFactoryTest {
     assertEquals("qiB,xiuA,yuanC,xiA", coder.msdEncode("其修远兮"));
   }
 
-  @Test
-  public void testPinyinToSameLength(){
-    MSDCoder<String> coder = MSDCoderFactory.pinyinCoder;
-    String[] words = "帝子 降兮 北渚".split(" ");
-    String[] results = pinyinToSameLength(coder.msdEncode(words));
-
-    for(String word:results){
-      assertEquals(10,word.length());
-    }
-
-  }
-
   public static void main(String[] args) {
       String[] example = new String[]{"毕安心","边防军","毕竟","毕凌霄"};
     MSDCoder<String> coder = MSDCoderFactory.pinyinCoder;
