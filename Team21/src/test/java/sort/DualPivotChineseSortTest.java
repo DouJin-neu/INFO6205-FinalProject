@@ -13,7 +13,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class DualPivotChineseSortTest {
-    //除了DualPivotChineseSort/MSDExchangeChineseSort，其他排序方法”爱“都是第一个
+
     String[] input = new String[]{"安","爱","埃", "张", "公","测试"};
     String[] expected = "埃 爱 安 测试 公 张".split(" ");
 
