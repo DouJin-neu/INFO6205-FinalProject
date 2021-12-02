@@ -49,12 +49,32 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
       for(int i=0;i<resources.size();i++){
         String[] words = getWords(resources.get(i), SortBenchmark::lineAsList);
+        Collections.shuffle(Arrays.asList(words));
+
         long startTime = System.currentTimeMillis();
 //        for (int t = 0; t < 10; t++) {
             sorter.sort(words);
 //        }
       long endTime = System.currentTimeMillis();
       time = (endTime - startTime);
+//      long mean = time/10;
+      long mean = time;
+      writeToFile(words.length+","+mean+"","DualPivotChineseSort.csv",true);
+    }
+  }
+
+  public void test(List<String[]> list){
+    DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(MSDCoderFactory.englishCoder);
+    for(int i=0;i<list.size();i++){
+      String[] words = list.get(i);
+      Collections.shuffle(Arrays.asList(words));
+
+      long startTime = System.currentTimeMillis();
+//        for (int t = 0; t < 10; t++) {
+      sorter.sort(words);
+//        }
+      long endTime = System.currentTimeMillis();
+      long time = (endTime - startTime);
 //      long mean = time/10;
       long mean = time;
       writeToFile(words.length+","+mean+"","DualPivotChineseSort.csv",true);
