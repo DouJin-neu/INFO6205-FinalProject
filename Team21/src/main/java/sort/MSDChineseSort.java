@@ -74,6 +74,10 @@ public class MSDChineseSort<X extends Comparable<X>>{
             aux[count[charAt(a[i], d) + 1]++] = a[i];
             auXs[count2[charAt(a[i], d) + 1]++] = xs[i];
         }
+//        for (int i = lo; i <= hi; i++) {     // Copy back.
+//            a[i] = aux[i - lo];
+//            xs[i] = auXs[i-lo];
+//        }
 
 
         // copy back

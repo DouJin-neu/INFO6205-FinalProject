@@ -219,12 +219,6 @@ public final class MSDCoderFactory{
     return pinyinToSameLength(words,'a');
     }
 
-    /**
-     * switch pinyin to same length
-     * @param words
-     * @param appendix
-     * @return
-     */
     public static String[] pinyinToSameLength(String[] words,char appendix){
         Queue<String> queue = new PriorityQueue<>(new Comparator<String>() {
             @Override
@@ -269,12 +263,6 @@ public final class MSDCoderFactory{
 
     }
 
-    /**
-     * Get the longest pinyin length of the nth character of each Chinese character string
-     * @param words
-     * @param index
-     * @return
-     */
     public static String getLongestPinyin(String[] words,int index){
         Queue<String>  queue = new PriorityQueue<>(new Comparator<String>() {
             @Override

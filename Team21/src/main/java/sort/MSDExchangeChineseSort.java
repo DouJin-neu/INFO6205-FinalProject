@@ -4,6 +4,8 @@ import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
 
 public class MSDExchangeChineseSort<X extends Comparable<X>>{
+  private static final int radix = 256;
+  private static final int cutoff = 0;
 
   private final MSDCoder<X> msdCoder;
 
@@ -40,7 +42,7 @@ public class MSDExchangeChineseSort<X extends Comparable<X>>{
   }
 
   public void sort(X[] xs) {
-    // NOTE: First pass where we code to pinyin and sort according to those.
+    // NOTE: First pass where we code to longs and sort according to those.
     String[] longs = msdCoder.msdEncode(xs,'0');
     for (int i = 0; i < longs.length; i++) {
       max_bit = Math.max(longs[i].length(), max_bit);
