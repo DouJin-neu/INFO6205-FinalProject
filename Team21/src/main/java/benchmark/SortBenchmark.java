@@ -93,7 +93,7 @@ public class SortBenchmark {
             runMSDExchangeSortBenchmark(sourceWords, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
             runLSDSortBenchmark(sourceWords, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
             runHuskyMergeBenchmark(sourceWords, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
-            runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
+///            runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
             runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
         }catch(StackOverflowError e){
             e.printStackTrace();

@@ -4,6 +4,7 @@ import static benchmark.SortBenchmarkHelper.getWords;
 import static sort.utils.Utilities.writeToFile;
 
 import benchmark.SortBenchmark;
+import elementary.InsertionSortMSD;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,6 +19,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
   }
 
   private final MSDCoder<X> msdCoder;
+  private static final int cutoff = 256;
 
 
   public static void main(String[] args) {
@@ -33,11 +35,11 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     String[] words1 = getWords("shuffledChinese250K.txt", SortBenchmark::lineAsList);
 
     long startTime1 = System.currentTimeMillis();
-    sorter.sort(words1);
+//    sorter.sort(words1);
     long endTime1 = System.currentTimeMillis();
 
     long time1 = (endTime1- startTime1);
-    System.out.println(time1);
+//    System.out.println(time1);
 
     long time;
     List<String> resources = new ArrayList<>();
@@ -106,6 +108,10 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
       return;
     }
+
+    if (right <= left + cutoff)
+    {  new InsertionSortMSD().sort(longs,xs, left, right); return;  }
+
     if (longs[left] > longs[right]) {
 
       swap(longs, left, right);
