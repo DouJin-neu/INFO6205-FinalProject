@@ -1,6 +1,6 @@
 package sort;
 
-import edu.neu.coe.info6205.sort.elementary.InsertionSortMSD;
+import elementary.InsertionSortMSD;
 import java.util.Arrays;
 import sort.utils.MSDCoder;
 import sort.utils.MSDCoderFactory;
@@ -32,7 +32,7 @@ public class MSDChineseSort<X extends Comparable<X>>{
         this.msdCoder =  msdCoder;
     }
 
-
+    private InsertionSortMSD insertionSortMSD = new InsertionSortMSD();
     private final MSDCoder<X> msdCoder;
 
     /**
@@ -55,9 +55,12 @@ public class MSDChineseSort<X extends Comparable<X>>{
     }
 
     public void sort(String[] a,String[] aux,X[] xs,X[]auXs, int lo, int hi, int d) {
-
+        if(hi<=lo)return;
+        if(d==1){
+            System.out.println("there");
+        }
         if (hi <= lo + cutoff)
-        {  InsertionSortMSD.sort(a, lo, hi, d); return;  }
+        {  insertionSortMSD.sort(a,xs, lo, hi, d); return;  }
         int[] count = new int[radix+2];        // Compute frequency counts.
         int[] count2 = new int[radix + 2];        // Compute frequency counts.
 
@@ -97,6 +100,6 @@ public class MSDChineseSort<X extends Comparable<X>>{
     }
 
     private static final int radix = 256;
-    private static final int cutoff = 0;
+    private static final int cutoff = 32;
 
 }

@@ -25,13 +25,16 @@ public class SortBenchmark {
 
     private final Config config;
     final static LazyLogger logger = new LazyLogger(SortBenchmark.class);
-
+    private List<String[]> list=new ArrayList<>();
     public SortBenchmark(Config config){this.config = config;}
 
     public static void main(String[] args) throws IOException {
         Config config = Config.load(SortBenchmark.class);
-        logger.info("SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: " + Arrays.toString(args));
-        if (args.length == 0) logger.warn("No word counts specified on the command line");
+        logger.info(
+            "SortBenchmark.main: " + config.get("sortbenchmark", "version") + " with word counts: "
+                + Arrays.toString(args));
+        if (args.length == 0)
+            logger.warn("No word counts specified on the command line");
         SortBenchmark sortBenchmark = new SortBenchmark(config);
         //do benchmark here
         sortBenchmark.sortStrings("shuffledChinese250K.txt");
@@ -39,7 +42,9 @@ public class SortBenchmark {
         sortBenchmark.sortStrings("shuffledChinese1M.txt");
         sortBenchmark.sortStrings("shuffledChinese2M.txt");
         sortBenchmark.sortStrings("shuffledChinese4M.txt");
-
+        DualPivotChineseSort<String> sorter = new DualPivotChineseSort<String>(
+            MSDCoderFactory.englishCoder);
+//        sorter.test(sortBenchmark.list);
     }
 
     public void sortStrings(String resource) throws IOException {
@@ -50,6 +55,7 @@ public class SortBenchmark {
 //        System.out.println(words.length);
         Collections.shuffle(Arrays.asList(words));
         benchmarkStringSorters(words, words.length, 10);
+        list.add(words);
 
     }
 
@@ -87,7 +93,7 @@ public class SortBenchmark {
             runMSDExchangeSortBenchmark(sourceWords, nWords, nRuns, new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder));
             runLSDSortBenchmark(sourceWords, nWords, nRuns, new LSDChineseSort<>(MSDCoderFactory.pinyinCoder));
             runHuskyMergeBenchmark(sourceWords, nWords, nRuns, new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder));
-            runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
+///            runDualPivotBenchmark(sourceWords, nWords, nRuns, new DualPivotChineseSort<>(MSDCoderFactory.englishCoder));
             runTimSortBenchmark(sourceWords, nWords, nRuns, new TimChineseSort<>(MSDCoderFactory.englishCoder));
         }catch(StackOverflowError e){
             e.printStackTrace();
