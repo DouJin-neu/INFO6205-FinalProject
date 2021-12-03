@@ -18,6 +18,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
   }
 
   private final MSDCoder<X> msdCoder;
+  private static final int cutoff = 64;
 
 
   public static void main(String[] args) {
@@ -34,11 +35,11 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
     long time;
     List<String> resources = new ArrayList<>();
-//    resources.add("shuffledChinese250K.txt");
-//    resources.add("shuffledChinese500K.txt");
-//    resources.add("shuffledChinese1M.txt");
-//    resources.add("shuffledChinese2M.txt");
-//    resources.add("shuffledChinese4M.txt");
+    resources.add("shuffledChinese250K.txt");
+    resources.add("shuffledChinese500K.txt");
+    resources.add("shuffledChinese1M.txt");
+    resources.add("shuffledChinese2M.txt");
+    resources.add("shuffledChinese4M.txt");
 
     for(int i=0;i<resources.size();i++){
       String[] words = getWords(resources.get(i), SortBenchmark::lineAsList);
@@ -50,6 +51,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 //        }
       long endTime = System.currentTimeMillis();
       time = (endTime - startTime);
+      System.out.println(words.length+ " words Run DualPivotChineseSort Benchmark for 1 time. " + "Mean time: " +time + " ms");
 //      long mean = time/10;
       long mean = time;
       writeToFile(words.length+","+mean+"","DualPivotChineseSort.csv",true);
@@ -59,6 +61,25 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
   public long[] preProcess(X[] xs) {
     long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
     return longs;
+  }
+
+  public void insertionSort(long[] arr,X[] xs, int left,
+      int right)
+  {
+    for (int i = left + 1; i <= right; i++)
+    {
+      long temp = arr[i];
+      X tempXs = xs[i];
+      int j = i - 1;
+      while (j >= left && arr[j] > temp)
+      {
+        arr[j + 1] = arr[j];
+        xs[j + 1] = xs[j];
+        j--;
+      }
+      arr[j + 1] = temp;
+      xs[j + 1] = tempXs;
+    }
   }
 
   public void sort(final X[] xs) {
@@ -78,6 +99,10 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
       return;
     }
+    if(right<=left+cutoff){
+      insertionSort(longs,xs,left,right);
+    }
+
     if (longs[left] > longs[right]) {
 
       swap(longs, left, right);
