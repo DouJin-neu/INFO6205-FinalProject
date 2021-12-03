@@ -34,11 +34,11 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
     long time;
     List<String> resources = new ArrayList<>();
-//    resources.add("shuffledChinese250K.txt");
-//    resources.add("shuffledChinese500K.txt");
-//    resources.add("shuffledChinese1M.txt");
-//    resources.add("shuffledChinese2M.txt");
-//    resources.add("shuffledChinese4M.txt");
+    resources.add("shuffledChinese250K.txt");
+    resources.add("shuffledChinese500K.txt");
+    resources.add("shuffledChinese1M.txt");
+    resources.add("shuffledChinese2M.txt");
+    resources.add("shuffledChinese4M.txt");
 
     for(int i=0;i<resources.size();i++){
       String[] words = getWords(resources.get(i), SortBenchmark::lineAsList);
@@ -50,6 +50,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 //        }
       long endTime = System.currentTimeMillis();
       time = (endTime - startTime);
+      System.out.println(words.length+ " words Run DualPivotChineseSort Benchmark for 1 time. " + "Mean time: " +time + " ms");
 //      long mean = time/10;
       long mean = time;
       writeToFile(words.length+","+mean+"","DualPivotChineseSort.csv",true);
