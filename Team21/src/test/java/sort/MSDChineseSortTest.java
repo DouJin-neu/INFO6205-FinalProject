@@ -34,31 +34,6 @@ public class MSDChineseSortTest {
     }
 
     @Test
-    public void getSortedFile(){
-
-        SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChinese1M.txt", MSDChineseSortTest::lineAsList);
-        final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
-        sorter.sort(words);
-
-        try {
-            FileOutputStream fis = new FileOutputStream("./src/result.csv");
-            OutputStreamWriter isr = new OutputStreamWriter(fis);
-            BufferedWriter bw = new BufferedWriter(isr);
-            for (String word : words) {
-                String content = word + "\n";
-                bw.write(content);
-                bw.flush();
-            }
-            bw.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     public void sortFile1() throws IOException {
         int n = 41;
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
