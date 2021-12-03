@@ -18,6 +18,7 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
   }
 
   private final MSDCoder<X> msdCoder;
+  private static final int cutoff = 64;
 
 
   public static void main(String[] args) {
@@ -62,6 +63,25 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
     return longs;
   }
 
+  public void insertionSort(long[] arr,X[] xs, int left,
+      int right)
+  {
+    for (int i = left + 1; i <= right; i++)
+    {
+      long temp = arr[i];
+      X tempXs = xs[i];
+      int j = i - 1;
+      while (j >= left && arr[j] > temp)
+      {
+        arr[j + 1] = arr[j];
+        xs[j + 1] = xs[j];
+        j--;
+      }
+      arr[j + 1] = temp;
+      xs[j + 1] = tempXs;
+    }
+  }
+
   public void sort(final X[] xs) {
     //todo test, read paper
     final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
@@ -79,6 +99,10 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
 
       return;
     }
+    if(right<=left+cutoff){
+      insertionSort(longs,xs,left,right);
+    }
+
     if (longs[left] > longs[right]) {
 
       swap(longs, left, right);
