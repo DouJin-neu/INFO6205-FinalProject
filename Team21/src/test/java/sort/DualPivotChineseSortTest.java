@@ -40,9 +40,17 @@ public class DualPivotChineseSortTest {
     @Test
     public void sortFile2() throws IOException{
         SortBenchmarkHelper helper = new SortBenchmarkHelper();
-        String[] words = helper.getWords("shuffledChinese2M.txt", DualPivotChineseSortTest::lineAsList);
+        String[] words = helper.getWords("shuffledChinese1M.txt", DualPivotChineseSortTest::lineAsList);
         final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
+        assertEquals("阿安", words[0]);
+        assertEquals("阿姿", words[400]);
+        assertEquals("艾爱", words[401]);
+        assertEquals("何静娟", words[238152]);
+        assertEquals("焦智勇", words[331919]);
+        assertEquals("焦正军", words[331911]);
+        assertEquals("张艾佳", words[999982]);
+        assertEquals("张艾青", words[999978]);
     }
 
     static List<String> lineAsList(final String line) {
