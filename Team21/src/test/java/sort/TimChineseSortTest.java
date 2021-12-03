@@ -50,6 +50,23 @@ public class TimChineseSortTest {
         assertEquals("黄有珍", words[14]);
     }
 
+    @Test
+    public void sortFile2() throws IOException {
+
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese1M.txt", TimChineseSortTest::lineAsList);
+        final TimChineseSort<String> sorter = new TimChineseSort<>(MSDCoderFactory.englishCoder);
+        sorter.sort(words);
+        assertEquals("阿安", words[0]);
+        assertEquals("阿姿", words[400]);
+        assertEquals("艾爱", words[401]);
+        assertEquals("何敬恩", words[238152]);
+        assertEquals("焦志强", words[331919]);
+        assertEquals("焦振", words[331911]);
+        assertEquals("张艾嘉", words[999985]);
+        assertEquals("张艾文", words[999978]);
+    }
+
 
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();

@@ -53,6 +53,23 @@ public class HuskyMergeChineseSortTest{
         assertEquals("马文春", words[27]);
     }
 
+    @Test
+    public void sortFile2() throws IOException {
+        int n = 41;
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese1M.txt", HuskyMergeChineseSortTest::lineAsList);
+        final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
+        sorter.sort(words);
+        assertEquals("阿安", words[0]);
+        assertEquals("阿姿", words[399]);
+        assertEquals("艾爱", words[400]);
+        assertEquals("何俊强", words[238152]);
+        assertEquals("解凤", words[331919]);
+        assertEquals("解飞", words[331911]);
+        assertEquals("张艾嘉", words[999985]);
+        assertEquals("张艾文", words[999978]);
+    }
+
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);

@@ -45,6 +45,22 @@ public class MSDExchangeChineseSortTest {
         assertEquals("黄有珍", words[14]);
     }
 
+    @Test
+    public void sortFile2() throws IOException {
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese1M.txt", MSDExchangeChineseSortTest::lineAsList);
+        final MSDExchangeChineseSort<String> sorter = new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder);
+        sorter.sort(words);
+        assertEquals("阿安", words[0]);
+        assertEquals("阿姿", words[399]);
+        assertEquals("艾爱", words[401]);
+        assertEquals("何静姝", words[238152]);
+        assertEquals("焦志成", words[331919]);
+        assertEquals("焦正军", words[331911]);
+        assertEquals("张艾丽", words[999985]);
+        assertEquals("张爱爱", words[999977]);
+    }
+
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);

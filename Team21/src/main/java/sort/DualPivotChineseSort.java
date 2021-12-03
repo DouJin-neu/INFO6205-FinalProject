@@ -65,9 +65,9 @@ public class DualPivotChineseSort<X extends Comparable<X>> {
   public void sort(final X[] xs) {
     //todo test, read paper
     final long[] longs = msdCoder.msdEncodeToNumber(xs,'A');
-    for (int i=0;i<longs.length;i++) {
+    /*for (int i=0;i<longs.length;i++) {
       System.out.println(longs[i]+"   "+xs[i]);
-    }
+    }*/
     final int n = xs.length;
 
     dualPivotQuickSort(longs, xs, 0, n-1);

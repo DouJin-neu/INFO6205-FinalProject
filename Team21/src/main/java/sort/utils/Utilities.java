@@ -104,12 +104,11 @@ public final class Utilities {
     public static void writeToFile(String content, String fileName,Boolean overwrite) {
 
         try {
-            File fileForPath = new File("");
-            File file = new File(fileForPath.getAbsolutePath()+"/src/" + fileName);
+            File file = new File("./src/" + fileName);
             if(!file.exists()){
                 content="Number,Time\n"+content;
             }
-            FileOutputStream fis = new FileOutputStream(fileForPath.getAbsolutePath()+"/src/" + fileName, overwrite);
+            FileOutputStream fis = new FileOutputStream("./src/" + fileName, overwrite);
             OutputStreamWriter isr = new OutputStreamWriter(fis);
             BufferedWriter bw = new BufferedWriter(isr);
 
