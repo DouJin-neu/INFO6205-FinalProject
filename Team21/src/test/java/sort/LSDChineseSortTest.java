@@ -44,6 +44,22 @@ public class LSDChineseSortTest {
         assertEquals("马文春", words[27]);
     }
 
+    @Test
+    public void sortFile2() throws IOException {
+        SortBenchmarkHelper helper = new SortBenchmarkHelper();
+        String[] words = helper.getWords("shuffledChinese1M.txt", LSDChineseSortTest::lineAsList);
+        final LSDChineseSort<String> sorter = new LSDChineseSort<>(MSDCoderFactory.pinyinCoder);
+        sorter.sort(words);
+        assertEquals("阿安", words[0]);
+        assertEquals("阿姿", words[400]);
+        assertEquals("艾爱", words[401]);
+        assertEquals("何静姝", words[238152]);
+        assertEquals("焦志成", words[331919]);
+        assertEquals("焦正军", words[331911]);
+        assertEquals("张艾丽", words[999985]);
+        assertEquals("张爱爱", words[999978]);
+    }
+
     static List<String> lineAsList(final String line) {
         final List<String> words = new ArrayList<>();
         words.add(line);
