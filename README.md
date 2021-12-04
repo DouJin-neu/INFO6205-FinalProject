@@ -35,4 +35,4 @@ We also add logger to trace the running of the program. The Timer and Benchmark 
 Chinese strings. We use the existed code to build the basic structure of the algorithm, and use switchPinyin method to convert strings to long arrays.
    
 ## Results
-The sorted Chinese names are under the src folder, named result.csv. The other csv files are the benchmarking result for different types of sorting algorithms.
+The sorted Chinese names are under the src folder, named result_pinyinOrder.csv. The other csv files are the benchmarking result for different types of sorting algorithms.
