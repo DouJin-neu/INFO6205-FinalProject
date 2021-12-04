@@ -47,10 +47,10 @@ public class DualPivotChineseSortTest {
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
         assertEquals("何静娟", words[238152]);
-        assertEquals("焦智勇", words[331919]);
-        assertEquals("焦正军", words[331911]);
-        assertEquals("张艾佳", words[999982]);
-        assertEquals("张艾青", words[999978]);
+        assertEquals("焦志明", words[331919]);
+        assertEquals("焦峥", words[331911]);
+        assertEquals("张爱爱", words[999982]);
+        assertEquals("张艾文", words[999978]);
     }
 
     static List<String> lineAsList(final String line) {
