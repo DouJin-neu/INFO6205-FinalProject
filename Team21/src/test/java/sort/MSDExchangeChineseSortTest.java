@@ -52,6 +52,11 @@ public class MSDExchangeChineseSortTest {
         final MSDExchangeChineseSort<String> sorter = new MSDExchangeChineseSort<>(MSDCoderFactory.bitCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿朝", words[9]);
+        assertEquals("阿枫", words[47]);
+        assertEquals("阿璐璐", words[164]);
+        assertEquals("阿鸾", words[166]);
+        assertEquals("阿婉", words[258]);
         assertEquals("阿姿", words[399]);
         assertEquals("艾爱", words[401]);
         assertEquals("何静姝", words[238152]);

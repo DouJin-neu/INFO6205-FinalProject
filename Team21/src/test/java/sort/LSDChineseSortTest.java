@@ -51,6 +51,12 @@ public class LSDChineseSortTest {
         final LSDChineseSort<String> sorter = new LSDChineseSort<>(MSDCoderFactory.pinyinCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿婵", words[7]);
+        assertEquals("阿迪雅", words[31]);
+        assertEquals("阿辉辉", words[81]);
+        assertEquals("阿璐璐", words[165]);
+        assertEquals("阿拓", words[257]);
+        assertEquals("阿雍", words[350]);
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
         assertEquals("何静姝", words[238152]);

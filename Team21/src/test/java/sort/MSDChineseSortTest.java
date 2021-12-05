@@ -53,6 +53,11 @@ public class MSDChineseSortTest {
         final MSDChineseSort<String> sorter = new MSDChineseSort<>(MSDCoderFactory.pinyinCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿欢欢", words[75]);
+        assertEquals("阿菁", words[108]);
+        assertEquals("阿芹", words[209]);
+        assertEquals("阿希娜", words[276]);
+        assertEquals("阿岳", words[376]);
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
         assertEquals("何静姝", words[238152]);
