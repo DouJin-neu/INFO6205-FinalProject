@@ -44,13 +44,13 @@ public class DualPivotChineseSortTest {
         final DualPivotChineseSort<String> sorter = new DualPivotChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿冬", words[34]);
+        assertEquals("阿飞儿", words[41]);
+        assertEquals("阿蕾蕾", words[140]);
+        assertEquals("阿威", words[260]);
+        assertEquals("阿滢", words[347]);
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
-        assertEquals("何静娟", words[238152]);
-        assertEquals("焦志明", words[331919]);
-        assertEquals("焦峥", words[331911]);
-        assertEquals("张爱爱", words[999982]);
-        assertEquals("张艾文", words[999978]);
     }
 
     static List<String> lineAsList(final String line) {

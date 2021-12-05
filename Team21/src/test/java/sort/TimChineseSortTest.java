@@ -58,6 +58,11 @@ public class TimChineseSortTest {
         final TimChineseSort<String> sorter = new TimChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿冰冰", words[6]);
+        assertEquals("阿春春", words[22]);
+        assertEquals("阿京", words[107]);
+        assertEquals("阿琼", words[215]);
+        assertEquals("阿幼朵", words[355]);
         assertEquals("阿姿", words[400]);
         assertEquals("艾爱", words[401]);
         assertEquals("何敬恩", words[238152]);

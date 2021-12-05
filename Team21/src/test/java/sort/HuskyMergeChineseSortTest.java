@@ -61,6 +61,9 @@ public class HuskyMergeChineseSortTest{
         final HuskyMergeChineseSort<String> sorter = new HuskyMergeChineseSort<>(MSDCoderFactory.englishCoder);
         sorter.sort(words);
         assertEquals("阿安", words[0]);
+        assertEquals("阿菲", words[39]);
+        assertEquals("阿婧", words[112]);
+        assertEquals("阿芹", words[208]);
         assertEquals("阿姿", words[399]);
         assertEquals("艾爱", words[400]);
         assertEquals("何俊强", words[238152]);
